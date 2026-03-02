@@ -7,48 +7,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-:root {
-  --purple:#7B2FBE; --pl:#9B59D0; --ps:rgba(123,47,190,0.12);
-  --orange:#F97316; --ol:#FB923C;
-  --yellow:#FBBF24; --red:#E84545; --blue:#3B82F6; --green:#22C55E;
-  --bg:#FAF5FF; --bg2:#F3E8FF; --card:#fff;
-  --dark:#2D1B69; --text:#3B2070; --muted:#8B7BAE; --border:#E9D5FF;
+:root{
+  --purple:#7B2FBE;--pl:#9B59D0;--ps:rgba(123,47,190,0.12);
+  --orange:#F97316;--ol:#FB923C;--yellow:#FBBF24;
+  --red:#E84545;--blue:#3B82F6;--green:#22C55E;
+  --bg:#FAF5FF;--bg2:#F3E8FF;--card:#fff;
+  --dark:#2D1B69;--text:#3B2070;--muted:#8B7BAE;--border:#E9D5FF;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--purple);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(123,47,190,0.1)}
-.nav-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--purple);cursor:pointer}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--purple);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(123,47,190,0.1)}
+.nav-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--purple);cursor:pointer;flex-shrink:0}
 .nav-logo span{color:var(--orange)}
-.nav-links{display:flex;gap:0.2rem;list-style:none}
-.nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:0.88rem;padding:0.4rem 0.9rem;border-radius:30px;transition:all 0.2s;cursor:pointer}
+.nav-links{display:flex;gap:0.15rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:0.82rem;padding:0.35rem 0.7rem;border-radius:30px;transition:all 0.2s;cursor:pointer;white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--purple);background:var(--ps)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10}
 .hamburger span{width:25px;height:2.5px;background:var(--purple);border-radius:2px}
 
-/* ── PAGES ── */
-.page{display:none;min-height:100vh;padding-top:64px;animation:pageIn 0.35s ease}
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:64px;animation:pageIn 0.3s ease}
 .page.active{display:block}
-@keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── SHARED ── */
+/* SHARED */
 .container{max-width:1100px;margin:0 auto;padding:3rem 2rem}
 .section-header{text-align:center;margin-bottom:2.5rem}
 .section-tag{display:inline-block;background:var(--ps);color:var(--purple);font-weight:800;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;margin-bottom:0.6rem}
-.section-title{font-family:'Fredoka One',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--purple)}
+.section-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5vw,3rem);color:var(--purple)}
 .section-sub{color:var(--muted);margin-top:0.4rem;font-size:1rem;font-weight:600}
 
 .btn{padding:0.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;border:none;transition:all 0.25s;text-decoration:none;display:inline-block}
 .btn-primary{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;box-shadow:0 4px 20px rgba(123,47,190,0.3)}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(123,47,190,0.4)}
-.btn-secondary{background:linear-gradient(135deg,var(--orange),var(--ol));color:#fff;box-shadow:0 4px 20px rgba(249,115,22,0.3)}
+.btn-secondary{background:linear-gradient(135deg,var(--orange),var(--ol));color:#fff}
 .btn-secondary:hover{transform:translateY(-3px)}
+.btn-green{background:linear-gradient(135deg,var(--green),#4ADE80);color:#fff}
+.btn-green:hover{transform:translateY(-3px)}
 .btn-cancel{background:var(--bg2);color:var(--muted);border:2px solid var(--border)}
 .btn-sm{padding:0.55rem 1.3rem;font-size:0.88rem;border-radius:30px}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:0.9rem;padding:0.3rem 0.5rem;border-radius:8px;transition:background 0.2s;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted)}
+.icon-btn:hover{background:var(--ps);color:var(--purple)}
+.icon-btn.danger:hover{background:rgba(232,69,69,0.1);color:var(--red)}
 
-/* ── HOME ── */
+/* HERO */
 #page-inicio{background:linear-gradient(135deg,#FAF5FF 0%,#F3E8FF 50%,#FFF7ED 100%);position:relative;overflow:hidden}
 .hero-blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.28;animation:blobFloat 8s ease-in-out infinite}
@@ -64,18 +69,16 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .hero-h1 span{color:var(--orange)}
 .hero-sub{font-size:1.1rem;color:var(--muted);margin-top:1rem;line-height:1.7;font-weight:600;animation:fadeUp 0.8s ease 0.4s both}
 .hero-pills{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem;animation:fadeUp 0.8s ease 0.5s both}
-.pill{background:#fff;border:2px solid var(--border);border-radius:50px;padding:0.5rem 1.2rem;font-size:0.85rem;font-weight:700;color:var(--purple);box-shadow:0 2px 12px rgba(123,47,190,0.08)}
+.pill{background:#fff;border:2px solid var(--border);border-radius:50px;padding:0.5rem 1.2rem;font-size:0.85rem;font-weight:700;color:var(--purple)}
 .hero-btns{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.6s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-/* quick nav cards */
-.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
-.qcard{background:var(--card);border-radius:20px;padding:1.5rem;text-align:center;border:2px solid var(--border);cursor:pointer;transition:transform 0.25s,box-shadow 0.25s}
+.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
+.qcard{background:var(--card);border-radius:20px;padding:1.4rem;text-align:center;border:2px solid var(--border);cursor:pointer;transition:transform 0.25s,box-shadow 0.25s}
 .qcard:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
-.qcard-icon{font-size:2.2rem;margin-bottom:0.5rem}
-.qcard-label{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.05rem}
+.qcard-icon{font-size:2rem;margin-bottom:0.4rem}
+.qcard-label{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.9rem}
 
-/* ── NOVEDADES ── */
+/* NOVEDADES */
 #page-novedades{background:var(--bg2)}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
 .news-card{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
@@ -90,9 +93,10 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .b-anuncio{background:rgba(249,115,22,0.12);color:var(--orange)}
 .news-date{font-size:0.8rem;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
 .news-title{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.15rem;margin-bottom:0.5rem}
-.news-body{color:var(--muted);font-size:0.9rem;line-height:1.6}
+.news-body{color:var(--muted);font-size:0.9rem;line-height:1.6;white-space:pre-wrap}
+.card-footer{display:flex;justify-content:flex-end;margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border)}
 
-/* ── EVENTOS ── */
+/* EVENTOS */
 #page-eventos{background:var(--bg)}
 .notice-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px solid var(--border);border-radius:20px;padding:1.5rem 2rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .notice-item{display:flex;align-items:flex-start;gap:0.8rem}
@@ -103,18 +107,16 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .cat-btn{padding:0.4rem 1rem;border-radius:30px;border:2px solid var(--border);background:#fff;color:var(--muted);font-weight:700;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif}
 .cat-btn.active,.cat-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
 .events-list{display:flex;flex-direction:column;gap:0.8rem}
-.event-item{background:var(--card);border-radius:16px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1.2rem;border:2px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
-.event-item:hover{transform:translateX(4px);box-shadow:0 4px 20px rgba(123,47,190,0.1)}
+.event-item{background:var(--card);border-radius:16px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1.2rem;border:2px solid var(--border);transition:transform 0.2s}
+.event-item:hover{transform:translateX(4px)}
 .event-date-box{border-radius:12px;padding:0.5rem 0.9rem;text-align:center;min-width:58px;flex-shrink:0}
 .event-day{font-family:'Fredoka One',cursive;font-size:1.6rem;line-height:1;color:#fff}
 .event-month{font-size:0.68rem;font-weight:800;color:rgba(255,255,255,0.85);text-transform:uppercase}
 .event-info{flex:1}
 .event-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.05rem}
 .event-meta{color:var(--muted);font-size:0.82rem;margin-top:0.15rem;font-weight:600}
-.event-tag{padding:0.25rem 0.8rem;border-radius:20px;font-size:0.73rem;font-weight:800;white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px}
+.event-tag{padding:0.25rem 0.8rem;border-radius:20px;font-size:0.73rem;font-weight:800;white-space:nowrap;text-transform:uppercase}
 .event-actions{display:flex;gap:0.3rem}
-.icon-btn{background:none;border:none;cursor:pointer;font-size:0.95rem;padding:0.3rem;border-radius:8px;transition:background 0.2s}
-.icon-btn:hover{background:var(--ps)}
 .cat-hora-santa .event-date-box{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
 .cat-hora-santa .event-tag{background:var(--ps);color:var(--purple)}
 .cat-bazar .event-date-box{background:linear-gradient(135deg,#F97316,#FB923C)}
@@ -129,27 +131,98 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .cat-cumpleanos .event-day,.cat-cumpleanos .event-month{color:#78350F}
 .cat-cumpleanos .event-tag{background:rgba(251,191,36,0.2);color:#92400E}
 
-/* ── FINANZAS ── */
-#page-finanzas{background:var(--bg2)}
+/* ══ REUNIONES ══ */
+#page-reuniones{background:var(--bg2)}
+.meetings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+
+/* Meeting card - closed state */
+.meeting-card{background:var(--card);border-radius:20px;border:2px solid var(--border);overflow:hidden;transition:box-shadow 0.25s;cursor:pointer}
+.meeting-card:hover{box-shadow:0 8px 30px rgba(123,47,190,0.15)}
+.meeting-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:1.5rem;position:relative}
+.meeting-cover-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.35rem 0.8rem;font-size:0.78rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.6rem}
+.meeting-cover-title{font-family:'Fredoka One',cursive;color:#fff;font-size:1.3rem;line-height:1.2;margin-bottom:0.4rem}
+.meeting-cover-sub{color:rgba(255,255,255,0.7);font-size:0.83rem;font-weight:600}
+.meeting-cover-actions{position:absolute;top:1rem;right:1rem;display:flex;gap:0.3rem}
+.meeting-cover-btn{background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:#fff;padding:0.3rem 0.5rem;cursor:pointer;font-size:0.85rem;transition:background 0.2s}
+.meeting-cover-btn:hover{background:rgba(255,255,255,0.35)}
+.meeting-preview{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.meeting-stats{display:flex;gap:1rem}
+.meeting-stat{font-size:0.8rem;color:var(--muted);font-weight:700}
+.meeting-stat span{color:var(--purple);font-weight:800}
+.meeting-open-btn{background:var(--ps);border:none;border-radius:30px;color:var(--purple);padding:0.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:all 0.2s}
+.meeting-open-btn:hover{background:var(--purple);color:#fff}
+
+/* Meeting detail page */
+#page-meeting-detail{background:var(--bg)}
+.meeting-detail-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:3rem 2rem 2rem;text-align:center;position:relative}
+.back-btn{position:absolute;top:1.5rem;left:1.5rem;background:rgba(255,255,255,0.2);border:none;border-radius:30px;color:#fff;padding:0.5rem 1.2rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;transition:background 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.35)}
+.detail-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.35rem 0.8rem;font-size:0.8rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.8rem}
+.detail-title{font-family:'Fredoka One',cursive;color:#fff;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:0.5rem}
+.detail-topic{color:rgba(255,255,255,0.8);font-size:1rem;font-weight:600}
+.detail-body{max-width:1100px;margin:0 auto;padding:2rem}
+
+.detail-summary-box{background:var(--card);border-radius:20px;padding:1.8rem;border:2px solid var(--border);margin-bottom:2rem}
+.detail-summary-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+.detail-summary-text{color:var(--text);font-size:0.95rem;line-height:1.8;white-space:pre-wrap}
+
+.detail-materials{margin-bottom:2rem}
+.detail-materials h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem;margin-bottom:0.8rem}
+.materials-list{display:flex;flex-wrap:wrap;gap:0.8rem}
+.material-link{display:flex;align-items:center;gap:0.6rem;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:0.7rem 1.2rem;text-decoration:none;color:var(--purple);font-weight:700;font-size:0.88rem;transition:all 0.2s}
+.material-link:hover{background:var(--ps);border-color:var(--purple);transform:translateY(-2px)}
+
+/* Reflexiones en detalle */
+.reflexiones-section{margin-bottom:2rem}
+.reflexiones-section h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+.write-reflex-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);margin-bottom:1.5rem}
+.write-reflex-box h4{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;margin-bottom:1rem}
+.reflexiones-list{display:flex;flex-direction:column;gap:0.8rem}
+.reflex-item{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border);position:relative;border-left:4px solid var(--green)}
+.reflex-author-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+.reflex-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem}
+.reflex-date-small{font-size:0.75rem;color:var(--muted);font-weight:600}
+.reflex-text{color:var(--text);font-size:0.9rem;line-height:1.6;white-space:pre-wrap}
+
+/* EXPRESIÓN LIBRE */
+#page-muro{background:var(--bg2)}
+.expresion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.expr-card{background:var(--card);border-radius:18px;padding:1.3rem;border:2px solid var(--border);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.expr-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(123,47,190,0.1)}
+.expr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.expr-card.mood-feliz::before{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.expr-card.mood-reflexivo::before{background:linear-gradient(90deg,var(--purple),var(--pl))}
+.expr-card.mood-agradecido::before{background:linear-gradient(90deg,var(--green),#86EFAC)}
+.expr-card.mood-oracion::before{background:linear-gradient(90deg,var(--blue),#60A5FA)}
+.expr-card.mood-otro::before{background:linear-gradient(90deg,var(--muted),#C4B5D4)}
+.expr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+.expr-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem}
+.expr-mood-badge{font-size:0.72rem;font-weight:800;text-transform:uppercase;padding:0.15rem 0.6rem;border-radius:12px}
+.mood-feliz .expr-mood-badge{background:rgba(251,191,36,0.2);color:#92400E}
+.mood-reflexivo .expr-mood-badge{background:var(--ps);color:var(--purple)}
+.mood-agradecido .expr-mood-badge{background:rgba(34,197,94,0.12);color:#16A34A}
+.mood-oracion .expr-mood-badge{background:rgba(59,130,246,0.12);color:var(--blue)}
+.mood-otro .expr-mood-badge{background:rgba(139,123,174,0.15);color:var(--muted)}
+.expr-text{color:var(--text);font-size:0.9rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.6rem}
+.expr-bottom{display:flex;align-items:center;justify-content:space-between}
+.expr-date{font-size:0.75rem;color:var(--muted);font-weight:600}
+.write-box{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);margin-bottom:2rem}
+.write-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+
+/* FINANZAS */
+#page-finanzas{background:var(--bg)}
 .finance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
 .fin-card{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);text-align:center}
 .fin-label{color:var(--muted);font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
 .fin-value{font-family:'Fredoka One',cursive;font-size:1.9rem;margin-top:0.3rem}
-.fin-value.income{color:var(--green)}
-.fin-value.expense{color:var(--red)}
-.fin-value.balance{color:var(--purple)}
-
-/* Projects summary */
-.projects-section{margin-bottom:2rem}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.fin-value.income{color:var(--green)}.fin-value.expense{color:var(--red)}.fin-value.balance{color:var(--purple)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem}
 .project-card{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border)}
 .project-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1rem;margin-bottom:0.5rem}
 .project-bar-wrap{height:8px;background:var(--bg2);border-radius:10px;overflow:hidden;margin-bottom:0.4rem}
-.project-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--pl));transition:width 0.5s ease}
+.project-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--pl));transition:width 0.5s}
 .project-nums{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:700}
-.project-in{color:var(--green)}
-.project-ex{color:var(--red)}
-
+.project-in{color:var(--green)}.project-ex{color:var(--red)}
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
 .chart-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border)}
 .chart-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1rem;font-size:1.05rem}
@@ -161,14 +234,13 @@ th{background:var(--bg2);color:var(--muted);font-size:0.78rem;text-transform:upp
 td{padding:0.9rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600;color:var(--text)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--bg)}
-.amt-in{color:var(--green);font-weight:800}
-.amt-ex{color:var(--red);font-weight:800}
+.amt-in{color:var(--green);font-weight:800}.amt-ex{color:var(--red);font-weight:800}
 .proj-tag{display:inline-block;padding:0.15rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:700;background:var(--ps);color:var(--purple)}
 .del-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s}
 .del-btn:hover{color:var(--red)}
 
-/* ── CONTACTO ── */
-#page-contacto{background:var(--bg)}
+/* CONTACTO */
+#page-contacto{background:var(--bg2)}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
 .contact-card{background:var(--card);border-radius:20px;padding:2rem;text-align:center;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;display:block}
 .contact-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
@@ -176,34 +248,38 @@ tr:hover td{background:var(--bg)}
 .contact-name{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.15rem}
 .contact-handle{color:var(--muted);font-size:0.88rem;margin-top:0.3rem;font-weight:600}
 
-/* ── MODALS ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.5);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
-.modal-overlay.active{display:flex}
-.modal{background:var(--card);border-radius:24px;padding:2rem;width:100%;max-width:500px;border:2px solid var(--border);animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.2);max-height:90vh;overflow-y:auto}
-@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.modal h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1.5rem;font-size:1.4rem}
+/* FORM */
 .form-group{margin-bottom:1rem}
 .form-group label{display:block;color:var(--muted);font-size:0.83rem;font-weight:800;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
 .form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:0.7rem 1rem;color:var(--text);font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:600;outline:none;transition:border-color 0.2s}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--purple)}
-.form-group textarea{resize:vertical;min-height:80px}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-hint{font-size:0.78rem;color:var(--muted);margin-top:0.3rem;font-weight:600}
+
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.5);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:24px;padding:2rem;width:100%;max-width:520px;border:2px solid var(--border);animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.2);max-height:90vh;overflow-y:auto}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1.5rem;font-size:1.4rem}
 .modal-buttons{display:flex;gap:0.8rem;margin-top:1.5rem}
 
-/* password */
+/* PASSWORD */
 .pw-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.7);z-index:3000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .pw-overlay.active{display:flex}
-.pw-box{background:var(--card);border-radius:24px;padding:2.5rem;text-align:center;border:2px solid var(--border);max-width:360px;width:90%;animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.25)}
+.pw-box{background:var(--card);border-radius:24px;padding:2.5rem;text-align:center;border:2px solid var(--border);max-width:360px;width:90%;animation:slideUp 0.3s ease}
 .pw-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:0.4rem;font-size:1.4rem}
 .pw-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;font-weight:600}
 .pw-err{color:var(--red);font-size:0.85rem;margin-top:0.5rem;display:none;font-weight:700}
 
-/* footer */
+/* FOOTER */
 footer{background:var(--dark);padding:2rem;text-align:center}
 .footer-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:#fff;margin-bottom:0.3rem}
 .footer-logo span{color:var(--orange)}
 .footer-sub{color:rgba(255,255,255,0.45);font-size:0.82rem;font-weight:600}
+.empty-msg{text-align:center;color:var(--muted);padding:2rem;font-weight:600;grid-column:1/-1}
 
-.empty-msg{text-align:center;color:var(--muted);padding:2rem;font-weight:600}
 @media(max-width:768px){
   .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1rem;border-bottom:2px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
   .nav-links.open{display:flex}
@@ -211,6 +287,8 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   .notice-box{grid-template-columns:1fr}
   .charts-grid{grid-template-columns:1fr}
   .event-item{flex-direction:column;align-items:flex-start;gap:0.8rem}
+  .form-row{grid-template-columns:1fr}
+  .back-btn{top:1rem;left:1rem}
 }
 </style>
 </head>
@@ -223,6 +301,8 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <li><a onclick="goTo('inicio')">Inicio</a></li>
     <li><a onclick="goTo('novedades')">Novedades</a></li>
     <li><a onclick="goTo('eventos')">Eventos</a></li>
+    <li><a onclick="goTo('reuniones')">Reuniones</a></li>
+    <li><a onclick="goTo('muro')">Muro</a></li>
     <li><a onclick="goTo('finanzas')">Finanzas</a></li>
     <li><a onclick="goTo('contacto')">Contacto</a></li>
   </ul>
@@ -237,21 +317,23 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <div class="hero-badge">✨ Comunidad Juvenil</div>
       <p class="hero-parish">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</p>
       <div class="hero-h1">I <span>Fily</span></div>
-      <p class="hero-sub">Un espacio para crecer juntos en fe, amistad y comunidad.<br>¡Aquí encontrarás todo sobre nuestro grupo!</p>
+      <p class="hero-sub">Un espacio para crecer juntos en fe, amistad y comunidad.</p>
       <div class="hero-pills">
         <span class="pill">📅 Sábados 10AM–12PM</span>
         <span class="pill">⛪ Eucaristía domingos</span>
         <span class="pill">📍 En la parroquia</span>
       </div>
       <div class="hero-btns">
-        <button class="btn btn-primary" onclick="goTo('eventos')">Ver Cronograma</button>
-        <button class="btn btn-secondary" onclick="goTo('novedades')">Últimas Novedades</button>
+        <button class="btn btn-primary" onclick="goTo('reuniones')">Ver Reuniones</button>
+        <button class="btn btn-secondary" onclick="goTo('muro')">Muro</button>
       </div>
     </div>
   </div>
   <div class="quick-nav">
     <div class="qcard" onclick="goTo('novedades')"><div class="qcard-icon">📢</div><div class="qcard-label">Novedades</div></div>
     <div class="qcard" onclick="goTo('eventos')"><div class="qcard-icon">📅</div><div class="qcard-label">Cronograma</div></div>
+    <div class="qcard" onclick="goTo('reuniones')"><div class="qcard-icon">🙏</div><div class="qcard-label">Reuniones</div></div>
+    <div class="qcard" onclick="goTo('muro')"><div class="qcard-icon">💬</div><div class="qcard-label">Muro</div></div>
     <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
     <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
   </div>
@@ -303,6 +385,106 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
+<!-- ══ REUNIONES ══ -->
+<div class="page" id="page-reuniones">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🙏 Espacio Comunitario</div>
+      <h2 class="section-title">Nuestras Reuniones</h2>
+      <p class="section-sub">Haz clic en una reunión para ver el resumen, materiales y compartir tu reflexión</p>
+    </div>
+    <div class="meetings-grid" id="meetingsGrid"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('meeting')">+ Nueva Reunión</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ DETALLE REUNIÓN ══ -->
+<div class="page" id="page-meeting-detail">
+  <div class="meeting-detail-cover" id="detailCover">
+    <button class="back-btn" onclick="goTo('reuniones')">← Volver</button>
+    <div class="detail-date" id="detailDate"></div>
+    <div class="detail-title" id="detailTitle"></div>
+    <div class="detail-topic" id="detailTopic"></div>
+  </div>
+  <div class="detail-body">
+    <!-- Resumen -->
+    <div class="detail-summary-box" id="detailSummaryBox">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem">📝 Resumen de la Reunión</h3>
+        <button class="icon-btn" id="editSummaryBtn" onclick="openAdmin('editSummary')">✏️ Editar</button>
+      </div>
+      <div class="detail-summary-text" id="detailSummaryText"></div>
+    </div>
+    <!-- Materiales -->
+    <div class="detail-materials" id="detailMaterialsBox">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem">📎 Materiales y Lecturas</h3>
+        <button class="icon-btn" onclick="openAdmin('addMaterial')">+ Agregar</button>
+      </div>
+      <div class="materials-list" id="materialsList"></div>
+    </div>
+    <!-- Reflexiones -->
+    <div class="reflexiones-section">
+      <h3>💬 Reflexiones del Grupo</h3>
+      <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1rem">Comparte lo que te dejó esta reunión — no se necesita contraseña</p>
+      <div class="write-reflex-box">
+        <h4>✍️ Escribe tu reflexión</h4>
+        <div class="form-group">
+          <label>Tu nombre (opcional)</label>
+          <input type="text" id="reflexName" placeholder="Anónimo si lo prefieres">
+        </div>
+        <div class="form-group">
+          <label>Tu reflexión</label>
+          <textarea id="reflexText" placeholder="¿Qué te llevás de esta reunión? ¿Qué te impactó? ¿Qué quieres compartir con el grupo?"></textarea>
+        </div>
+        <button class="btn btn-green btn-sm" onclick="addReflex()">Publicar reflexión</button>
+      </div>
+      <div class="reflexiones-list" id="reflexionesList"></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ EXPRESIÓN LIBRE ══ -->
+<div class="page" id="page-muro">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">💬 Muro</div>
+      <h2 class="section-title">Muro</h2>
+      <p class="section-sub">Un espacio para compartir lo que quieras con el grupo — sin contraseña, sin filtros ❤️</p>
+    </div>
+    <div class="write-box">
+      <h3>✍️ ¿Qué tienes en el corazón hoy?</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tu nombre (opcional)</label>
+          <input type="text" id="muroName" placeholder="Anónimo si lo prefieres">
+        </div>
+        <div class="form-group">
+          <label>Estado de ánimo</label>
+          <select id="muroMood">
+            <option value="feliz">😄 Feliz / Alegre</option>
+            <option value="reflexivo">🤔 Reflexivo</option>
+            <option value="agradecido">🙏 Agradecido</option>
+            <option value="oracion">✝️ En oración</option>
+            <option value="otro">💭 Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Lo que quieres compartir</label>
+        <textarea id="muroText" placeholder="Lo que sea — una oración, una frase, algo que te alegró el día, un pensamiento... lo que tengas."></textarea>
+      </div>
+      <button class="btn btn-green btn-sm" onclick="addMuro()">Publicar</button>
+    </div>
+    <div class="expresion-grid" id="muroGrid"></div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
 <!-- ══ FINANZAS ══ -->
 <div class="page" id="page-finanzas">
   <div class="container">
@@ -316,17 +498,12 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <div class="fin-card"><div class="fin-label">Total Gastos</div><div class="fin-value expense" id="totalExpense">$0</div></div>
       <div class="fin-card"><div class="fin-label">Balance Actual</div><div class="fin-value balance" id="totalBalance">$0</div></div>
     </div>
-
-    <!-- PROYECTOS -->
-    <div class="projects-section">
-      <div class="section-header" style="margin-bottom:1rem">
-        <div class="section-tag">📁 Por Proyecto / Propósito</div>
-        <h3 class="section-title" style="font-size:1.5rem">Resumen por Propósito</h3>
-      </div>
-      <div class="projects-grid" id="projectsGrid"></div>
+    <div class="section-header" style="margin-bottom:1rem">
+      <div class="section-tag">📁 Por Propósito</div>
+      <h3 class="section-title" style="font-size:1.5rem">Resumen por Propósito</h3>
     </div>
-
-    <div class="charts-grid">
+    <div class="projects-grid" id="projectsGrid"></div>
+    <div class="charts-grid" style="margin-top:2rem">
       <div class="chart-box"><h3>📊 Ingresos vs Gastos por Mes</h3><canvas id="barChart"></canvas></div>
       <div class="chart-box"><h3>📈 Balance Histórico</h3><canvas id="lineChart"></canvas></div>
     </div>
@@ -336,10 +513,8 @@ footer{background:var(--dark);padding:2rem;text-align:center}
         <button class="btn btn-primary btn-sm" onclick="openAdmin('finance')">+ Agregar</button>
       </div>
       <div style="overflow-x:auto">
-        <table>
-          <thead><tr><th>Fecha</th><th>Descripción</th><th>Propósito</th><th>Tipo</th><th>Monto</th><th></th></tr></thead>
-          <tbody id="transactionsBody"></tbody>
-        </table>
+        <table><thead><tr><th>Fecha</th><th>Descripción</th><th>Propósito</th><th>Tipo</th><th>Monto</th><th></th></tr></thead>
+        <tbody id="transactionsBody"></tbody></table>
       </div>
     </div>
   </div>
@@ -386,7 +561,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <select id="newsType"><option value="anuncio">📢 Anuncio</option><option value="reflexion">✨ Reflexión</option><option value="reunion">🤝 Reunión</option></select>
     </div>
     <div class="form-group"><label>Título</label><input type="text" id="newsTitle" placeholder="Título de la novedad"></div>
-    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí..."></textarea></div>
+    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí... (los saltos de línea se respetan)"></textarea></div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('newsModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" onclick="addNews()">Publicar</button>
@@ -401,21 +576,57 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <input type="hidden" id="editEvId">
     <div class="form-group"><label>Categoría</label>
       <select id="evCat">
-        <option value="hora-santa">🕯️ Hora Santa</option>
-        <option value="bazar">🛍️ Bazar</option>
-        <option value="retiro">🏕️ Retiro</option>
-        <option value="mision">🤝 Misión</option>
-        <option value="parroquial">⛪ Actividad Parroquial</option>
-        <option value="cumpleanos">🎂 Celebración Cumpleaños</option>
+        <option value="hora-santa">🕯️ Hora Santa</option><option value="bazar">🛍️ Bazar</option>
+        <option value="retiro">🏕️ Retiro</option><option value="mision">🤝 Misión</option>
+        <option value="parroquial">⛪ Actividad Parroquial</option><option value="cumpleanos">🎂 Cumpleaños</option>
         <option value="otro">📌 Otro</option>
       </select>
     </div>
-    <div class="form-group"><label>Nombre del evento</label><input type="text" id="evName" placeholder="Ej: Hora Santa de Marzo"></div>
-    <div class="form-group"><label>Fecha</label><input type="date" id="evDate"></div>
-    <div class="form-group"><label>Hora y lugar (opcional)</label><input type="text" id="evMeta" placeholder="Ej: 6:00 PM · Iglesia"></div>
+    <div class="form-group"><label>Nombre</label><input type="text" id="evName" placeholder="Ej: Hora Santa de Marzo"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Fecha</label><input type="date" id="evDate"></div>
+      <div class="form-group"><label>Hora y lugar</label><input type="text" id="evMeta" placeholder="6:00 PM · Iglesia"></div>
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('eventModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" id="evSaveBtn" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING MODAL -->
+<div class="modal-overlay" id="meetingModal">
+  <div class="modal">
+    <h3 id="meetModalTitle">🙏 Nueva Reunión</h3>
+    <input type="hidden" id="editMeetId">
+    <div class="form-group"><label>Título de la reunión</label><input type="text" id="meetTitle" placeholder="Ej: Reunión de Marzo — Fe y Comunidad"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Fecha</label><input type="date" id="meetDate"></div>
+      <div class="form-group"><label>Tema principal</label><input type="text" id="meetTopic" placeholder="Ej: La oración en comunidad"></div>
+    </div>
+    <div class="form-group"><label>Resumen de lo que se trató</label>
+      <textarea id="meetSummary" style="min-height:120px" placeholder="Describe lo que se habló, lo que se compartió, puntos importantes... Los saltos de línea se respetan."></textarea>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('meetingModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="meetSaveBtn" onclick="saveMeeting()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MATERIAL MODAL -->
+<div class="modal-overlay" id="materialModal">
+  <div class="modal">
+    <h3>📎 Agregar Material</h3>
+    <div class="form-group"><label>Nombre del material</label><input type="text" id="matName" placeholder="Ej: Lectura del Evangelio, PDF reflexión..."></div>
+    <div class="form-group">
+      <label>Link (Google Drive, PDF, etc.)</label>
+      <input type="url" id="matUrl" placeholder="https://drive.google.com/...">
+      <div class="form-hint">Pega el link de Google Drive, Dropbox o cualquier otro servicio</div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('materialModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addMaterial()">Agregar</button>
     </div>
   </div>
 </div>
@@ -430,12 +641,13 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="form-group"><label>Descripción</label><input type="text" id="finDesc" placeholder="Ej: Aporte para JMJ"></div>
     <div class="form-group">
       <label>Propósito / Proyecto</label>
-      <input type="text" id="finProject" placeholder="Ej: JMJ 2027, Comidas reunión, Salida grupo..." list="projectSuggestions">
+      <input type="text" id="finProject" placeholder="Ej: JMJ 2027, Comidas reunión..." list="projectSuggestions">
       <datalist id="projectSuggestions"></datalist>
-      <div style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;font-weight:600">Escribe o elige un propósito existente. Esto te permite ver cuánto va para cada cosa.</div>
     </div>
-    <div class="form-group"><label>Monto (COP)</label><input type="number" id="finAmount" placeholder="0" min="0"></div>
-    <div class="form-group"><label>Fecha</label><input type="date" id="finDate"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Monto (COP)</label><input type="number" id="finAmount" placeholder="0" min="0"></div>
+      <div class="form-group"><label>Fecha</label><input type="date" id="finDate"></div>
+    </div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('financeModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" onclick="addFinance()">Registrar</button>
@@ -448,6 +660,7 @@ const PASS='ifily2024';
 const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
 const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 
+// ── DATA ──
 const defaultEvents=[
   {id:1,cat:'hora-santa',name:'Hora Santa',date:'2026-03-14',meta:'Parroquia'},
   {id:2,cat:'hora-santa',name:'Hora Santa',date:'2026-04-11',meta:'Parroquia'},
@@ -475,11 +688,16 @@ const defaultEvents=[
   {id:24,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-12-19',meta:'Parroquia'},
 ];
 
-let news=load('ifily_news',[{id:1,type:'anuncio',title:'¡Bienvenidos a I Fily!',content:'Esta es nuestra página oficial. Aquí encontrarás novedades, el cronograma de actividades y mucho más. ¡Qué bueno tenerte aquí!',date:'1/3/2026'}]);
+let news=load('ifily_news',[{id:1,type:'anuncio',title:'¡Bienvenidos a I Fily!',content:'Esta es nuestra página oficial. Aquí encontrarás novedades, el cronograma, reuniones y mucho más.\n\n¡Qué bueno tenerte aquí!',date:'1/3/2026'}]);
 let events=load('ifily_events',defaultEvents);
+let meetings=load('ifily_meetings',[]);
+let reflexiones=load('ifily_reflexiones',[]);
+let muroPosts=load('ifily_muro',[]);
 let finances=load('ifily_finances',[]);
+
 let pendingAction=null;
 let currentFilter='all';
+let currentMeetingId=null;
 let barChart,lineChart;
 
 // ── NAVIGATION ──
@@ -487,37 +705,45 @@ function goTo(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes(page))a.classList.add('active');});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes("'"+page+"'"))a.classList.add('active');
+  });
   window.scrollTo(0,0);
   document.getElementById('navLinks').classList.remove('open');
   if(page==='finanzas')setTimeout(renderFinances,100);
+  if(page==='reuniones')renderMeetings();
+  if(page==='muro')renderMuro();
+  if(page==='novedades')renderNews();
 }
 function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
 
-// ── ADMIN ──
+// ── ADMIN / PASSWORD ──
 function openAdmin(action){
   pendingAction=action;
   document.getElementById('adminPw').value='';
   document.getElementById('pwErr').style.display='none';
-  const ov=document.getElementById('pwOverlay');ov.style.display='flex';ov.classList.add('active');
+  const ov=document.getElementById('pwOverlay');
+  ov.style.display='flex';ov.classList.add('active');
   setTimeout(()=>document.getElementById('adminPw').focus(),100);
 }
 function closePw(){
-  document.getElementById('pwOverlay').classList.remove('active');
-  document.getElementById('pwOverlay').style.display='none';
+  const ov=document.getElementById('pwOverlay');
+  ov.classList.remove('active');ov.style.display='none';
+  pendingAction=null;
 }
 function openModal(id){
   const el=document.getElementById(id);
-  el.style.display='flex';
-  el.classList.add('active');
+  el.style.display='flex';el.classList.add('active');
+}
+function closeModal(id){
+  const el=document.getElementById(id);
+  el.classList.remove('active');el.style.display='none';
 }
 function checkPw(){
   if(document.getElementById('adminPw').value===PASS){
-    const action=pendingAction;
-    pendingAction=null;
-    closePw();
+    const action=pendingAction; pendingAction=null; closePw();
     setTimeout(()=>{
-      if(action==='news'){openModal('newsModal');}
+      if(action==='news') openModal('newsModal');
       else if(action==='event'){
         document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
         document.getElementById('editEvId').value='';
@@ -526,6 +752,27 @@ function checkPw(){
         document.getElementById('evSaveBtn').textContent='Guardar';
         openModal('eventModal');
       }
+      else if(action==='meeting'){
+        document.getElementById('meetModalTitle').textContent='🙏 Nueva Reunión';
+        document.getElementById('editMeetId').value='';
+        ['meetTitle','meetTopic','meetSummary'].forEach(i=>document.getElementById(i).value='');
+        document.getElementById('meetDate').valueAsDate=new Date();
+        document.getElementById('meetSaveBtn').textContent='Publicar';
+        openModal('meetingModal');
+      }
+      else if(action==='editSummary'){
+        const m=meetings.find(m=>m.id===currentMeetingId);
+        if(!m)return;
+        document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
+        document.getElementById('editMeetId').value=m.id;
+        document.getElementById('meetTitle').value=m.title;
+        document.getElementById('meetTopic').value=m.topic||'';
+        document.getElementById('meetSummary').value=m.summary||'';
+        document.getElementById('meetDate').value=m.date;
+        document.getElementById('meetSaveBtn').textContent='Guardar cambios';
+        openModal('meetingModal');
+      }
+      else if(action==='addMaterial') openModal('materialModal');
       else if(action==='finance'){
         document.getElementById('finDate').valueAsDate=new Date();
         updateProjectSuggestions();
@@ -548,6 +795,27 @@ function checkPw(){
         events=events.filter(e=>e.id!==parseInt(action.split('_')[1]));
         save('ifily_events',events);renderEvents();
       }
+      else if(action&&action.startsWith('delNews_')){
+        news=news.filter(n=>n.id!==parseInt(action.split('_')[1]));
+        save('ifily_news',news);renderNews();
+      }
+      else if(action&&action.startsWith('delMeet_')){
+        const mid=parseInt(action.split('_')[1]);
+        meetings=meetings.filter(m=>m.id!==mid);
+        reflexiones=reflexiones.filter(r=>r.meetingId!==mid);
+        save('ifily_meetings',meetings);save('ifily_reflexiones',reflexiones);
+        renderMeetings();
+      }
+      else if(action&&action.startsWith('delMat_')){
+        const parts=action.split('_');
+        const mid=parseInt(parts[1]),matId=parseInt(parts[2]);
+        const m=meetings.find(m=>m.id===mid);
+        if(m){m.materials=(m.materials||[]).filter(mt=>mt.id!==matId);save('ifily_meetings',meetings);openMeeting(mid);}
+      }
+      else if(action&&action.startsWith('delReflex_')){
+        reflexiones=reflexiones.filter(r=>r.id!==parseInt(action.split('_')[1]));
+        save('ifily_reflexiones',reflexiones);renderReflexiones();
+      }
       else if(action&&action.startsWith('delFin_')){
         finances=finances.filter(f=>f.id!==parseInt(action.split('_')[1]));
         save('ifily_finances',finances);renderFinances();
@@ -555,7 +823,6 @@ function checkPw(){
     },150);
   } else{document.getElementById('pwErr').style.display='block';}
 }
-function closeModal(id){const el=document.getElementById(id);el.classList.remove('active');el.style.display='none';}
 
 // ── NEWS ──
 function renderNews(){
@@ -567,6 +834,9 @@ function renderNews(){
       <div class="news-date">${n.date}</div>
       <div class="news-title">${n.title}</div>
       <div class="news-body">${n.content}</div>
+      <div class="card-footer">
+        <button class="icon-btn danger" onclick="openAdmin('delNews_${n.id}')">🗑️ Eliminar</button>
+      </div>
     </div>`).join('');
 }
 function addNews(){
@@ -597,8 +867,8 @@ function renderEvents(){
       <div class="event-info"><div class="event-name">${e.name}</div><div class="event-meta">📍 ${e.meta||'Parroquia'}</div></div>
       <span class="event-tag">${catLabels[e.cat]||e.cat}</span>
       <div class="event-actions">
-        <button class="icon-btn" onclick="openAdmin('edit_${e.id}')" title="Editar">✏️</button>
-        <button class="icon-btn" onclick="openAdmin('delEv_${e.id}')" title="Eliminar">🗑️</button>
+        <button class="icon-btn" onclick="openAdmin('edit_${e.id}')">✏️</button>
+        <button class="icon-btn danger" onclick="openAdmin('delEv_${e.id}')">🗑️</button>
       </div></div>`;
   }).join('');
 }
@@ -614,39 +884,183 @@ function saveEvent(){
   save('ifily_events',events);renderEvents();closeModal('eventModal');
 }
 
-// ── FINANCES ──
-const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
-
-function updateProjectSuggestions(){
-  const projects=[...new Set(finances.map(f=>f.project).filter(Boolean))];
-  document.getElementById('projectSuggestions').innerHTML=projects.map(p=>`<option value="${p}">`).join('');
-}
-
-function renderProjects(){
-  const grid=document.getElementById('projectsGrid');
-  if(!finances.length){grid.innerHTML='<p class="empty-msg" style="grid-column:1/-1">Agrega registros para ver el resumen por propósito.</p>';return;}
-  const projectMap={};
-  finances.forEach(f=>{
-    const p=f.project||'General';
-    if(!projectMap[p])projectMap[p]={income:0,expense:0};
-    if(f.type==='income')projectMap[p].income+=f.amount;
-    else projectMap[p].expense+=f.amount;
-  });
-  grid.innerHTML=Object.entries(projectMap).map(([name,{income,expense}])=>{
-    const bal=income-expense;
-    const pct=income>0?Math.min(100,Math.round((income/(income+expense))*100)):0;
-    return `<div class="project-card">
-      <div class="project-name">${name}</div>
-      <div class="project-bar-wrap"><div class="project-bar" style="width:${pct}%"></div></div>
-      <div class="project-nums">
-        <span class="project-in">▲ ${fmt(income)}</span>
-        <span class="project-ex">▼ ${fmt(expense)}</span>
+// ── MEETINGS ──
+function renderMeetings(){
+  const grid=document.getElementById('meetingsGrid');
+  if(!meetings.length){
+    grid.innerHTML='<p class="empty-msg">Aún no hay reuniones publicadas. ¡Agrega la primera!</p>';return;
+  }
+  const sorted=[...meetings].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  grid.innerHTML=sorted.map(m=>{
+    const reflexCount=reflexiones.filter(r=>r.meetingId===m.id).length;
+    const matCount=(m.materials||[]).length;
+    const d=new Date(m.date+'T00:00:00');
+    const dateStr=d.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+    return `<div class="meeting-card">
+      <div class="meeting-cover" onclick="openMeeting(${m.id})">
+        <div class="meeting-cover-actions">
+          <button class="meeting-cover-btn" onclick="event.stopPropagation();openAdmin('delMeet_${m.id}')" title="Eliminar">🗑️</button>
+        </div>
+        <div class="meeting-cover-date">${dateStr}</div>
+        <div class="meeting-cover-title">${m.title}</div>
+        ${m.topic?`<div class="meeting-cover-sub">📌 ${m.topic}</div>`:''}
       </div>
-      <div style="margin-top:0.4rem;font-size:0.82rem;font-weight:800;color:${bal>=0?'var(--green)':'var(--red)'}">Balance: ${fmt(bal)}</div>
+      <div class="meeting-preview">
+        <div class="meeting-stats">
+          <div class="meeting-stat">💬 <span>${reflexCount}</span> reflexión${reflexCount!==1?'es':''}</div>
+          <div class="meeting-stat">📎 <span>${matCount}</span> material${matCount!==1?'es':''}</div>
+        </div>
+        <button class="meeting-open-btn" onclick="openMeeting(${m.id})">Ver reunión →</button>
+      </div>
     </div>`;
   }).join('');
 }
 
+function openMeeting(id){
+  currentMeetingId=id;
+  const m=meetings.find(m=>m.id===id);
+  if(!m)return;
+  const d=new Date(m.date+'T00:00:00');
+  document.getElementById('detailDate').textContent=d.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('detailTitle').textContent=m.title;
+  document.getElementById('detailTopic').textContent=m.topic?'📌 '+m.topic:'';
+  document.getElementById('detailSummaryText').textContent=m.summary||'(Sin resumen aún)';
+  // Materials
+  const mats=m.materials||[];
+  const matsList=document.getElementById('materialsList');
+  if(!mats.length){matsList.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay materiales aún.</p>';}
+  else{matsList.innerHTML=mats.map(mt=>`
+    <div style="display:flex;align-items:center;gap:0.5rem">
+      <a href="${mt.url}" target="_blank" class="material-link">📄 ${mt.name}</a>
+      <button class="icon-btn danger" onclick="openAdmin('delMat_${id}_${mt.id}')" title="Eliminar">🗑️</button>
+    </div>`).join('');}
+  renderReflexiones();
+  goTo('meeting-detail');
+}
+
+function saveMeeting(){
+  const editId=document.getElementById('editMeetId').value;
+  const title=document.getElementById('meetTitle').value.trim();
+  const date=document.getElementById('meetDate').value;
+  const topic=document.getElementById('meetTopic').value.trim();
+  const summary=document.getElementById('meetSummary').value.trim();
+  if(!title||!date)return alert('El título y la fecha son obligatorios.');
+  if(editId){
+    const i=meetings.findIndex(m=>m.id===parseInt(editId));
+    if(i>=0){meetings[i]={...meetings[i],title,date,topic,summary};}
+  } else {
+    meetings.push({id:Date.now(),title,date,topic,summary,materials:[]});
+  }
+  save('ifily_meetings',meetings);
+  closeModal('meetingModal');
+  if(editId&&currentMeetingId)openMeeting(currentMeetingId);
+  else renderMeetings();
+}
+
+function addMaterial(){
+  const name=document.getElementById('matName').value.trim();
+  const url=document.getElementById('matUrl').value.trim();
+  if(!name||!url)return alert('Completa el nombre y el link.');
+  const m=meetings.find(m=>m.id===currentMeetingId);
+  if(!m)return;
+  if(!m.materials)m.materials=[];
+  m.materials.push({id:Date.now(),name,url});
+  save('ifily_meetings',meetings);
+  closeModal('materialModal');
+  openMeeting(currentMeetingId);
+  document.getElementById('matName').value='';document.getElementById('matUrl').value='';
+}
+
+// ── REFLEXIONES ──
+function renderReflexiones(){
+  const list=document.getElementById('reflexionesList');
+  const filtered=reflexiones.filter(r=>r.meetingId===currentMeetingId)
+    .sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  if(!filtered.length){list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;text-align:center;padding:1rem">Sé el primero en compartir tu reflexión ✨</p>';return;}
+  list.innerHTML=filtered.map(r=>`
+    <div class="reflex-item">
+      <div class="reflex-author-row">
+        <div class="reflex-author">${r.author||'Anónimo'} ✨</div>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span class="reflex-date-small">${r.date}</span>
+          <button class="icon-btn danger" onclick="confirmDelReflex(${r.id})" title="Eliminar">🗑️</button>
+        </div>
+      </div>
+      <div class="reflex-text">${r.text}</div>
+    </div>`).join('');
+}
+
+function addReflex(){
+  const text=document.getElementById('reflexText').value.trim();
+  if(!text)return alert('Escribe algo antes de publicar.');
+  const author=document.getElementById('reflexName').value.trim();
+  reflexiones.push({
+    id:Date.now(),meetingId:currentMeetingId,
+    author:author||'',text,
+    date:new Date().toLocaleDateString('es-CO'),
+    createdAt:new Date().toISOString()
+  });
+  save('ifily_reflexiones',reflexiones);
+  document.getElementById('reflexText').value='';document.getElementById('reflexName').value='';
+  renderReflexiones();
+  renderMeetings();
+}
+
+function confirmDelReflex(id){
+  if(confirm('¿Eliminar esta reflexión?')){
+    reflexiones=reflexiones.filter(r=>r.id!==id);
+    save('ifily_reflexiones',reflexiones);renderReflexiones();renderMeetings();
+  }
+}
+
+// ── EXPRESIÓN LIBRE ──
+function renderMuro(){
+  const grid=document.getElementById('muroGrid');
+  if(!muroPosts.length){grid.innerHTML='<p class="empty-msg">Sé el primero en dejar algo en el muro ✨</p>';return;}
+  const sorted=[...muroPosts].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  const moodLabel={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
+  grid.innerHTML=sorted.map(e=>`
+    <div class="expr-card mood-${e.mood}">
+      <div class="expr-top">
+        <div class="expr-author">${e.author||'Anónimo'}</div>
+        <span class="expr-mood-badge">${moodLabel[e.mood]||e.mood}</span>
+      </div>
+      <div class="expr-text">${e.text}</div>
+      <div class="expr-bottom">
+        <span class="expr-date">${e.date}</span>
+        <button class="icon-btn danger" onclick="confirmDelMuro(${e.id})">🗑️ Eliminar</button>
+      </div>
+    </div>`).join('');
+}
+
+function addMuro(){
+  const text=document.getElementById('muroText').value.trim();
+  if(!text)return alert('Escribe algo antes de publicar.');
+  const author=document.getElementById('muroName').value.trim();
+  muroPosts.push({
+    id:Date.now(),author:author||'',
+    mood:document.getElementById('muroMood').value,
+    text,date:new Date().toLocaleDateString('es-CO'),
+    createdAt:new Date().toISOString()
+  });
+  save('ifily_muro',muroPosts);
+  document.getElementById('muroText').value='';document.getElementById('muroName').value='';
+  renderMuro();
+}
+
+function confirmDelMuro(id){
+  if(confirm('¿Eliminar esta publicación?')){
+    muroPosts=muroPosts.filter(e=>e.id!==id);
+    save('ifily_muro',muroPosts);renderMuro();
+  }
+}
+
+// ── FINANCES ──
+const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
+function updateProjectSuggestions(){
+  const projects=[...new Set(finances.map(f=>f.project).filter(Boolean))];
+  document.getElementById('projectSuggestions').innerHTML=projects.map(p=>`<option value="${p}">`).join('');
+}
 function renderFinances(){
   const totalIn=finances.filter(f=>f.type==='income').reduce((s,f)=>s+f.amount,0);
   const totalEx=finances.filter(f=>f.type==='expense').reduce((s,f)=>s+f.amount,0);
@@ -654,38 +1068,46 @@ function renderFinances(){
   document.getElementById('totalExpense').textContent=fmt(totalEx);
   const bal=totalIn-totalEx;
   const balEl=document.getElementById('totalBalance');
-  balEl.textContent=fmt(bal);
-  balEl.style.color=bal>=0?'var(--green)':'var(--red)';
-
-  renderProjects();
-
+  balEl.textContent=fmt(bal);balEl.style.color=bal>=0?'var(--green)':'var(--red)';
+  // Projects
+  const pg=document.getElementById('projectsGrid');
+  if(!finances.length){pg.innerHTML='<p class="empty-msg">Agrega registros para ver el resumen por propósito.</p>';}
+  else{
+    const pm={};
+    finances.forEach(f=>{const p=f.project||'General';if(!pm[p])pm[p]={income:0,expense:0};if(f.type==='income')pm[p].income+=f.amount;else pm[p].expense+=f.amount;});
+    pg.innerHTML=Object.entries(pm).map(([name,{income,expense}])=>{
+      const b=income-expense,pct=income>0?Math.min(100,Math.round(income/(income+expense)*100)):0;
+      return `<div class="project-card">
+        <div class="project-name">${name}</div>
+        <div class="project-bar-wrap"><div class="project-bar" style="width:${pct}%"></div></div>
+        <div class="project-nums"><span class="project-in">▲ ${fmt(income)}</span><span class="project-ex">▼ ${fmt(expense)}</span></div>
+        <div style="margin-top:0.4rem;font-size:0.82rem;font-weight:800;color:${b>=0?'var(--green)':'var(--red)'}">Balance: ${fmt(b)}</div>
+      </div>`;
+    }).join('');
+  }
+  // Table
   const sorted=[...finances].sort((a,b)=>new Date(b.date)-new Date(a.date));
   const tbody=document.getElementById('transactionsBody');
-  if(!sorted.length){
-    tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';
-  } else {
-    tbody.innerHTML=sorted.map(f=>`<tr>
-      <td>${new Date(f.date+'T00:00:00').toLocaleDateString('es-CO')}</td>
-      <td>${f.desc}</td>
-      <td><span class="proj-tag">${f.project||'General'}</span></td>
-      <td>${f.type==='income'?'<span style="color:var(--green);font-weight:800">Ingreso</span>':'<span style="color:var(--red);font-weight:800">Gasto</span>'}</td>
-      <td class="amt-${f.type}">${f.type==='income'?'+':'-'}${fmt(f.amount)}</td>
-      <td><button class="del-btn" onclick="openAdmin('delFin_${f.id}')">🗑️</button></td>
-    </tr>`).join('');
-  }
+  if(!sorted.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';}
+  else{tbody.innerHTML=sorted.map(f=>`<tr>
+    <td>${new Date(f.date+'T00:00:00').toLocaleDateString('es-CO')}</td>
+    <td>${f.desc}</td><td><span class="proj-tag">${f.project||'General'}</span></td>
+    <td>${f.type==='income'?'<span style="color:var(--green);font-weight:800">Ingreso</span>':'<span style="color:var(--red);font-weight:800">Gasto</span>'}</td>
+    <td class="amt-${f.type}">${f.type==='income'?'+':'-'}${fmt(f.amount)}</td>
+    <td><button class="del-btn" onclick="openAdmin('delFin_${f.id}')">🗑️</button></td>
+  </tr>`).join('');}
   buildCharts();
 }
-
 function buildCharts(){
-  const monthMap={};
+  const mm={};
   finances.forEach(f=>{
     const d=new Date(f.date+'T00:00:00');
     const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
     const label=d.toLocaleDateString('es-CO',{month:'short',year:'2-digit'});
-    if(!monthMap[key])monthMap[key]={label,income:0,expense:0};
-    if(f.type==='income')monthMap[key].income+=f.amount;else monthMap[key].expense+=f.amount;
+    if(!mm[key])mm[key]={label,income:0,expense:0};
+    if(f.type==='income')mm[key].income+=f.amount;else mm[key].expense+=f.amount;
   });
-  const months=Object.values(monthMap);
+  const months=Object.values(mm);
   const labels=months.map(m=>m.label);
   let run=0;const balances=months.map(m=>{run+=m.income-m.expense;return run;});
   const tc='#8B7BAE',gc='rgba(123,47,190,0.07)';
@@ -695,25 +1117,20 @@ function buildCharts(){
   if(lineChart)lineChart.destroy();
   lineChart=new Chart(document.getElementById('lineChart'),{type:'line',data:{labels,datasets:[{label:'Balance',data:balances,borderColor:'#7B2FBE',backgroundColor:'rgba(123,47,190,0.08)',tension:0.4,fill:true,pointBackgroundColor:'#7B2FBE',pointRadius:5}]},options:{responsive:true,...opts}});
 }
-
 function addFinance(){
   const desc=document.getElementById('finDesc').value.trim();
-  const project=document.getElementById('finProject').value.trim()||'General';
   const amount=parseFloat(document.getElementById('finAmount').value);
   const date=document.getElementById('finDate').value;
   if(!desc||!amount||!date)return alert('Completa todos los campos.');
-  finances.push({id:Date.now(),type:document.getElementById('finType').value,desc,project,amount,date});
+  finances.push({id:Date.now(),type:document.getElementById('finType').value,desc,project:document.getElementById('finProject').value.trim()||'General',amount,date});
   save('ifily_finances',finances);renderFinances();closeModal('financeModal');
   ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
 }
 
-// init pw overlay hidden
-document.getElementById('pwOverlay').style.display='none';
-// close on overlay click
-document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
-
 // init
-renderNews();renderEvents();renderFinances();
+document.getElementById('pwOverlay').style.display='none';
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
+renderNews();renderEvents();renderMeetings();renderMuro();renderFinances();
 goTo('inicio');
 </script>
 </body>
