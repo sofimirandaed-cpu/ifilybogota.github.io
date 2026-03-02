@@ -499,51 +499,63 @@ function openAdmin(action){
   pendingAction=action;
   document.getElementById('adminPw').value='';
   document.getElementById('pwErr').style.display='none';
-  document.getElementById('pwOverlay').classList.add('active');
+  const ov=document.getElementById('pwOverlay');ov.style.display='flex';ov.classList.add('active');
   setTimeout(()=>document.getElementById('adminPw').focus(),100);
 }
-function closePw(){document.getElementById('pwOverlay').classList.remove('active');pendingAction=null;}
+function closePw(){
+  document.getElementById('pwOverlay').classList.remove('active');
+  document.getElementById('pwOverlay').style.display='none';
+}
+function openModal(id){
+  const el=document.getElementById(id);
+  el.style.display='flex';
+  el.classList.add('active');
+}
 function checkPw(){
   if(document.getElementById('adminPw').value===PASS){
+    const action=pendingAction;
+    pendingAction=null;
     closePw();
-    if(pendingAction==='news'){document.getElementById('newsModal').classList.add('active');}
-    else if(pendingAction==='event'){
-      document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
-      document.getElementById('editEvId').value='';
-      ['evName','evMeta'].forEach(i=>document.getElementById(i).value='');
-      document.getElementById('evDate').valueAsDate=new Date();
-      document.getElementById('evSaveBtn').textContent='Guardar';
-      document.getElementById('eventModal').classList.add('active');
-    }
-    else if(pendingAction==='finance'){
-      document.getElementById('finDate').valueAsDate=new Date();
-      updateProjectSuggestions();
-      document.getElementById('financeModal').classList.add('active');
-    }
-    else if(pendingAction&&pendingAction.startsWith('edit_')){
-      const ev=events.find(e=>e.id===parseInt(pendingAction.split('_')[1]));
-      if(ev){
-        document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
-        document.getElementById('editEvId').value=ev.id;
-        document.getElementById('evCat').value=ev.cat;
-        document.getElementById('evName').value=ev.name;
-        document.getElementById('evDate').value=ev.date;
-        document.getElementById('evMeta').value=ev.meta||'';
-        document.getElementById('evSaveBtn').textContent='Actualizar';
-        document.getElementById('eventModal').classList.add('active');
+    setTimeout(()=>{
+      if(action==='news'){openModal('newsModal');}
+      else if(action==='event'){
+        document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
+        document.getElementById('editEvId').value='';
+        ['evName','evMeta'].forEach(i=>document.getElementById(i).value='');
+        document.getElementById('evDate').valueAsDate=new Date();
+        document.getElementById('evSaveBtn').textContent='Guardar';
+        openModal('eventModal');
       }
-    }
-    else if(pendingAction&&pendingAction.startsWith('delEv_')){
-      events=events.filter(e=>e.id!==parseInt(pendingAction.split('_')[1]));
-      save('ifily_events',events);renderEvents();
-    }
-    else if(pendingAction&&pendingAction.startsWith('delFin_')){
-      finances=finances.filter(f=>f.id!==parseInt(pendingAction.split('_')[1]));
-      save('ifily_finances',finances);renderFinances();
-    }
+      else if(action==='finance'){
+        document.getElementById('finDate').valueAsDate=new Date();
+        updateProjectSuggestions();
+        openModal('financeModal');
+      }
+      else if(action&&action.startsWith('edit_')){
+        const ev=events.find(e=>e.id===parseInt(action.split('_')[1]));
+        if(ev){
+          document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
+          document.getElementById('editEvId').value=ev.id;
+          document.getElementById('evCat').value=ev.cat;
+          document.getElementById('evName').value=ev.name;
+          document.getElementById('evDate').value=ev.date;
+          document.getElementById('evMeta').value=ev.meta||'';
+          document.getElementById('evSaveBtn').textContent='Actualizar';
+          openModal('eventModal');
+        }
+      }
+      else if(action&&action.startsWith('delEv_')){
+        events=events.filter(e=>e.id!==parseInt(action.split('_')[1]));
+        save('ifily_events',events);renderEvents();
+      }
+      else if(action&&action.startsWith('delFin_')){
+        finances=finances.filter(f=>f.id!==parseInt(action.split('_')[1]));
+        save('ifily_finances',finances);renderFinances();
+      }
+    },150);
   } else{document.getElementById('pwErr').style.display='block';}
 }
-function closeModal(id){document.getElementById(id).classList.remove('active');}
+function closeModal(id){const el=document.getElementById(id);el.classList.remove('active');el.style.display='none';}
 
 // ── NEWS ──
 function renderNews(){
@@ -695,6 +707,8 @@ function addFinance(){
   ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
 }
 
+// init pw overlay hidden
+document.getElementById('pwOverlay').style.display='none';
 // close on overlay click
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
 
