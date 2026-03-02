@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Fily — Comunidad Juvenil</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root {
+  --purple:#7B2FBE; --pl:#9B59D0; --ps:rgba(123,47,190,0.12);
+  --orange:#F97316; --ol:#FB923C;
+  --yellow:#FBBF24; --red:#E84545; --blue:#3B82F6; --green:#22C55E;
+  --bg:#FAF5FF; --bg2:#F3E8FF; --card:#fff;
+  --dark:#2D1B69; --text:#3B2070; --muted:#8B7BAE; --border:#E9D5FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--purple);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(123,47,190,0.1)}
+.nav-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--purple);cursor:pointer}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:0.2rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:0.88rem;padding:0.4rem 0.9rem;border-radius:30px;transition:all 0.2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--purple);background:var(--ps)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:2.5px;background:var(--purple);border-radius:2px}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:64px;animation:pageIn 0.35s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SHARED ── */
+.container{max-width:1100px;margin:0 auto;padding:3rem 2rem}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-tag{display:inline-block;background:var(--ps);color:var(--purple);font-weight:800;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;margin-bottom:0.6rem}
+.section-title{font-family:'Fredoka One',cursive;font-size:clamp(2rem,5vw,3rem);color:var(--purple)}
+.section-sub{color:var(--muted);margin-top:0.4rem;font-size:1rem;font-weight:600}
+
+.btn{padding:0.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;border:none;transition:all 0.25s;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;box-shadow:0 4px 20px rgba(123,47,190,0.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(123,47,190,0.4)}
+.btn-secondary{background:linear-gradient(135deg,var(--orange),var(--ol));color:#fff;box-shadow:0 4px 20px rgba(249,115,22,0.3)}
+.btn-secondary:hover{transform:translateY(-3px)}
+.btn-cancel{background:var(--bg2);color:var(--muted);border:2px solid var(--border)}
+.btn-sm{padding:0.55rem 1.3rem;font-size:0.88rem;border-radius:30px}
+
+/* ── HOME ── */
+#page-inicio{background:linear-gradient(135deg,#FAF5FF 0%,#F3E8FF 50%,#FFF7ED 100%);position:relative;overflow:hidden}
+.hero-blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.28;animation:blobFloat 8s ease-in-out infinite}
+.blob1{width:420px;height:420px;background:var(--purple);top:-120px;left:-100px}
+.blob2{width:320px;height:320px;background:var(--orange);bottom:-60px;right:-60px;animation-delay:3s}
+.blob3{width:260px;height:260px;background:var(--yellow);top:45%;left:62%;animation-delay:5s}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-20px) scale(1.05)}}
+.hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 64px);text-align:center;padding:3rem 2rem}
+.hero-content{max-width:720px}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;padding:0.5rem 1.4rem;border-radius:50px;font-size:0.85rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;box-shadow:0 4px 20px rgba(123,47,190,0.3);animation:fadeUp 0.8s ease both}
+.hero-parish{font-size:0.9rem;color:var(--muted);font-weight:600;margin-bottom:0.5rem;animation:fadeUp 0.8s ease 0.1s both}
+.hero-h1{font-family:'Fredoka One',cursive;font-size:clamp(3.5rem,10vw,6.5rem);color:var(--purple);line-height:1;animation:fadeUp 0.8s ease 0.2s both}
+.hero-h1 span{color:var(--orange)}
+.hero-sub{font-size:1.1rem;color:var(--muted);margin-top:1rem;line-height:1.7;font-weight:600;animation:fadeUp 0.8s ease 0.4s both}
+.hero-pills{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem;animation:fadeUp 0.8s ease 0.5s both}
+.pill{background:#fff;border:2px solid var(--border);border-radius:50px;padding:0.5rem 1.2rem;font-size:0.85rem;font-weight:700;color:var(--purple);box-shadow:0 2px 12px rgba(123,47,190,0.08)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* quick nav cards */
+.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
+.qcard{background:var(--card);border-radius:20px;padding:1.5rem;text-align:center;border:2px solid var(--border);cursor:pointer;transition:transform 0.25s,box-shadow 0.25s}
+.qcard:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.qcard-icon{font-size:2.2rem;margin-bottom:0.5rem}
+.qcard-label{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.05rem}
+
+/* ── NOVEDADES ── */
+#page-novedades{background:var(--bg2)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.news-card{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.news-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.news-card.type-reflexion::before{background:linear-gradient(90deg,var(--green),#86EFAC)}
+.news-card.type-reunion::before{background:linear-gradient(90deg,var(--purple),var(--pl))}
+.news-card.type-anuncio::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.news-badge{display:inline-block;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.b-reflexion{background:rgba(34,197,94,0.12);color:#16A34A}
+.b-reunion{background:var(--ps);color:var(--purple)}
+.b-anuncio{background:rgba(249,115,22,0.12);color:var(--orange)}
+.news-date{font-size:0.8rem;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
+.news-title{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.15rem;margin-bottom:0.5rem}
+.news-body{color:var(--muted);font-size:0.9rem;line-height:1.6}
+
+/* ── EVENTOS ── */
+#page-eventos{background:var(--bg)}
+.notice-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px solid var(--border);border-radius:20px;padding:1.5rem 2rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.notice-item{display:flex;align-items:flex-start;gap:0.8rem}
+.notice-icon{font-size:1.8rem;flex-shrink:0}
+.notice-text strong{color:var(--purple);font-size:0.95rem;display:block}
+.notice-text span{color:var(--muted);font-size:0.83rem}
+.cat-filters{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;justify-content:center}
+.cat-btn{padding:0.4rem 1rem;border-radius:30px;border:2px solid var(--border);background:#fff;color:var(--muted);font-weight:700;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif}
+.cat-btn.active,.cat-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+.events-list{display:flex;flex-direction:column;gap:0.8rem}
+.event-item{background:var(--card);border-radius:16px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1.2rem;border:2px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
+.event-item:hover{transform:translateX(4px);box-shadow:0 4px 20px rgba(123,47,190,0.1)}
+.event-date-box{border-radius:12px;padding:0.5rem 0.9rem;text-align:center;min-width:58px;flex-shrink:0}
+.event-day{font-family:'Fredoka One',cursive;font-size:1.6rem;line-height:1;color:#fff}
+.event-month{font-size:0.68rem;font-weight:800;color:rgba(255,255,255,0.85);text-transform:uppercase}
+.event-info{flex:1}
+.event-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.05rem}
+.event-meta{color:var(--muted);font-size:0.82rem;margin-top:0.15rem;font-weight:600}
+.event-tag{padding:0.25rem 0.8rem;border-radius:20px;font-size:0.73rem;font-weight:800;white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px}
+.event-actions{display:flex;gap:0.3rem}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:0.95rem;padding:0.3rem;border-radius:8px;transition:background 0.2s}
+.icon-btn:hover{background:var(--ps)}
+.cat-hora-santa .event-date-box{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.cat-hora-santa .event-tag{background:var(--ps);color:var(--purple)}
+.cat-bazar .event-date-box{background:linear-gradient(135deg,#F97316,#FB923C)}
+.cat-bazar .event-tag{background:rgba(249,115,22,0.12);color:var(--orange)}
+.cat-retiro .event-date-box{background:linear-gradient(135deg,#3B82F6,#60A5FA)}
+.cat-retiro .event-tag{background:rgba(59,130,246,0.12);color:var(--blue)}
+.cat-mision .event-date-box{background:linear-gradient(135deg,#22C55E,#4ADE80)}
+.cat-mision .event-tag{background:rgba(34,197,94,0.12);color:#16A34A}
+.cat-parroquial .event-date-box{background:linear-gradient(135deg,#E84545,#F87171)}
+.cat-parroquial .event-tag{background:rgba(232,69,69,0.12);color:var(--red)}
+.cat-cumpleanos .event-date-box{background:linear-gradient(135deg,#FBBF24,#FDE68A)}
+.cat-cumpleanos .event-day,.cat-cumpleanos .event-month{color:#78350F}
+.cat-cumpleanos .event-tag{background:rgba(251,191,36,0.2);color:#92400E}
+
+/* ── FINANZAS ── */
+#page-finanzas{background:var(--bg2)}
+.finance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.fin-card{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);text-align:center}
+.fin-label{color:var(--muted);font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.fin-value{font-family:'Fredoka One',cursive;font-size:1.9rem;margin-top:0.3rem}
+.fin-value.income{color:var(--green)}
+.fin-value.expense{color:var(--red)}
+.fin-value.balance{color:var(--purple)}
+
+/* Projects summary */
+.projects-section{margin-bottom:2rem}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.project-card{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border)}
+.project-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1rem;margin-bottom:0.5rem}
+.project-bar-wrap{height:8px;background:var(--bg2);border-radius:10px;overflow:hidden;margin-bottom:0.4rem}
+.project-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--pl));transition:width 0.5s ease}
+.project-nums{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:700}
+.project-in{color:var(--green)}
+.project-ex{color:var(--red)}
+
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.chart-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border)}
+.chart-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1rem;font-size:1.05rem}
+.transactions-table{background:var(--card);border-radius:18px;overflow:hidden;border:2px solid var(--border)}
+.table-header{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;border-bottom:2px solid var(--border)}
+.table-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg2);color:var(--muted);font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;padding:0.8rem 1.2rem;text-align:left;font-weight:800}
+td{padding:0.9rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.amt-in{color:var(--green);font-weight:800}
+.amt-ex{color:var(--red);font-weight:800}
+.proj-tag{display:inline-block;padding:0.15rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:700;background:var(--ps);color:var(--purple)}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s}
+.del-btn:hover{color:var(--red)}
+
+/* ── CONTACTO ── */
+#page-contacto{background:var(--bg)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.contact-card{background:var(--card);border-radius:20px;padding:2rem;text-align:center;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;display:block}
+.contact-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.contact-icon{font-size:2.8rem;margin-bottom:0.8rem}
+.contact-name{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.15rem}
+.contact-handle{color:var(--muted);font-size:0.88rem;margin-top:0.3rem;font-weight:600}
+
+/* ── MODALS ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.5);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:24px;padding:2rem;width:100%;max-width:500px;border:2px solid var(--border);animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.2);max-height:90vh;overflow-y:auto}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1.5rem;font-size:1.4rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;color:var(--muted);font-size:0.83rem;font-weight:800;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:0.7rem 1rem;color:var(--text);font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:600;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--purple)}
+.form-group textarea{resize:vertical;min-height:80px}
+.modal-buttons{display:flex;gap:0.8rem;margin-top:1.5rem}
+
+/* password */
+.pw-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.7);z-index:3000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.pw-overlay.active{display:flex}
+.pw-box{background:var(--card);border-radius:24px;padding:2.5rem;text-align:center;border:2px solid var(--border);max-width:360px;width:90%;animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.25)}
+.pw-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:0.4rem;font-size:1.4rem}
+.pw-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;font-weight:600}
+.pw-err{color:var(--red);font-size:0.85rem;margin-top:0.5rem;display:none;font-weight:700}
+
+/* footer */
+footer{background:var(--dark);padding:2rem;text-align:center}
+.footer-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:#fff;margin-bottom:0.3rem}
+.footer-logo span{color:var(--orange)}
+.footer-sub{color:rgba(255,255,255,0.45);font-size:0.82rem;font-weight:600}
+
+.empty-msg{text-align:center;color:var(--muted);padding:2rem;font-weight:600}
+@media(max-width:768px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1rem;border-bottom:2px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .notice-box{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+  .event-item{flex-direction:column;align-items:flex-start;gap:0.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="goTo('inicio')">I <span>Fily</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="goTo('inicio')">Inicio</a></li>
+    <li><a onclick="goTo('novedades')">Novedades</a></li>
+    <li><a onclick="goTo('eventos')">Eventos</a></li>
+    <li><a onclick="goTo('finanzas')">Finanzas</a></li>
+    <li><a onclick="goTo('contacto')">Contacto</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ══ INICIO ══ -->
+<div class="page active" id="page-inicio">
+  <div class="hero-blobs"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">✨ Comunidad Juvenil</div>
+      <p class="hero-parish">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</p>
+      <div class="hero-h1">I <span>Fily</span></div>
+      <p class="hero-sub">Un espacio para crecer juntos en fe, amistad y comunidad.<br>¡Aquí encontrarás todo sobre nuestro grupo!</p>
+      <div class="hero-pills">
+        <span class="pill">📅 Sábados 10AM–12PM</span>
+        <span class="pill">⛪ Eucaristía domingos</span>
+        <span class="pill">📍 En la parroquia</span>
+      </div>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="goTo('eventos')">Ver Cronograma</button>
+        <button class="btn btn-secondary" onclick="goTo('novedades')">Últimas Novedades</button>
+      </div>
+    </div>
+  </div>
+  <div class="quick-nav">
+    <div class="qcard" onclick="goTo('novedades')"><div class="qcard-icon">📢</div><div class="qcard-label">Novedades</div></div>
+    <div class="qcard" onclick="goTo('eventos')"><div class="qcard-icon">📅</div><div class="qcard-label">Cronograma</div></div>
+    <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
+    <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ NOVEDADES ══ -->
+<div class="page" id="page-novedades">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📢 Actualizaciones</div>
+      <h2 class="section-title">Novedades del Grupo</h2>
+      <p class="section-sub">Reflexiones, anuncios y resúmenes de reuniones</p>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('news')">+ Agregar Novedad</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ EVENTOS ══ -->
+<div class="page" id="page-eventos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📅 Cronograma 2026</div>
+      <h2 class="section-title">Actividades del Año</h2>
+      <p class="section-sub">Todas nuestras actividades y compromisos del grupo</p>
+    </div>
+    <div class="notice-box">
+      <div class="notice-item"><div class="notice-icon">🤝</div><div class="notice-text"><strong>Reuniones — Todos los sábados</strong><span>10:00 AM a 12:00 PM · Parroquia · Salvo cambios en la programación</span></div></div>
+      <div class="notice-item"><div class="notice-icon">⛪</div><div class="notice-text"><strong>Eucaristía — Todos los domingos</strong><span>Compromiso del grupo. La inasistencia debe ser justificada.</span></div></div>
+    </div>
+    <div class="cat-filters">
+      <button class="cat-btn active" onclick="filterEvents('all',this)">Todos</button>
+      <button class="cat-btn" onclick="filterEvents('hora-santa',this)">🕯️ Hora Santa</button>
+      <button class="cat-btn" onclick="filterEvents('bazar',this)">🛍️ Bazar</button>
+      <button class="cat-btn" onclick="filterEvents('mision',this)">🤝 Misión</button>
+      <button class="cat-btn" onclick="filterEvents('parroquial',this)">⛪ Parroquial</button>
+      <button class="cat-btn" onclick="filterEvents('retiro',this)">🏕️ Retiro</button>
+      <button class="cat-btn" onclick="filterEvents('cumpleanos',this)">🎂 Cumpleaños</button>
+    </div>
+    <div class="events-list" id="eventsList"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('event')">+ Agregar Evento</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ FINANZAS ══ -->
+<div class="page" id="page-finanzas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">💰 Transparencia</div>
+      <h2 class="section-title">Finanzas del Grupo</h2>
+      <p class="section-sub">Registro de ingresos y gastos para toda la comunidad</p>
+    </div>
+    <div class="finance-summary">
+      <div class="fin-card"><div class="fin-label">Total Ingresos</div><div class="fin-value income" id="totalIncome">$0</div></div>
+      <div class="fin-card"><div class="fin-label">Total Gastos</div><div class="fin-value expense" id="totalExpense">$0</div></div>
+      <div class="fin-card"><div class="fin-label">Balance Actual</div><div class="fin-value balance" id="totalBalance">$0</div></div>
+    </div>
+
+    <!-- PROYECTOS -->
+    <div class="projects-section">
+      <div class="section-header" style="margin-bottom:1rem">
+        <div class="section-tag">📁 Por Proyecto / Propósito</div>
+        <h3 class="section-title" style="font-size:1.5rem">Resumen por Propósito</h3>
+      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-box"><h3>📊 Ingresos vs Gastos por Mes</h3><canvas id="barChart"></canvas></div>
+      <div class="chart-box"><h3>📈 Balance Histórico</h3><canvas id="lineChart"></canvas></div>
+    </div>
+    <div class="transactions-table">
+      <div class="table-header">
+        <h3>Todos los Registros</h3>
+        <button class="btn btn-primary btn-sm" onclick="openAdmin('finance')">+ Agregar</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Fecha</th><th>Descripción</th><th>Propósito</th><th>Tipo</th><th>Monto</th><th></th></tr></thead>
+          <tbody id="transactionsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- ══ CONTACTO ══ -->
+<div class="page" id="page-contacto">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📱 Conéctate</div>
+      <h2 class="section-title">Síguenos</h2>
+      <p class="section-sub">¡Únete a nuestra comunidad en redes!</p>
+    </div>
+    <div class="contact-grid">
+      <a href="https://instagram.com/ifilybogota" target="_blank" class="contact-card"><div class="contact-icon">📸</div><div class="contact-name">Instagram</div><div class="contact-handle">@ifilybogota</div></a>
+      <a href="https://tiktok.com/@ifilybogota" target="_blank" class="contact-card"><div class="contact-icon">🎵</div><div class="contact-name">TikTok</div><div class="contact-handle">@ifilybogota</div></a>
+      <a href="#" class="contact-card"><div class="contact-icon">📍</div><div class="contact-name">Parroquia</div><div class="contact-handle">Ntra. Sra. de la Dulce Espera · Bogotá</div></a>
+    </div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- PASSWORD -->
+<div class="pw-overlay" id="pwOverlay">
+  <div class="pw-box">
+    <div style="font-size:3rem;margin-bottom:0.8rem">🔐</div>
+    <h3>Área Admin</h3>
+    <p>Ingresa la contraseña para continuar</p>
+    <div class="form-group"><input type="password" id="adminPw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPw()"></div>
+    <p class="pw-err" id="pwErr">Contraseña incorrecta ❌</p>
+    <div class="modal-buttons" style="justify-content:center">
+      <button class="btn btn-cancel btn-sm" onclick="closePw()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="checkPw()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS MODAL -->
+<div class="modal-overlay" id="newsModal">
+  <div class="modal">
+    <h3>📢 Agregar Novedad</h3>
+    <div class="form-group"><label>Tipo</label>
+      <select id="newsType"><option value="anuncio">📢 Anuncio</option><option value="reflexion">✨ Reflexión</option><option value="reunion">🤝 Reunión</option></select>
+    </div>
+    <div class="form-group"><label>Título</label><input type="text" id="newsTitle" placeholder="Título de la novedad"></div>
+    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí..."></textarea></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('newsModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addNews()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div class="modal-overlay" id="eventModal">
+  <div class="modal">
+    <h3 id="evModalTitle">📅 Agregar Evento</h3>
+    <input type="hidden" id="editEvId">
+    <div class="form-group"><label>Categoría</label>
+      <select id="evCat">
+        <option value="hora-santa">🕯️ Hora Santa</option>
+        <option value="bazar">🛍️ Bazar</option>
+        <option value="retiro">🏕️ Retiro</option>
+        <option value="mision">🤝 Misión</option>
+        <option value="parroquial">⛪ Actividad Parroquial</option>
+        <option value="cumpleanos">🎂 Celebración Cumpleaños</option>
+        <option value="otro">📌 Otro</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Nombre del evento</label><input type="text" id="evName" placeholder="Ej: Hora Santa de Marzo"></div>
+    <div class="form-group"><label>Fecha</label><input type="date" id="evDate"></div>
+    <div class="form-group"><label>Hora y lugar (opcional)</label><input type="text" id="evMeta" placeholder="Ej: 6:00 PM · Iglesia"></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('eventModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="evSaveBtn" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCE MODAL -->
+<div class="modal-overlay" id="financeModal">
+  <div class="modal">
+    <h3>💰 Agregar Registro</h3>
+    <div class="form-group"><label>Tipo</label>
+      <select id="finType"><option value="income">✅ Ingreso</option><option value="expense">❌ Gasto</option></select>
+    </div>
+    <div class="form-group"><label>Descripción</label><input type="text" id="finDesc" placeholder="Ej: Aporte para JMJ"></div>
+    <div class="form-group">
+      <label>Propósito / Proyecto</label>
+      <input type="text" id="finProject" placeholder="Ej: JMJ 2027, Comidas reunión, Salida grupo..." list="projectSuggestions">
+      <datalist id="projectSuggestions"></datalist>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;font-weight:600">Escribe o elige un propósito existente. Esto te permite ver cuánto va para cada cosa.</div>
+    </div>
+    <div class="form-group"><label>Monto (COP)</label><input type="number" id="finAmount" placeholder="0" min="0"></div>
+    <div class="form-group"><label>Fecha</label><input type="date" id="finDate"></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('financeModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addFinance()">Registrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PASS='ifily2024';
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+
+const defaultEvents=[
+  {id:1,cat:'hora-santa',name:'Hora Santa',date:'2026-03-14',meta:'Parroquia'},
+  {id:2,cat:'hora-santa',name:'Hora Santa',date:'2026-04-11',meta:'Parroquia'},
+  {id:3,cat:'hora-santa',name:'Hora Santa',date:'2026-05-09',meta:'Parroquia'},
+  {id:4,cat:'hora-santa',name:'Hora Santa',date:'2026-06-13',meta:'Parroquia'},
+  {id:5,cat:'hora-santa',name:'Hora Santa',date:'2026-07-11',meta:'Parroquia'},
+  {id:6,cat:'hora-santa',name:'Hora Santa',date:'2026-09-19',meta:'Parroquia'},
+  {id:7,cat:'hora-santa',name:'Hora Santa',date:'2026-10-10',meta:'Parroquia'},
+  {id:8,cat:'hora-santa',name:'Hora Santa',date:'2026-11-14',meta:'Parroquia'},
+  {id:9,cat:'bazar',name:'Bazar',date:'2026-05-17',meta:'Parroquia'},
+  {id:10,cat:'bazar',name:'Bazar',date:'2026-06-21',meta:'Parroquia'},
+  {id:11,cat:'bazar',name:'Bazar',date:'2026-07-19',meta:'Parroquia'},
+  {id:12,cat:'bazar',name:'Bazar',date:'2026-08-16',meta:'Parroquia'},
+  {id:13,cat:'bazar',name:'Bazar',date:'2026-09-20',meta:'Parroquia'},
+  {id:14,cat:'bazar',name:'Bazar',date:'2026-10-18',meta:'Parroquia'},
+  {id:15,cat:'bazar',name:'Bazar',date:'2026-11-15',meta:'Parroquia'},
+  {id:16,cat:'retiro',name:'Retiro',date:'2026-09-12',meta:'Por confirmar'},
+  {id:17,cat:'mision',name:'Misión — Día del Niño',date:'2026-04-25',meta:'Parroquia'},
+  {id:18,cat:'mision',name:'Misión a Ancianato',date:'2026-12-26',meta:'Por confirmar'},
+  {id:19,cat:'parroquial',name:'Viacrucis',date:'2026-04-03',meta:'Parroquia'},
+  {id:20,cat:'parroquial',name:'San Francisco de Asís',date:'2026-10-03',meta:'Parroquia'},
+  {id:21,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-03-21',meta:'Parroquia'},
+  {id:22,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-06-27',meta:'Parroquia'},
+  {id:23,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-09-26',meta:'Parroquia'},
+  {id:24,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-12-19',meta:'Parroquia'},
+];
+
+let news=load('ifily_news',[{id:1,type:'anuncio',title:'¡Bienvenidos a I Fily!',content:'Esta es nuestra página oficial. Aquí encontrarás novedades, el cronograma de actividades y mucho más. ¡Qué bueno tenerte aquí!',date:'1/3/2026'}]);
+let events=load('ifily_events',defaultEvents);
+let finances=load('ifily_finances',[]);
+let pendingAction=null;
+let currentFilter='all';
+let barChart,lineChart;
+
+// ── NAVIGATION ──
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes(page))a.classList.add('active');});
+  window.scrollTo(0,0);
+  document.getElementById('navLinks').classList.remove('open');
+  if(page==='finanzas')setTimeout(renderFinances,100);
+}
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+
+// ── ADMIN ──
+function openAdmin(action){
+  pendingAction=action;
+  document.getElementById('adminPw').value='';
+  document.getElementById('pwErr').style.display='none';
+  document.getElementById('pwOverlay').classList.add('active');
+  setTimeout(()=>document.getElementById('adminPw').focus(),100);
+}
+function closePw(){document.getElementById('pwOverlay').classList.remove('active');pendingAction=null;}
+function checkPw(){
+  if(document.getElementById('adminPw').value===PASS){
+    closePw();
+    if(pendingAction==='news'){document.getElementById('newsModal').classList.add('active');}
+    else if(pendingAction==='event'){
+      document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
+      document.getElementById('editEvId').value='';
+      ['evName','evMeta'].forEach(i=>document.getElementById(i).value='');
+      document.getElementById('evDate').valueAsDate=new Date();
+      document.getElementById('evSaveBtn').textContent='Guardar';
+      document.getElementById('eventModal').classList.add('active');
+    }
+    else if(pendingAction==='finance'){
+      document.getElementById('finDate').valueAsDate=new Date();
+      updateProjectSuggestions();
+      document.getElementById('financeModal').classList.add('active');
+    }
+    else if(pendingAction&&pendingAction.startsWith('edit_')){
+      const ev=events.find(e=>e.id===parseInt(pendingAction.split('_')[1]));
+      if(ev){
+        document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
+        document.getElementById('editEvId').value=ev.id;
+        document.getElementById('evCat').value=ev.cat;
+        document.getElementById('evName').value=ev.name;
+        document.getElementById('evDate').value=ev.date;
+        document.getElementById('evMeta').value=ev.meta||'';
+        document.getElementById('evSaveBtn').textContent='Actualizar';
+        document.getElementById('eventModal').classList.add('active');
+      }
+    }
+    else if(pendingAction&&pendingAction.startsWith('delEv_')){
+      events=events.filter(e=>e.id!==parseInt(pendingAction.split('_')[1]));
+      save('ifily_events',events);renderEvents();
+    }
+    else if(pendingAction&&pendingAction.startsWith('delFin_')){
+      finances=finances.filter(f=>f.id!==parseInt(pendingAction.split('_')[1]));
+      save('ifily_finances',finances);renderFinances();
+    }
+  } else{document.getElementById('pwErr').style.display='block';}
+}
+function closeModal(id){document.getElementById(id).classList.remove('active');}
+
+// ── NEWS ──
+function renderNews(){
+  const g=document.getElementById('newsGrid');
+  if(!news.length){g.innerHTML='<p class="empty-msg">No hay novedades aún.</p>';return;}
+  g.innerHTML=news.slice().reverse().map(n=>`
+    <div class="news-card type-${n.type}">
+      <span class="news-badge b-${n.type}">${n.type==='reflexion'?'✨ Reflexión':n.type==='reunion'?'🤝 Reunión':'📢 Anuncio'}</span>
+      <div class="news-date">${n.date}</div>
+      <div class="news-title">${n.title}</div>
+      <div class="news-body">${n.content}</div>
+    </div>`).join('');
+}
+function addNews(){
+  const title=document.getElementById('newsTitle').value.trim();
+  const content=document.getElementById('newsContent').value.trim();
+  if(!title||!content)return alert('Completa todos los campos.');
+  news.push({id:Date.now(),type:document.getElementById('newsType').value,title,content,date:new Date().toLocaleDateString('es-CO')});
+  save('ifily_news',news);renderNews();closeModal('newsModal');
+  document.getElementById('newsTitle').value='';document.getElementById('newsContent').value='';
+}
+
+// ── EVENTS ──
+const catLabels={'hora-santa':'🕯️ Hora Santa','bazar':'🛍️ Bazar','retiro':'🏕️ Retiro','mision':'🤝 Misión','parroquial':'⛪ Parroquial','cumpleanos':'🎂 Cumpleaños','otro':'📌 Otro'};
+function filterEvents(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderEvents();
+}
+function renderEvents(){
+  const list=document.getElementById('eventsList');
+  let filtered=currentFilter==='all'?events:events.filter(e=>e.cat===currentFilter);
+  filtered=filtered.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(!filtered.length){list.innerHTML='<p class="empty-msg">No hay eventos en esta categoría.</p>';return;}
+  list.innerHTML=filtered.map(e=>{
+    const d=new Date(e.date+'T00:00:00');
+    return `<div class="event-item cat-${e.cat}">
+      <div class="event-date-box"><div class="event-day">${d.getDate()}</div><div class="event-month">${d.toLocaleDateString('es-CO',{month:'short'}).replace('.','')}</div></div>
+      <div class="event-info"><div class="event-name">${e.name}</div><div class="event-meta">📍 ${e.meta||'Parroquia'}</div></div>
+      <span class="event-tag">${catLabels[e.cat]||e.cat}</span>
+      <div class="event-actions">
+        <button class="icon-btn" onclick="openAdmin('edit_${e.id}')" title="Editar">✏️</button>
+        <button class="icon-btn" onclick="openAdmin('delEv_${e.id}')" title="Eliminar">🗑️</button>
+      </div></div>`;
+  }).join('');
+}
+function saveEvent(){
+  const editId=document.getElementById('editEvId').value;
+  const cat=document.getElementById('evCat').value;
+  const name=document.getElementById('evName').value.trim();
+  const date=document.getElementById('evDate').value;
+  const meta=document.getElementById('evMeta').value.trim()||'Parroquia';
+  if(!name||!date)return alert('Completa los campos requeridos.');
+  if(editId){const i=events.findIndex(e=>e.id===parseInt(editId));if(i>=0)events[i]={...events[i],cat,name,date,meta};}
+  else events.push({id:Date.now(),cat,name,date,meta});
+  save('ifily_events',events);renderEvents();closeModal('eventModal');
+}
+
+// ── FINANCES ──
+const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
+
+function updateProjectSuggestions(){
+  const projects=[...new Set(finances.map(f=>f.project).filter(Boolean))];
+  document.getElementById('projectSuggestions').innerHTML=projects.map(p=>`<option value="${p}">`).join('');
+}
+
+function renderProjects(){
+  const grid=document.getElementById('projectsGrid');
+  if(!finances.length){grid.innerHTML='<p class="empty-msg" style="grid-column:1/-1">Agrega registros para ver el resumen por propósito.</p>';return;}
+  const projectMap={};
+  finances.forEach(f=>{
+    const p=f.project||'General';
+    if(!projectMap[p])projectMap[p]={income:0,expense:0};
+    if(f.type==='income')projectMap[p].income+=f.amount;
+    else projectMap[p].expense+=f.amount;
+  });
+  grid.innerHTML=Object.entries(projectMap).map(([name,{income,expense}])=>{
+    const bal=income-expense;
+    const pct=income>0?Math.min(100,Math.round((income/(income+expense))*100)):0;
+    return `<div class="project-card">
+      <div class="project-name">${name}</div>
+      <div class="project-bar-wrap"><div class="project-bar" style="width:${pct}%"></div></div>
+      <div class="project-nums">
+        <span class="project-in">▲ ${fmt(income)}</span>
+        <span class="project-ex">▼ ${fmt(expense)}</span>
+      </div>
+      <div style="margin-top:0.4rem;font-size:0.82rem;font-weight:800;color:${bal>=0?'var(--green)':'var(--red)'}">Balance: ${fmt(bal)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderFinances(){
+  const totalIn=finances.filter(f=>f.type==='income').reduce((s,f)=>s+f.amount,0);
+  const totalEx=finances.filter(f=>f.type==='expense').reduce((s,f)=>s+f.amount,0);
+  document.getElementById('totalIncome').textContent=fmt(totalIn);
+  document.getElementById('totalExpense').textContent=fmt(totalEx);
+  const bal=totalIn-totalEx;
+  const balEl=document.getElementById('totalBalance');
+  balEl.textContent=fmt(bal);
+  balEl.style.color=bal>=0?'var(--green)':'var(--red)';
+
+  renderProjects();
+
+  const sorted=[...finances].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const tbody=document.getElementById('transactionsBody');
+  if(!sorted.length){
+    tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';
+  } else {
+    tbody.innerHTML=sorted.map(f=>`<tr>
+      <td>${new Date(f.date+'T00:00:00').toLocaleDateString('es-CO')}</td>
+      <td>${f.desc}</td>
+      <td><span class="proj-tag">${f.project||'General'}</span></td>
+      <td>${f.type==='income'?'<span style="color:var(--green);font-weight:800">Ingreso</span>':'<span style="color:var(--red);font-weight:800">Gasto</span>'}</td>
+      <td class="amt-${f.type}">${f.type==='income'?'+':'-'}${fmt(f.amount)}</td>
+      <td><button class="del-btn" onclick="openAdmin('delFin_${f.id}')">🗑️</button></td>
+    </tr>`).join('');
+  }
+  buildCharts();
+}
+
+function buildCharts(){
+  const monthMap={};
+  finances.forEach(f=>{
+    const d=new Date(f.date+'T00:00:00');
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    const label=d.toLocaleDateString('es-CO',{month:'short',year:'2-digit'});
+    if(!monthMap[key])monthMap[key]={label,income:0,expense:0};
+    if(f.type==='income')monthMap[key].income+=f.amount;else monthMap[key].expense+=f.amount;
+  });
+  const months=Object.values(monthMap);
+  const labels=months.map(m=>m.label);
+  let run=0;const balances=months.map(m=>{run+=m.income-m.expense;return run;});
+  const tc='#8B7BAE',gc='rgba(123,47,190,0.07)';
+  const opts={plugins:{legend:{labels:{color:tc,font:{family:'Nunito',weight:'700'}}}},scales:{x:{ticks:{color:tc},grid:{color:gc}},y:{ticks:{color:tc},grid:{color:gc}}}};
+  if(barChart)barChart.destroy();
+  barChart=new Chart(document.getElementById('barChart'),{type:'bar',data:{labels,datasets:[{label:'Ingresos',data:months.map(m=>m.income),backgroundColor:'rgba(34,197,94,0.7)',borderRadius:8},{label:'Gastos',data:months.map(m=>m.expense),backgroundColor:'rgba(232,69,69,0.7)',borderRadius:8}]},options:{responsive:true,...opts}});
+  if(lineChart)lineChart.destroy();
+  lineChart=new Chart(document.getElementById('lineChart'),{type:'line',data:{labels,datasets:[{label:'Balance',data:balances,borderColor:'#7B2FBE',backgroundColor:'rgba(123,47,190,0.08)',tension:0.4,fill:true,pointBackgroundColor:'#7B2FBE',pointRadius:5}]},options:{responsive:true,...opts}});
+}
+
+function addFinance(){
+  const desc=document.getElementById('finDesc').value.trim();
+  const project=document.getElementById('finProject').value.trim()||'General';
+  const amount=parseFloat(document.getElementById('finAmount').value);
+  const date=document.getElementById('finDate').value;
+  if(!desc||!amount||!date)return alert('Completa todos los campos.');
+  finances.push({id:Date.now(),type:document.getElementById('finType').value,desc,project,amount,date});
+  save('ifily_finances',finances);renderFinances();closeModal('financeModal');
+  ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
+}
+
+// close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
+
+// init
+renderNews();renderEvents();renderFinances();
+goTo('inicio');
+</script>
+</body>
+</html>
