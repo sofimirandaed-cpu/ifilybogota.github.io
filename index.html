@@ -291,6 +291,32 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   .form-row{grid-template-columns:1fr}
   .back-btn{top:1rem;left:1rem}
 }
+
+/* ══ INTEGRANTES ══ */
+#page-integrantes{background:var(--bg)}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+.member-card{background:var(--card);border-radius:22px;padding:1.8rem 1.5rem;border:2px solid var(--border);text-align:center;transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--orange))}
+.member-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.member-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--border);margin:0 auto 1rem;display:block}
+.member-avatar-placeholder{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pl));display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2rem;color:#fff;font-family:'Fredoka One',cursive}
+.member-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.2rem;margin-bottom:0.3rem}
+.member-role{display:inline-block;padding:0.25rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.role-coordinador{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff}
+.role-integrante{background:var(--ps);color:var(--purple)}
+.role-tesorero{background:rgba(34,197,94,0.15);color:#16A34A}
+.role-secretario{background:rgba(59,130,246,0.15);color:var(--blue)}
+.role-asesor{background:rgba(249,115,22,0.15);color:var(--orange)}
+.role-otro{background:rgba(139,123,174,0.15);color:var(--muted)}
+.member-bio{color:var(--muted);font-size:0.88rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.8rem}
+.member-socials{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap}
+.member-social-link{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:700;color:var(--purple);text-decoration:none;transition:all 0.2s}
+.member-social-link:hover{background:var(--ps);border-color:var(--purple)}
+.member-del-btn{position:absolute;top:0.8rem;right:0.8rem;background:none;border:none;cursor:pointer;color:var(--border);font-size:1rem;transition:color 0.2s;padding:0.2rem}
+.member-del-btn:hover{color:var(--red)}
+.join-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px dashed var(--border);border-radius:22px;padding:2rem;text-align:center;margin-bottom:2rem}
+.join-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:0.4rem}
+.join-box p{color:var(--muted);font-size:0.9rem;font-weight:600;margin-bottom:1.2rem}
 </style>
 </head>
 <body>
@@ -305,6 +331,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <li><a onclick="goTo('reuniones')">Reuniones</a></li>
     <li><a onclick="goTo('muro')">Muro</a></li>
     <li><a onclick="goTo('finanzas')">Finanzas</a></li>
+    <li><a onclick="goTo('integrantes')">Integrantes</a></li>
     <li><a onclick="goTo('contacto')">Contacto</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -336,6 +363,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="qcard" onclick="goTo('reuniones')"><div class="qcard-icon">🙏</div><div class="qcard-label">Reuniones</div></div>
     <div class="qcard" onclick="goTo('muro')"><div class="qcard-icon">💬</div><div class="qcard-label">Muro</div></div>
     <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
+    <div class="qcard" onclick="goTo('integrantes')"><div class="qcard-icon">👥</div><div class="qcard-label">Integrantes</div></div>
     <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
   </div>
   <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
@@ -523,6 +551,24 @@ footer{background:var(--dark);padding:2rem;text-align:center}
 </div>
 
 <!-- ══ CONTACTO ══ -->
+<!-- ══ INTEGRANTES ══ -->
+<div class="page" id="page-integrantes">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">👥 El Grupo</div>
+      <h2 class="section-title">Integrantes</h2>
+      <p class="section-sub">Conoce a las personas que hacen parte de I Fily</p>
+    </div>
+    <div class="join-box">
+      <h3>¿Eres parte del grupo?</h3>
+      <p>Agrega tu perfil — todo es opcional, comparte lo que quieras 🙌</p>
+      <button class="btn btn-primary btn-sm" onclick="openMemberForm()">+ Agregar mi perfil</button>
+    </div>
+    <div class="members-grid" id="membersGrid"></div>
+  </div>
+  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
 <div class="page" id="page-contacto">
   <div class="container">
     <div class="section-header">
@@ -540,6 +586,33 @@ footer{background:var(--dark);padding:2rem;text-align:center}
 </div>
 
 <!-- PASSWORD -->
+<!-- MEMBER MODAL -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <h3>👤 Mi Perfil</h3>
+    <div class="form-group"><label>Tu nombre *</label><input type="text" id="memName" placeholder="¿Cómo te llamamos?"></div>
+    <div class="form-group"><label>Rol en el grupo</label>
+      <select id="memRole">
+        <option value="integrante">Integrante</option>
+        <option value="coordinador">Coordinador/a</option>
+        <option value="tesorero">Tesorero/a</option>
+        <option value="secretario">Secretario/a</option>
+        <option value="asesor">Asesor/a</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Presentación (opcional)</label><textarea id="memBio" placeholder="Cuéntale al grupo algo sobre ti... ¿qué te gusta? ¿por qué estás en I Fily?"></textarea></div>
+    <div class="form-group"><label>Foto — link de imagen (opcional)</label><input type="url" id="memPhoto" placeholder="https://... (link de foto de Google Drive, etc.)"><div class="form-hint">Sube tu foto a Google Drive, copia el link y pégalo aquí</div></div>
+    <div class="form-group"><label>Instagram (opcional)</label><input type="text" id="memIg" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>TikTok (opcional)</label><input type="text" id="memTt" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>Otro link o red social (opcional)</label><input type="text" id="memOther" placeholder="Ej: WhatsApp, Twitter..."></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('memberModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveMember()">Publicar perfil</button>
+    </div>
+  </div>
+</div>
+
 <div class="pw-overlay" id="pwOverlay">
   <div class="pw-box">
     <div style="font-size:3rem;margin-bottom:0.8rem">🔐</div>
@@ -695,6 +768,7 @@ let meetings=load('ifily_meetings',[]);
 let reflexiones=load('ifily_reflexiones',[]);
 let muroPosts=load('ifily_muro',[]);
 let finances=load('ifily_finances',[]);
+let members=load('ifily_members',[]);
 
 let pendingAction=null;
 let currentFilter='all';
@@ -715,6 +789,7 @@ function goTo(page, pushHistory=true){
   if(page==='finanzas')setTimeout(renderFinances,100);
   if(page==='reuniones')renderMeetings();
   if(page==='muro')renderMuro();
+  if(page==='integrantes')renderMembers();
   if(page==='novedades')renderNews();
 }
 function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
@@ -1057,6 +1132,58 @@ function confirmDelMuro(id){
   }
 }
 
+
+// ── INTEGRANTES ──
+const roleLabel={coordinador:"Coordinador/a",integrante:"Integrante",tesorero:"Tesorero/a",secretario:"Secretario/a",asesor:"Asesor/a",otro:"Otro"};
+function openMemberForm(){
+  ["memName","memBio","memPhoto","memIg","memTt","memOther"].forEach(i=>document.getElementById(i).value="");
+  document.getElementById("memRole").value="integrante";
+  const el=document.getElementById("memberModal");
+  el.style.display="flex";el.classList.add("active");
+}
+function saveMember(){
+  const name=document.getElementById("memName").value.trim();
+  if(!name)return alert("Tu nombre es obligatorio 😊");
+  const bio=document.getElementById("memBio").value.trim();
+  const photo=document.getElementById("memPhoto").value.trim();
+  const ig=document.getElementById("memIg").value.trim();
+  const tt=document.getElementById("memTt").value.trim();
+  const other=document.getElementById("memOther").value.trim();
+  members.push({id:Date.now(),name,role:document.getElementById("memRole").value,bio,photo,ig,tt,other,date:new Date().toLocaleDateString("es-CO")});
+  save("ifily_members",members);
+  closeModal("memberModal");
+  renderMembers();
+}
+function renderMembers(){
+  const grid=document.getElementById("membersGrid");
+  if(!members.length){grid.innerHTML='<p class="empty-msg">Aún no hay perfiles. ¡Sé el primero en agregarte! 👋</p>';return;}
+  const roleClass={coordinador:"role-coordinador",integrante:"role-integrante",tesorero:"role-tesorero",secretario:"role-secretario",asesor:"role-asesor",otro:"role-otro"};
+  grid.innerHTML=members.map(m=>{
+    const avatar=m.photo
+      ?`<img src="${m.photo}" class="member-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      :"";
+    const placeholder=`<div class="member-avatar-placeholder" ${m.photo?'style="display:none"':""}>${m.name.charAt(0).toUpperCase()}</div>`;
+    const socials=[m.ig?`<a href="https://instagram.com/${m.ig.replace("@","")}" target="_blank" class="member-social-link">📸 ${m.ig}</a>`:"",m.tt?`<a href="https://tiktok.com/${m.tt.replace("@","")}" target="_blank" class="member-social-link">🎵 ${m.tt}</a>`:"",m.other?`<span class="member-social-link">🔗 ${m.other}</span>`:""].filter(Boolean).join("");
+    return `<div class="member-card">
+      <button class="member-del-btn" onclick="confirmDelMember(${m.id},'${m.name.replace(/'/g,'\'')}')" title="Eliminar perfil">🗑️</button>
+      ${avatar}${placeholder}
+      <div class="member-name">${m.name}</div>
+      <span class="member-role ${roleClass[m.role]||"role-otro"}">${roleLabel[m.role]||m.role}</span>
+      ${m.bio?`<div class="member-bio">${m.bio}</div>`:""}
+      ${socials?`<div class="member-socials">${socials}</div>`:""}
+    </div>`;
+  }).join("");
+}
+function confirmDelMember(id,name){
+  const input=prompt(`Para eliminar el perfil de "${name}", escribe su nombre exactamente:`);
+  if(input&&input.trim().toLowerCase()===name.toLowerCase()){
+    members=members.filter(m=>m.id!==id);
+    save("ifily_members",members);renderMembers();
+  } else if(input!==null){
+    alert("El nombre no coincide. No se eliminó el perfil.");
+  }
+}
+
 // ── FINANCES ──
 const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
 function updateProjectSuggestions(){
@@ -1132,7 +1259,7 @@ function addFinance(){
 // init
 document.getElementById('pwOverlay').style.display='none';
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
-renderNews();renderEvents();renderMeetings();renderMuro();renderFinances();
+renderNews();renderEvents();renderMeetings();renderMuro();renderFinances();renderMembers();
 goTo('inicio');
 window.addEventListener('popstate',e=>{ const page=e.state?.page||'inicio'; goTo(page,false); });
 </script>
