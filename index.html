@@ -701,7 +701,7 @@ let currentMeetingId=null;
 let barChart,lineChart;
 
 // ── NAVIGATION ──
-function goTo(page){
+function goTo(page, pushHistory=true){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
@@ -709,6 +709,7 @@ function goTo(page){
     if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes("'"+page+"'"))a.classList.add('active');
   });
   window.scrollTo(0,0);
+  if(pushHistory) history.pushState({page}, "", "#"+page);
   document.getElementById('navLinks').classList.remove('open');
   if(page==='finanzas')setTimeout(renderFinances,100);
   if(page==='reuniones')renderMeetings();
@@ -1132,6 +1133,7 @@ document.getElementById('pwOverlay').style.display='none';
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
 renderNews();renderEvents();renderMeetings();renderMuro();renderFinances();
 goTo('inicio');
+window.addEventListener('popstate',e=>{ const page=e.state?.page||'inicio'; goTo(page,false); });
 </script>
 </body>
 </html>
