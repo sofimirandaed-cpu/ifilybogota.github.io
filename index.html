@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Fily — Comunidad Juvenil</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>iFily — Comunidad Juvenil</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩷</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 :root{
@@ -21,8 +21,9 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);over
 
 /* NAV */
 nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--purple);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(123,47,190,0.1)}
-.nav-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--purple);cursor:pointer;flex-shrink:0}
-.nav-logo span{color:var(--orange)}
+.nav-logo{font-size:1.8rem;color:var(--purple);cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:0px}
+.nav-logo .serif-i{font-family:'Playfair Display',serif;font-weight:700;color:var(--purple)}
+.nav-logo .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
 .nav-links{display:flex;gap:0.15rem;list-style:none}
 .nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:0.82rem;padding:0.35rem 0.7rem;border-radius:30px;transition:all 0.2s;cursor:pointer;white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--purple);background:var(--ps)}
@@ -40,7 +41,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .section-tag{display:inline-block;background:var(--ps);color:var(--purple);font-weight:800;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;margin-bottom:0.6rem}
 .section-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5vw,3rem);color:var(--purple)}
 .section-sub{color:var(--muted);margin-top:0.4rem;font-size:1rem;font-weight:600}
-
 .btn{padding:0.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;border:none;transition:all 0.25s;text-decoration:none;display:inline-block}
 .btn-primary{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;box-shadow:0 4px 20px rgba(123,47,190,0.3)}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(123,47,190,0.4)}
@@ -66,14 +66,15 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .hero-content{max-width:720px}
 .hero-badge{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;padding:0.5rem 1.4rem;border-radius:50px;font-size:0.85rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;box-shadow:0 4px 20px rgba(123,47,190,0.3);animation:fadeUp 0.8s ease both}
 .hero-parish{font-size:0.9rem;color:var(--muted);font-weight:600;margin-bottom:0.5rem;animation:fadeUp 0.8s ease 0.1s both}
-.hero-h1{font-family:'Fredoka One',cursive;font-size:clamp(3.5rem,10vw,6.5rem);color:var(--purple);line-height:1;animation:fadeUp 0.8s ease 0.2s both}
-.hero-h1 span{color:var(--orange)}
+.hero-h1{font-size:clamp(3.5rem,10vw,6.5rem);line-height:1;animation:fadeUp 0.8s ease 0.2s both;display:flex;align-items:center;justify-content:center;gap:0.15em}
+.hero-h1 .serif-i{font-family:'Playfair Display',serif;font-weight:700;color:var(--purple)}
+.hero-h1 .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
 .hero-sub{font-size:1.1rem;color:var(--muted);margin-top:1rem;line-height:1.7;font-weight:600;animation:fadeUp 0.8s ease 0.4s both}
 .hero-pills{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem;animation:fadeUp 0.8s ease 0.5s both}
 .pill{background:#fff;border:2px solid var(--border);border-radius:50px;padding:0.5rem 1.2rem;font-size:0.85rem;font-weight:700;color:var(--purple)}
 .hero-btns{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.6s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
+.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
 .qcard{background:var(--card);border-radius:20px;padding:1.4rem;text-align:center;border:2px solid var(--border);cursor:pointer;transition:transform 0.25s,box-shadow 0.25s}
 .qcard:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
 .qcard-icon{font-size:2rem;margin-bottom:0.4rem}
@@ -132,11 +133,9 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .cat-cumpleanos .event-day,.cat-cumpleanos .event-month{color:#78350F}
 .cat-cumpleanos .event-tag{background:rgba(251,191,36,0.2);color:#92400E}
 
-/* ══ REUNIONES ══ */
+/* REUNIONES */
 #page-reuniones{background:var(--bg2)}
 .meetings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-
-/* Meeting card - closed state */
 .meeting-card{background:var(--card);border-radius:20px;border:2px solid var(--border);overflow:hidden;transition:box-shadow 0.25s;cursor:pointer}
 .meeting-card:hover{box-shadow:0 8px 30px rgba(123,47,190,0.15)}
 .meeting-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:1.5rem;position:relative}
@@ -153,7 +152,7 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .meeting-open-btn{background:var(--ps);border:none;border-radius:30px;color:var(--purple);padding:0.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:all 0.2s}
 .meeting-open-btn:hover{background:var(--purple);color:#fff}
 
-/* Meeting detail page */
+/* MEETING DETAIL */
 #page-meeting-detail{background:var(--bg)}
 .meeting-detail-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:3rem 2rem 2rem;text-align:center;position:relative}
 .back-btn{position:absolute;top:1.5rem;left:1.5rem;background:rgba(255,255,255,0.2);border:none;border-radius:30px;color:#fff;padding:0.5rem 1.2rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;transition:background 0.2s}
@@ -162,32 +161,28 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .detail-title{font-family:'Fredoka One',cursive;color:#fff;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:0.5rem}
 .detail-topic{color:rgba(255,255,255,0.8);font-size:1rem;font-weight:600}
 .detail-body{max-width:1100px;margin:0 auto;padding:2rem}
-
 .detail-summary-box{background:var(--card);border-radius:20px;padding:1.8rem;border:2px solid var(--border);margin-bottom:2rem}
 .detail-summary-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
 .detail-summary-text{color:var(--text);font-size:0.95rem;line-height:1.8;white-space:pre-wrap}
-
 .detail-materials{margin-bottom:2rem}
 .detail-materials h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem;margin-bottom:0.8rem}
 .materials-list{display:flex;flex-wrap:wrap;gap:0.8rem}
 .material-link{display:flex;align-items:center;gap:0.6rem;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:0.7rem 1.2rem;text-decoration:none;color:var(--purple);font-weight:700;font-size:0.88rem;transition:all 0.2s}
 .material-link:hover{background:var(--ps);border-color:var(--purple);transform:translateY(-2px)}
-
-/* Reflexiones en detalle */
 .reflexiones-section{margin-bottom:2rem}
 .reflexiones-section h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
 .write-reflex-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);margin-bottom:1.5rem}
 .write-reflex-box h4{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;margin-bottom:1rem}
 .reflexiones-list{display:flex;flex-direction:column;gap:0.8rem}
-.reflex-item{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border);position:relative;border-left:4px solid var(--green)}
+.reflex-item{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border);border-left:4px solid var(--green)}
 .reflex-author-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
 .reflex-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem}
 .reflex-date-small{font-size:0.75rem;color:var(--muted);font-weight:600}
 .reflex-text{color:var(--text);font-size:0.9rem;line-height:1.6;white-space:pre-wrap}
 
-/* EXPRESIÓN LIBRE */
+/* MURO */
 #page-muro{background:var(--bg2)}
-.expresion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.muro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
 .expr-card{background:var(--card);border-radius:18px;padding:1.3rem;border:2px solid var(--border);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
 .expr-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(123,47,190,0.1)}
 .expr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
@@ -210,8 +205,36 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9
 .write-box{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);margin-bottom:2rem}
 .write-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
 
+/* INTEGRANTES */
+#page-integrantes{background:var(--bg)}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+.member-card{background:var(--card);border-radius:22px;padding:1.8rem 1.5rem;border:2px solid var(--border);text-align:center;transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--orange))}
+.member-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.member-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--border);margin:0 auto 1rem;display:block}
+.member-avatar-placeholder{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pl));display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2.2rem;color:#fff;font-family:'Fredoka One',cursive}
+.member-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.2rem;margin-bottom:0.3rem}
+.member-role{display:inline-block;padding:0.25rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.role-coordinador{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff}
+.role-integrante{background:var(--ps);color:var(--purple)}
+.role-tesorero{background:rgba(34,197,94,0.15);color:#16A34A}
+.role-secretario{background:rgba(59,130,246,0.15);color:var(--blue)}
+.role-asesor{background:rgba(249,115,22,0.15);color:var(--orange)}
+.role-otro{background:rgba(139,123,174,0.15);color:var(--muted)}
+.member-bio{color:var(--muted);font-size:0.88rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.8rem}
+.member-socials{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap}
+.member-social-link{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:700;color:var(--purple);text-decoration:none;transition:all 0.2s}
+.member-social-link:hover{background:var(--ps);border-color:var(--purple)}
+.member-del-btn{position:absolute;top:0.8rem;right:0.8rem;background:none;border:none;cursor:pointer;color:var(--border);font-size:1rem;transition:color 0.2s;padding:0.2rem}
+.member-del-btn:hover{color:var(--red)}
+.join-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px dashed var(--border);border-radius:22px;padding:2rem;text-align:center;margin-bottom:2rem}
+.join-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:0.4rem}
+.join-box p{color:var(--muted);font-size:0.9rem;font-weight:600;margin-bottom:1.2rem}
+
+
+
 /* FINANZAS */
-#page-finanzas{background:var(--bg)}
+#page-finanzas{background:var(--bg2)}
 .finance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
 .fin-card{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);text-align:center}
 .fin-label{color:var(--muted);font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
@@ -268,16 +291,20 @@ tr:hover td{background:var(--bg)}
 
 /* PASSWORD */
 .pw-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.7);z-index:3000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-.pw-overlay.active{display:flex}
 .pw-box{background:var(--card);border-radius:24px;padding:2.5rem;text-align:center;border:2px solid var(--border);max-width:360px;width:90%;animation:slideUp 0.3s ease}
 .pw-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:0.4rem;font-size:1.4rem}
 .pw-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;font-weight:600}
 .pw-err{color:var(--red);font-size:0.85rem;margin-top:0.5rem;display:none;font-weight:700}
 
-/* FOOTER */
+/* LOADING */
+.loading{text-align:center;padding:2rem;color:var(--muted);font-weight:600}
+.loading::after{content:'';display:inline-block;width:20px;height:20px;border:3px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin 0.8s linear infinite;margin-left:0.5rem;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 footer{background:var(--dark);padding:2rem;text-align:center}
-.footer-logo{font-family:'Fredoka One',cursive;font-size:1.8rem;color:#fff;margin-bottom:0.3rem}
-.footer-logo span{color:var(--orange)}
+.footer-logo{font-size:1.8rem;color:#fff;margin-bottom:0.3rem;display:flex;align-items:center;justify-content:center;gap:2px}
+.footer-logo .serif-i{font-family:'Playfair Display',serif;font-weight:700}
+.footer-logo .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
 .footer-sub{color:rgba(255,255,255,0.45);font-size:0.82rem;font-weight:600}
 .empty-msg{text-align:center;color:var(--muted);padding:2rem;font-weight:600;grid-column:1/-1}
 
@@ -291,60 +318,34 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   .form-row{grid-template-columns:1fr}
   .back-btn{top:1rem;left:1rem}
 }
-
-/* ══ INTEGRANTES ══ */
-#page-integrantes{background:var(--bg)}
-.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
-.member-card{background:var(--card);border-radius:22px;padding:1.8rem 1.5rem;border:2px solid var(--border);text-align:center;transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
-.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--orange))}
-.member-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
-.member-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--border);margin:0 auto 1rem;display:block}
-.member-avatar-placeholder{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pl));display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2rem;color:#fff;font-family:'Fredoka One',cursive}
-.member-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.2rem;margin-bottom:0.3rem}
-.member-role{display:inline-block;padding:0.25rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
-.role-coordinador{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff}
-.role-integrante{background:var(--ps);color:var(--purple)}
-.role-tesorero{background:rgba(34,197,94,0.15);color:#16A34A}
-.role-secretario{background:rgba(59,130,246,0.15);color:var(--blue)}
-.role-asesor{background:rgba(249,115,22,0.15);color:var(--orange)}
-.role-otro{background:rgba(139,123,174,0.15);color:var(--muted)}
-.member-bio{color:var(--muted);font-size:0.88rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.8rem}
-.member-socials{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap}
-.member-social-link{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:700;color:var(--purple);text-decoration:none;transition:all 0.2s}
-.member-social-link:hover{background:var(--ps);border-color:var(--purple)}
-.member-del-btn{position:absolute;top:0.8rem;right:0.8rem;background:none;border:none;cursor:pointer;color:var(--border);font-size:1rem;transition:color 0.2s;padding:0.2rem}
-.member-del-btn:hover{color:var(--red)}
-.join-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px dashed var(--border);border-radius:22px;padding:2rem;text-align:center;margin-bottom:2rem}
-.join-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:0.4rem}
-.join-box p{color:var(--muted);font-size:0.9rem;font-weight:600;margin-bottom:1.2rem}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" onclick="goTo('inicio')">I <span>Fily</span></div>
+  <div class="nav-logo" onclick="goTo('inicio')"><span class="serif-i">I</span><span class="fily">Fily</span></div>
   <ul class="nav-links" id="navLinks">
     <li><a onclick="goTo('inicio')">Inicio</a></li>
     <li><a onclick="goTo('novedades')">Novedades</a></li>
     <li><a onclick="goTo('eventos')">Eventos</a></li>
     <li><a onclick="goTo('reuniones')">Reuniones</a></li>
     <li><a onclick="goTo('muro')">Muro</a></li>
-    <li><a onclick="goTo('finanzas')">Finanzas</a></li>
     <li><a onclick="goTo('integrantes')">Integrantes</a></li>
+    <li><a onclick="goTo('finanzas')">Finanzas</a></li>
     <li><a onclick="goTo('contacto')">Contacto</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- ══ INICIO ══ -->
+<!-- INICIO -->
 <div class="page active" id="page-inicio">
   <div class="hero-blobs"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">✨ Comunidad Juvenil</div>
       <p class="hero-parish">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</p>
-      <div class="hero-h1">I <span>Fily</span></div>
+      <div class="hero-h1"><span class="serif-i">I</span><span class="fily">Fily</span></div>
       <p class="hero-sub">Un espacio para crecer juntos en fe, amistad y comunidad.</p>
       <div class="hero-pills">
         <span class="pill">📅 Sábados 10AM–12PM</span>
@@ -362,14 +363,14 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="qcard" onclick="goTo('eventos')"><div class="qcard-icon">📅</div><div class="qcard-label">Cronograma</div></div>
     <div class="qcard" onclick="goTo('reuniones')"><div class="qcard-icon">🙏</div><div class="qcard-label">Reuniones</div></div>
     <div class="qcard" onclick="goTo('muro')"><div class="qcard-icon">💬</div><div class="qcard-label">Muro</div></div>
-    <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
     <div class="qcard" onclick="goTo('integrantes')"><div class="qcard-icon">👥</div><div class="qcard-label">Integrantes</div></div>
+    <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
     <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ NOVEDADES ══ -->
+<!-- NOVEDADES -->
 <div class="page" id="page-novedades">
   <div class="container">
     <div class="section-header">
@@ -377,15 +378,15 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <h2 class="section-title">Novedades del Grupo</h2>
       <p class="section-sub">Reflexiones, anuncios y resúmenes de reuniones</p>
     </div>
-    <div class="news-grid" id="newsGrid"></div>
+    <div class="news-grid" id="newsGrid"><div class="loading">Cargando</div></div>
     <div style="text-align:center;margin-top:2rem">
       <button class="btn btn-primary" onclick="openAdmin('news')">+ Agregar Novedad</button>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ EVENTOS ══ -->
+<!-- EVENTOS -->
 <div class="page" id="page-eventos">
   <div class="container">
     <div class="section-header">
@@ -394,7 +395,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <p class="section-sub">Todas nuestras actividades y compromisos del grupo</p>
     </div>
     <div class="notice-box">
-      <div class="notice-item"><div class="notice-icon">🤝</div><div class="notice-text"><strong>Reuniones — Todos los sábados</strong><span>10:00 AM a 12:00 PM · Parroquia · Salvo cambios en la programación</span></div></div>
+      <div class="notice-item"><div class="notice-icon">🤝</div><div class="notice-text"><strong>Reuniones — Todos los sábados</strong><span>10:00 AM a 12:00 PM · Parroquia</span></div></div>
       <div class="notice-item"><div class="notice-icon">⛪</div><div class="notice-text"><strong>Eucaristía — Todos los domingos</strong><span>Compromiso del grupo. La inasistencia debe ser justificada.</span></div></div>
     </div>
     <div class="cat-filters">
@@ -406,15 +407,15 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <button class="cat-btn" onclick="filterEvents('retiro',this)">🏕️ Retiro</button>
       <button class="cat-btn" onclick="filterEvents('cumpleanos',this)">🎂 Cumpleaños</button>
     </div>
-    <div class="events-list" id="eventsList"></div>
+    <div class="events-list" id="eventsList"><div class="loading">Cargando</div></div>
     <div style="text-align:center;margin-top:2rem">
       <button class="btn btn-primary" onclick="openAdmin('event')">+ Agregar Evento</button>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ REUNIONES ══ -->
+<!-- REUNIONES -->
 <div class="page" id="page-reuniones">
   <div class="container">
     <div class="section-header">
@@ -422,15 +423,15 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <h2 class="section-title">Nuestras Reuniones</h2>
       <p class="section-sub">Haz clic en una reunión para ver el resumen, materiales y compartir tu reflexión</p>
     </div>
-    <div class="meetings-grid" id="meetingsGrid"></div>
+    <div class="meetings-grid" id="meetingsGrid"><div class="loading">Cargando</div></div>
     <div style="text-align:center;margin-top:2rem">
       <button class="btn btn-primary" onclick="openAdmin('meeting')">+ Nueva Reunión</button>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ DETALLE REUNIÓN ══ -->
+<!-- DETALLE REUNIÓN -->
 <div class="page" id="page-meeting-detail">
   <div class="meeting-detail-cover" id="detailCover">
     <button class="back-btn" onclick="goTo('reuniones')">← Volver</button>
@@ -439,61 +440,48 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="detail-topic" id="detailTopic"></div>
   </div>
   <div class="detail-body">
-    <!-- Resumen -->
-    <div class="detail-summary-box" id="detailSummaryBox">
+    <div class="detail-summary-box">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
         <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem">📝 Resumen de la Reunión</h3>
-        <button class="icon-btn" id="editSummaryBtn" onclick="openAdmin('editSummary')">✏️ Editar</button>
+        <button class="icon-btn" onclick="openAdmin('editSummary')">✏️ Editar</button>
       </div>
       <div class="detail-summary-text" id="detailSummaryText"></div>
     </div>
-    <!-- Materiales -->
-    <div class="detail-materials" id="detailMaterialsBox">
+    <div class="detail-materials">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">
         <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem">📎 Materiales y Lecturas</h3>
         <button class="icon-btn" onclick="openAdmin('addMaterial')">+ Agregar</button>
       </div>
       <div class="materials-list" id="materialsList"></div>
     </div>
-    <!-- Reflexiones -->
     <div class="reflexiones-section">
       <h3>💬 Reflexiones del Grupo</h3>
       <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1rem">Comparte lo que te dejó esta reunión — no se necesita contraseña</p>
       <div class="write-reflex-box">
         <h4>✍️ Escribe tu reflexión</h4>
-        <div class="form-group">
-          <label>Tu nombre (opcional)</label>
-          <input type="text" id="reflexName" placeholder="Anónimo si lo prefieres">
-        </div>
-        <div class="form-group">
-          <label>Tu reflexión</label>
-          <textarea id="reflexText" placeholder="¿Qué te llevás de esta reunión? ¿Qué te impactó? ¿Qué quieres compartir con el grupo?"></textarea>
-        </div>
+        <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="reflexName" placeholder="Anónimo si lo prefieres"></div>
+        <div class="form-group"><label>Tu reflexión</label><textarea id="reflexText" placeholder="¿Qué te llevás de esta reunión?"></textarea></div>
         <button class="btn btn-green btn-sm" onclick="addReflex()">Publicar reflexión</button>
       </div>
       <div class="reflexiones-list" id="reflexionesList"></div>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ EXPRESIÓN LIBRE ══ -->
+<!-- MURO -->
 <div class="page" id="page-muro">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">💬 Muro</div>
+      <div class="section-tag">💬 Espacio Abierto</div>
       <h2 class="section-title">Muro</h2>
-      <p class="section-sub">Un espacio para compartir lo que quieras con el grupo — sin contraseña, sin filtros ❤️</p>
+      <p class="section-sub">Comparte lo que quieras con el grupo — sin contraseña ❤️</p>
     </div>
     <div class="write-box">
       <h3>✍️ ¿Qué tienes en el corazón hoy?</h3>
       <div class="form-row">
-        <div class="form-group">
-          <label>Tu nombre (opcional)</label>
-          <input type="text" id="muroName" placeholder="Anónimo si lo prefieres">
-        </div>
-        <div class="form-group">
-          <label>Estado de ánimo</label>
+        <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="muroName" placeholder="Anónimo si lo prefieres"></div>
+        <div class="form-group"><label>Estado de ánimo</label>
           <select id="muroMood">
             <option value="feliz">😄 Feliz / Alegre</option>
             <option value="reflexivo">🤔 Reflexivo</option>
@@ -503,18 +491,33 @@ footer{background:var(--dark);padding:2rem;text-align:center}
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label>Lo que quieres compartir</label>
-        <textarea id="muroText" placeholder="Lo que sea — una oración, una frase, algo que te alegró el día, un pensamiento... lo que tengas."></textarea>
-      </div>
+      <div class="form-group"><label>Lo que quieres compartir</label><textarea id="muroText" placeholder="Lo que sea — una oración, una frase, algo que te alegró el día..."></textarea></div>
       <button class="btn btn-green btn-sm" onclick="addMuro()">Publicar</button>
     </div>
-    <div class="expresion-grid" id="muroGrid"></div>
+    <div class="muro-grid" id="muroGrid"><div class="loading">Cargando</div></div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ FINANZAS ══ -->
+<!-- INTEGRANTES -->
+<div class="page" id="page-integrantes">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">👥 El Grupo</div>
+      <h2 class="section-title">Integrantes</h2>
+      <p class="section-sub">Conoce a las personas que hacen parte de iFily</p>
+    </div>
+    <div class="join-box">
+      <h3>¿Eres parte del grupo?</h3>
+      <p>Agrega tu perfil — todo es opcional, comparte lo que quieras 🙌</p>
+      <button class="btn btn-primary btn-sm" onclick="openMemberForm()">+ Agregar mi perfil</button>
+    </div>
+    <div class="members-grid" id="membersGrid"><div class="loading">Cargando</div></div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- FINANZAS -->
 <div class="page" id="page-finanzas">
   <div class="container">
     <div class="section-header">
@@ -532,8 +535,8 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <h3 class="section-title" style="font-size:1.5rem">Resumen por Propósito</h3>
     </div>
     <div class="projects-grid" id="projectsGrid"></div>
-    <div class="charts-grid" style="margin-top:2rem">
-      <div class="chart-box"><h3>📊 Ingresos vs Gastos por Mes</h3><canvas id="barChart"></canvas></div>
+    <div class="charts-grid" style="margin-top:1rem">
+      <div class="chart-box"><h3>📊 Ingresos vs Gastos</h3><canvas id="barChart"></canvas></div>
       <div class="chart-box"><h3>📈 Balance Histórico</h3><canvas id="lineChart"></canvas></div>
     </div>
     <div class="transactions-table">
@@ -547,28 +550,10 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       </div>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
-<!-- ══ CONTACTO ══ -->
-<!-- ══ INTEGRANTES ══ -->
-<div class="page" id="page-integrantes">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">👥 El Grupo</div>
-      <h2 class="section-title">Integrantes</h2>
-      <p class="section-sub">Conoce a las personas que hacen parte de I Fily</p>
-    </div>
-    <div class="join-box">
-      <h3>¿Eres parte del grupo?</h3>
-      <p>Agrega tu perfil — todo es opcional, comparte lo que quieras 🙌</p>
-      <button class="btn btn-primary btn-sm" onclick="openMemberForm()">+ Agregar mi perfil</button>
-    </div>
-    <div class="members-grid" id="membersGrid"></div>
-  </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
-</div>
-
+<!-- CONTACTO -->
 <div class="page" id="page-contacto">
   <div class="container">
     <div class="section-header">
@@ -582,38 +567,12 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <a href="#" class="contact-card"><div class="contact-icon">📍</div><div class="contact-name">Parroquia</div><div class="contact-handle">Ntra. Sra. de la Dulce Espera · Bogotá</div></a>
     </div>
   </div>
-  <footer><div class="footer-logo">I <span>Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
 
+<!-- MODALS -->
 <!-- PASSWORD -->
-<!-- MEMBER MODAL -->
-<div class="modal-overlay" id="memberModal">
-  <div class="modal">
-    <h3>👤 Mi Perfil</h3>
-    <div class="form-group"><label>Tu nombre *</label><input type="text" id="memName" placeholder="¿Cómo te llamamos?"></div>
-    <div class="form-group"><label>Rol en el grupo</label>
-      <select id="memRole">
-        <option value="integrante">Integrante</option>
-        <option value="coordinador">Coordinador/a</option>
-        <option value="tesorero">Tesorero/a</option>
-        <option value="secretario">Secretario/a</option>
-        <option value="asesor">Asesor/a</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-    <div class="form-group"><label>Presentación (opcional)</label><textarea id="memBio" placeholder="Cuéntale al grupo algo sobre ti... ¿qué te gusta? ¿por qué estás en I Fily?"></textarea></div>
-    <div class="form-group"><label>Foto — link de imagen (opcional)</label><input type="url" id="memPhoto" placeholder="https://... (link de foto de Google Drive, etc.)"><div class="form-hint">Sube tu foto a Google Drive, copia el link y pégalo aquí</div></div>
-    <div class="form-group"><label>Instagram (opcional)</label><input type="text" id="memIg" placeholder="@tuusuario"></div>
-    <div class="form-group"><label>TikTok (opcional)</label><input type="text" id="memTt" placeholder="@tuusuario"></div>
-    <div class="form-group"><label>Otro link o red social (opcional)</label><input type="text" id="memOther" placeholder="Ej: WhatsApp, Twitter..."></div>
-    <div class="modal-buttons">
-      <button class="btn btn-cancel btn-sm" onclick="closeModal('memberModal')">Cancelar</button>
-      <button class="btn btn-primary btn-sm" onclick="saveMember()">Publicar perfil</button>
-    </div>
-  </div>
-</div>
-
-<div class="pw-overlay" id="pwOverlay">
+<div class="pw-overlay" id="pwOverlay" style="display:none">
   <div class="pw-box">
     <div style="font-size:3rem;margin-bottom:0.8rem">🔐</div>
     <h3>Área Admin</h3>
@@ -635,7 +594,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <select id="newsType"><option value="anuncio">📢 Anuncio</option><option value="reflexion">✨ Reflexión</option><option value="reunion">🤝 Reunión</option></select>
     </div>
     <div class="form-group"><label>Título</label><input type="text" id="newsTitle" placeholder="Título de la novedad"></div>
-    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí... (los saltos de línea se respetan)"></textarea></div>
+    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí..."></textarea></div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('newsModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" onclick="addNews()">Publicar</button>
@@ -673,14 +632,12 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   <div class="modal">
     <h3 id="meetModalTitle">🙏 Nueva Reunión</h3>
     <input type="hidden" id="editMeetId">
-    <div class="form-group"><label>Título de la reunión</label><input type="text" id="meetTitle" placeholder="Ej: Reunión de Marzo — Fe y Comunidad"></div>
+    <div class="form-group"><label>Título</label><input type="text" id="meetTitle" placeholder="Ej: Reunión de Marzo — Fe y Comunidad"></div>
     <div class="form-row">
       <div class="form-group"><label>Fecha</label><input type="date" id="meetDate"></div>
       <div class="form-group"><label>Tema principal</label><input type="text" id="meetTopic" placeholder="Ej: La oración en comunidad"></div>
     </div>
-    <div class="form-group"><label>Resumen de lo que se trató</label>
-      <textarea id="meetSummary" style="min-height:120px" placeholder="Describe lo que se habló, lo que se compartió, puntos importantes... Los saltos de línea se respetan."></textarea>
-    </div>
+    <div class="form-group"><label>Resumen</label><textarea id="meetSummary" style="min-height:120px" placeholder="Describe lo que se habló..."></textarea></div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('meetingModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" id="meetSaveBtn" onclick="saveMeeting()">Publicar</button>
@@ -692,15 +649,46 @@ footer{background:var(--dark);padding:2rem;text-align:center}
 <div class="modal-overlay" id="materialModal">
   <div class="modal">
     <h3>📎 Agregar Material</h3>
-    <div class="form-group"><label>Nombre del material</label><input type="text" id="matName" placeholder="Ej: Lectura del Evangelio, PDF reflexión..."></div>
+    <div class="form-group"><label>Nombre del material</label><input type="text" id="matName" placeholder="Ej: Lectura del Evangelio"></div>
     <div class="form-group">
       <label>Link (Google Drive, PDF, etc.)</label>
       <input type="url" id="matUrl" placeholder="https://drive.google.com/...">
-      <div class="form-hint">Pega el link de Google Drive, Dropbox o cualquier otro servicio</div>
+      <div class="form-hint">Pega el link de Google Drive o cualquier otro servicio</div>
     </div>
     <div class="modal-buttons">
       <button class="btn btn-cancel btn-sm" onclick="closeModal('materialModal')">Cancelar</button>
       <button class="btn btn-primary btn-sm" onclick="addMaterial()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBER MODAL -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <h3>👤 Mi Perfil</h3>
+    <div class="form-group">
+      <label>Foto — link de imagen (opcional)</label>
+      <input type="url" id="memPhoto" placeholder="https://... (link de Google Fotos, Drive, etc.)">
+      <div class="form-hint">Sube tu foto a Google Fotos o Drive, copia el link directo y pégalo aquí</div>
+    </div>
+    <div class="form-group"><label>Tu nombre *</label><input type="text" id="memName" placeholder="¿Cómo te llamamos?"></div>
+    <div class="form-group"><label>Rol en el grupo</label>
+      <select id="memRole">
+        <option value="integrante">Integrante</option>
+        <option value="coordinador">Coordinador/a</option>
+        <option value="tesorero">Tesorero/a</option>
+        <option value="secretario">Secretario/a</option>
+        <option value="asesor">Asesor/a</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Presentación (opcional)</label><textarea id="memBio" placeholder="Cuéntale al grupo algo sobre ti..."></textarea></div>
+    <div class="form-group"><label>Instagram (opcional)</label><input type="text" id="memIg" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>TikTok (opcional)</label><input type="text" id="memTt" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>Otro link o red social (opcional)</label><input type="text" id="memOther" placeholder="Ej: WhatsApp, Twitter..."></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('memberModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="memSaveBtn" onclick="saveMember()">Publicar perfil</button>
     </div>
   </div>
 </div>
@@ -729,54 +717,62 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   </div>
 </div>
 
-<script>
-const PASS='ifily2024';
-const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
-const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-// ── DATA ──
-const defaultEvents=[
-  {id:1,cat:'hora-santa',name:'Hora Santa',date:'2026-03-14',meta:'Parroquia'},
-  {id:2,cat:'hora-santa',name:'Hora Santa',date:'2026-04-11',meta:'Parroquia'},
-  {id:3,cat:'hora-santa',name:'Hora Santa',date:'2026-05-09',meta:'Parroquia'},
-  {id:4,cat:'hora-santa',name:'Hora Santa',date:'2026-06-13',meta:'Parroquia'},
-  {id:5,cat:'hora-santa',name:'Hora Santa',date:'2026-07-11',meta:'Parroquia'},
-  {id:6,cat:'hora-santa',name:'Hora Santa',date:'2026-09-19',meta:'Parroquia'},
-  {id:7,cat:'hora-santa',name:'Hora Santa',date:'2026-10-10',meta:'Parroquia'},
-  {id:8,cat:'hora-santa',name:'Hora Santa',date:'2026-11-14',meta:'Parroquia'},
-  {id:9,cat:'bazar',name:'Bazar',date:'2026-05-17',meta:'Parroquia'},
-  {id:10,cat:'bazar',name:'Bazar',date:'2026-06-21',meta:'Parroquia'},
-  {id:11,cat:'bazar',name:'Bazar',date:'2026-07-19',meta:'Parroquia'},
-  {id:12,cat:'bazar',name:'Bazar',date:'2026-08-16',meta:'Parroquia'},
-  {id:13,cat:'bazar',name:'Bazar',date:'2026-09-20',meta:'Parroquia'},
-  {id:14,cat:'bazar',name:'Bazar',date:'2026-10-18',meta:'Parroquia'},
-  {id:15,cat:'bazar',name:'Bazar',date:'2026-11-15',meta:'Parroquia'},
-  {id:16,cat:'retiro',name:'Retiro',date:'2026-09-12',meta:'Por confirmar'},
-  {id:17,cat:'mision',name:'Misión — Día del Niño',date:'2026-04-25',meta:'Parroquia'},
-  {id:18,cat:'mision',name:'Misión a Ancianato',date:'2026-12-26',meta:'Por confirmar'},
-  {id:19,cat:'parroquial',name:'Viacrucis',date:'2026-04-03',meta:'Parroquia'},
-  {id:20,cat:'parroquial',name:'San Francisco de Asís',date:'2026-10-03',meta:'Parroquia'},
-  {id:21,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-03-21',meta:'Parroquia'},
-  {id:22,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-06-27',meta:'Parroquia'},
-  {id:23,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-09-26',meta:'Parroquia'},
-  {id:24,cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-12-19',meta:'Parroquia'},
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYf7OcdlmPqRuk7kMXNu1baNMeTraxZhs",
+  authDomain: "ifily-1b904.firebaseapp.com",
+  projectId: "ifily-1b904",
+  storageBucket: "ifily-1b904.firebasestorage.app",
+  messagingSenderId: "748689771617",
+  appId: "1:748689771617:web:56526d3a305358bacbae20"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+const PASS = 'ifily2024';
+let pendingAction = null;
+let currentFilter = 'all';
+let currentMeetingId = null;
+let barChart, lineChart;
+
+
+// Default events
+const defaultEvents = [
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-03-14',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-04-11',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-05-09',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-06-13',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-07-11',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-09-19',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-10-10',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-11-14',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-05-17',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-06-21',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-07-19',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-08-16',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-09-20',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-10-18',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-11-15',meta:'Parroquia'},
+  {cat:'retiro',name:'Retiro',date:'2026-09-12',meta:'Por confirmar'},
+  {cat:'mision',name:'Misión — Día del Niño',date:'2026-04-25',meta:'Parroquia'},
+  {cat:'mision',name:'Misión a Ancianato',date:'2026-12-26',meta:'Por confirmar'},
+  {cat:'parroquial',name:'Viacrucis',date:'2026-04-03',meta:'Parroquia'},
+  {cat:'parroquial',name:'San Francisco de Asís',date:'2026-10-03',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-03-21',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-06-27',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-09-26',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-12-19',meta:'Parroquia'},
 ];
 
-let news=load('ifily_news',[{id:1,type:'anuncio',title:'¡Bienvenidos a I Fily!',content:'Esta es nuestra página oficial. Aquí encontrarás novedades, el cronograma, reuniones y mucho más.\n\n¡Qué bueno tenerte aquí!',date:'1/3/2026'}]);
-let events=load('ifily_events',defaultEvents);
-let meetings=load('ifily_meetings',[]);
-let reflexiones=load('ifily_reflexiones',[]);
-let muroPosts=load('ifily_muro',[]);
-let finances=load('ifily_finances',[]);
-let members=load('ifily_members',[]);
-
-let pendingAction=null;
-let currentFilter='all';
-let currentMeetingId=null;
-let barChart,lineChart;
-
 // ── NAVIGATION ──
-function goTo(page, pushHistory=true){
+window.goTo = function(page, push=true) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
@@ -784,39 +780,32 @@ function goTo(page, pushHistory=true){
     if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes("'"+page+"'"))a.classList.add('active');
   });
   window.scrollTo(0,0);
-  if(pushHistory) history.pushState({page}, "", "#"+page);
   document.getElementById('navLinks').classList.remove('open');
-  if(page==='finanzas')setTimeout(renderFinances,100);
-  if(page==='reuniones')renderMeetings();
-  if(page==='muro')renderMuro();
-  if(page==='integrantes')renderMembers();
-  if(page==='novedades')renderNews();
+  if(push) history.pushState({page},'','#'+page);
+  if(page==='finanzas') setTimeout(loadFinances,100);
+  if(page==='reuniones') loadMeetings();
+  if(page==='muro') loadMuro();
+  if(page==='novedades') loadNews();
+  if(page==='integrantes') loadMembers();
+  if(page==='eventos') loadEvents();
 }
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+window.addEventListener('popstate', e=>goTo(e.state?.page||'inicio', false));
+window.toggleMenu = ()=>document.getElementById('navLinks').classList.toggle('open');
 
-// ── ADMIN / PASSWORD ──
-function openAdmin(action){
-  pendingAction=action;
+// ── PASSWORD ──
+window.openAdmin = function(action) {
+  pendingAction = action;
   document.getElementById('adminPw').value='';
   document.getElementById('pwErr').style.display='none';
   const ov=document.getElementById('pwOverlay');
-  ov.style.display='flex';ov.classList.add('active');
-  setTimeout(()=>document.getElementById('adminPw').focus(),100);
+  ov.style.display='flex'; setTimeout(()=>document.getElementById('adminPw').focus(),100);
 }
-function closePw(){
-  const ov=document.getElementById('pwOverlay');
-  ov.classList.remove('active');ov.style.display='none';
-  pendingAction=null;
+window.closePw = function() {
+  document.getElementById('pwOverlay').style.display='none'; pendingAction=null;
 }
-function openModal(id){
-  const el=document.getElementById(id);
-  el.style.display='flex';el.classList.add('active');
-}
-function closeModal(id){
-  const el=document.getElementById(id);
-  el.classList.remove('active');el.style.display='none';
-}
-function checkPw(){
+function openModal(id){const el=document.getElementById(id);el.style.display='flex';el.classList.add('active');}
+window.closeModal = function(id){const el=document.getElementById(id);el.classList.remove('active');el.style.display='none';}
+window.checkPw = function() {
   if(document.getElementById('adminPw').value===PASS){
     const action=pendingAction; pendingAction=null; closePw();
     setTimeout(()=>{
@@ -838,106 +827,128 @@ function checkPw(){
         openModal('meetingModal');
       }
       else if(action==='editSummary'){
-        const m=meetings.find(m=>m.id===currentMeetingId);
-        if(!m)return;
-        document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
-        document.getElementById('editMeetId').value=m.id;
-        document.getElementById('meetTitle').value=m.title;
-        document.getElementById('meetTopic').value=m.topic||'';
-        document.getElementById('meetSummary').value=m.summary||'';
-        document.getElementById('meetDate').value=m.date;
-        document.getElementById('meetSaveBtn').textContent='Guardar cambios';
-        openModal('meetingModal');
+        const mid=currentMeetingId;
+        getDocs(collection(db,'meetings')).then(snap=>{
+          const m=snap.docs.find(d=>d.id===mid);
+          if(!m)return;
+          const data=m.data();
+          document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
+          document.getElementById('editMeetId').value=mid;
+          document.getElementById('meetTitle').value=data.title||'';
+          document.getElementById('meetTopic').value=data.topic||'';
+          document.getElementById('meetSummary').value=data.summary||'';
+          document.getElementById('meetDate').value=data.date||'';
+          document.getElementById('meetSaveBtn').textContent='Guardar cambios';
+          openModal('meetingModal');
+        });
       }
       else if(action==='addMaterial') openModal('materialModal');
       else if(action==='finance'){
         document.getElementById('finDate').valueAsDate=new Date();
-        updateProjectSuggestions();
         openModal('financeModal');
       }
       else if(action&&action.startsWith('edit_')){
-        const ev=events.find(e=>e.id===parseInt(action.split('_')[1]));
-        if(ev){
+        const id=action.split('_')[1];
+        getDocs(collection(db,'events')).then(snap=>{
+          const ev=snap.docs.find(d=>d.id===id);
+          if(!ev)return;
+          const data=ev.data();
           document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
-          document.getElementById('editEvId').value=ev.id;
-          document.getElementById('evCat').value=ev.cat;
-          document.getElementById('evName').value=ev.name;
-          document.getElementById('evDate').value=ev.date;
-          document.getElementById('evMeta').value=ev.meta||'';
+          document.getElementById('editEvId').value=id;
+          document.getElementById('evCat').value=data.cat;
+          document.getElementById('evName').value=data.name;
+          document.getElementById('evDate').value=data.date;
+          document.getElementById('evMeta').value=data.meta||'';
           document.getElementById('evSaveBtn').textContent='Actualizar';
           openModal('eventModal');
-        }
+        });
       }
       else if(action&&action.startsWith('delEv_')){
-        events=events.filter(e=>e.id!==parseInt(action.split('_')[1]));
-        save('ifily_events',events);renderEvents();
+        deleteDoc(doc(db,'events',action.split('_')[1])).then(loadEvents);
       }
       else if(action&&action.startsWith('delNews_')){
-        news=news.filter(n=>n.id!==parseInt(action.split('_')[1]));
-        save('ifily_news',news);renderNews();
+        deleteDoc(doc(db,'news',action.split('_')[1])).then(loadNews);
       }
       else if(action&&action.startsWith('delMeet_')){
-        const mid=parseInt(action.split('_')[1]);
-        meetings=meetings.filter(m=>m.id!==mid);
-        reflexiones=reflexiones.filter(r=>r.meetingId!==mid);
-        save('ifily_meetings',meetings);save('ifily_reflexiones',reflexiones);
-        renderMeetings();
+        const mid=action.split('_')[1];
+        deleteDoc(doc(db,'meetings',mid)).then(()=>{
+          getDocs(collection(db,'reflexiones')).then(snap=>{
+            snap.docs.filter(d=>d.data().meetingId===mid).forEach(d=>deleteDoc(d.ref));
+            loadMeetings();
+          });
+        });
       }
       else if(action&&action.startsWith('delMat_')){
         const parts=action.split('_');
-        const mid=parseInt(parts[1]),matId=parseInt(parts[2]);
-        const m=meetings.find(m=>m.id===mid);
-        if(m){m.materials=(m.materials||[]).filter(mt=>mt.id!==matId);save('ifily_meetings',meetings);openMeeting(mid);}
+        const mid=parts[1], matId=parts[2];
+        const mref=doc(db,'meetings',mid);
+        getDocs(collection(db,'meetings')).then(snap=>{
+          const m=snap.docs.find(d=>d.id===mid);
+          if(!m)return;
+          const mats=(m.data().materials||[]).filter(mt=>mt.id!==matId);
+          updateDoc(mref,{materials:mats}).then(()=>openMeeting(mid));
+        });
       }
       else if(action&&action.startsWith('delReflex_')){
-        reflexiones=reflexiones.filter(r=>r.id!==parseInt(action.split('_')[1]));
-        save('ifily_reflexiones',reflexiones);renderReflexiones();
+        deleteDoc(doc(db,'reflexiones',action.split('_')[1])).then(()=>loadReflexiones(currentMeetingId));
       }
       else if(action&&action.startsWith('delFin_')){
-        finances=finances.filter(f=>f.id!==parseInt(action.split('_')[1]));
-        save('ifily_finances',finances);renderFinances();
+        deleteDoc(doc(db,'finances',action.split('_')[1])).then(loadFinances);
+      }
+      else if(action&&action.startsWith('delMember_')){
+        deleteDoc(doc(db,'members',action.split('_')[1])).then(loadMembers);
       }
     },150);
-  } else{document.getElementById('pwErr').style.display='block';}
+  } else { document.getElementById('pwErr').style.display='block'; }
 }
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
 
 // ── NEWS ──
-function renderNews(){
-  const g=document.getElementById('newsGrid');
-  if(!news.length){g.innerHTML='<p class="empty-msg">No hay novedades aún.</p>';return;}
-  g.innerHTML=news.slice().reverse().map(n=>`
-    <div class="news-card type-${n.type}">
+async function loadNews(){
+  const grid=document.getElementById('newsGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'news'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">No hay novedades aún.</p>';return;}
+  grid.innerHTML=snap.docs.map(d=>{
+    const n={...d.data(),id:d.id};
+    return `<div class="news-card type-${n.type}">
       <span class="news-badge b-${n.type}">${n.type==='reflexion'?'✨ Reflexión':n.type==='reunion'?'🤝 Reunión':'📢 Anuncio'}</span>
-      <div class="news-date">${n.date}</div>
+      <div class="news-date">${n.date||''}</div>
       <div class="news-title">${n.title}</div>
       <div class="news-body">${n.content}</div>
-      <div class="card-footer">
-        <button class="icon-btn danger" onclick="openAdmin('delNews_${n.id}')">🗑️ Eliminar</button>
-      </div>
-    </div>`).join('');
+      <div class="card-footer"><button class="icon-btn danger" onclick="openAdmin('delNews_${n.id}')">🗑️ Eliminar</button></div>
+    </div>`;
+  }).join('');
 }
-function addNews(){
+window.addNews = async function(){
   const title=document.getElementById('newsTitle').value.trim();
   const content=document.getElementById('newsContent').value.trim();
   if(!title||!content)return alert('Completa todos los campos.');
-  news.push({id:Date.now(),type:document.getElementById('newsType').value,title,content,date:new Date().toLocaleDateString('es-CO')});
-  save('ifily_news',news);renderNews();closeModal('newsModal');
-  document.getElementById('newsTitle').value='';document.getElementById('newsContent').value='';
+  await addDoc(collection(db,'news'),{
+    type:document.getElementById('newsType').value,
+    title,content,
+    date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
+  });
+  loadNews(); closeModal('newsModal');
+  document.getElementById('newsTitle').value=''; document.getElementById('newsContent').value='';
 }
 
 // ── EVENTS ──
 const catLabels={'hora-santa':'🕯️ Hora Santa','bazar':'🛍️ Bazar','retiro':'🏕️ Retiro','mision':'🤝 Misión','parroquial':'⛪ Parroquial','cumpleanos':'🎂 Cumpleaños','otro':'📌 Otro'};
-function filterEvents(cat,btn){
-  currentFilter=cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');renderEvents();
-}
-function renderEvents(){
+async function loadEvents(){
   const list=document.getElementById('eventsList');
-  let filtered=currentFilter==='all'?events:events.filter(e=>e.cat===currentFilter);
-  filtered=filtered.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
-  if(!filtered.length){list.innerHTML='<p class="empty-msg">No hay eventos en esta categoría.</p>';return;}
-  list.innerHTML=filtered.map(e=>{
+  list.innerHTML='<div class="loading">Cargando</div>';
+  let snap=await getDocs(collection(db,'events'));
+  if(!snap.docs.length){
+    for(const ev of defaultEvents) await addDoc(collection(db,'events'),ev);
+    snap=await getDocs(collection(db,'events'));
+  }
+  let evs=snap.docs.map(d=>({...d.data(),id:d.id}));
+  if(currentFilter!=='all') evs=evs.filter(e=>e.cat===currentFilter);
+  evs.sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(!evs.length){list.innerHTML='<p class="empty-msg">No hay eventos en esta categoría.</p>';return;}
+  list.innerHTML=evs.map(e=>{
     const d=new Date(e.date+'T00:00:00');
     return `<div class="event-item cat-${e.cat}">
       <div class="event-date-box"><div class="event-day">${d.getDate()}</div><div class="event-month">${d.toLocaleDateString('es-CO',{month:'short'}).replace('.','')}</div></div>
@@ -949,34 +960,40 @@ function renderEvents(){
       </div></div>`;
   }).join('');
 }
-function saveEvent(){
+window.filterEvents = function(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); loadEvents();
+}
+window.saveEvent = async function(){
   const editId=document.getElementById('editEvId').value;
   const cat=document.getElementById('evCat').value;
   const name=document.getElementById('evName').value.trim();
   const date=document.getElementById('evDate').value;
   const meta=document.getElementById('evMeta').value.trim()||'Parroquia';
   if(!name||!date)return alert('Completa los campos requeridos.');
-  if(editId){const i=events.findIndex(e=>e.id===parseInt(editId));if(i>=0)events[i]={...events[i],cat,name,date,meta};}
-  else events.push({id:Date.now(),cat,name,date,meta});
-  save('ifily_events',events);renderEvents();closeModal('eventModal');
+  if(editId) await updateDoc(doc(db,'events',editId),{cat,name,date,meta});
+  else await addDoc(collection(db,'events'),{cat,name,date,meta});
+  loadEvents(); closeModal('eventModal');
 }
 
 // ── MEETINGS ──
-function renderMeetings(){
+async function loadMeetings(){
   const grid=document.getElementById('meetingsGrid');
-  if(!meetings.length){
-    grid.innerHTML='<p class="empty-msg">Aún no hay reuniones publicadas. ¡Agrega la primera!</p>';return;
-  }
-  const sorted=[...meetings].sort((a,b)=>new Date(b.date)-new Date(a.date));
-  grid.innerHTML=sorted.map(m=>{
-    const reflexCount=reflexiones.filter(r=>r.meetingId===m.id).length;
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'meetings'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay reuniones publicadas. ¡Agrega la primera!</p>';return;}
+  const reflexSnap=await getDocs(collection(db,'reflexiones'));
+  grid.innerHTML=snap.docs.map(d=>{
+    const m={...d.data(),id:d.id};
+    const reflexCount=reflexSnap.docs.filter(r=>r.data().meetingId===m.id).length;
     const matCount=(m.materials||[]).length;
-    const d=new Date(m.date+'T00:00:00');
-    const dateStr=d.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+    const dt=new Date(m.date+'T00:00:00');
+    const dateStr=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
     return `<div class="meeting-card">
-      <div class="meeting-cover" onclick="openMeeting(${m.id})">
+      <div class="meeting-cover" onclick="openMeeting('${m.id}')">
         <div class="meeting-cover-actions">
-          <button class="meeting-cover-btn" onclick="event.stopPropagation();openAdmin('delMeet_${m.id}')" title="Eliminar">🗑️</button>
+          <button class="meeting-cover-btn" onclick="event.stopPropagation();openAdmin('delMeet_${m.id}')">🗑️</button>
         </div>
         <div class="meeting-cover-date">${dateStr}</div>
         <div class="meeting-cover-title">${m.title}</div>
@@ -987,217 +1004,205 @@ function renderMeetings(){
           <div class="meeting-stat">💬 <span>${reflexCount}</span> reflexión${reflexCount!==1?'es':''}</div>
           <div class="meeting-stat">📎 <span>${matCount}</span> material${matCount!==1?'es':''}</div>
         </div>
-        <button class="meeting-open-btn" onclick="openMeeting(${m.id})">Ver reunión →</button>
+        <button class="meeting-open-btn" onclick="openMeeting('${m.id}')">Ver reunión →</button>
       </div>
     </div>`;
   }).join('');
 }
-
-function openMeeting(id){
+window.openMeeting = async function(id){
   currentMeetingId=id;
-  const m=meetings.find(m=>m.id===id);
-  if(!m)return;
-  const d=new Date(m.date+'T00:00:00');
-  document.getElementById('detailDate').textContent=d.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const snap=await getDocs(collection(db,'meetings'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const m=mdoc.data();
+  const dt=new Date(m.date+'T00:00:00');
+  document.getElementById('detailDate').textContent=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   document.getElementById('detailTitle').textContent=m.title;
   document.getElementById('detailTopic').textContent=m.topic?'📌 '+m.topic:'';
   document.getElementById('detailSummaryText').textContent=m.summary||'(Sin resumen aún)';
-  // Materials
   const mats=m.materials||[];
   const matsList=document.getElementById('materialsList');
-  if(!mats.length){matsList.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay materiales aún.</p>';}
-  else{matsList.innerHTML=mats.map(mt=>`
+  if(!mats.length) matsList.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay materiales aún.</p>';
+  else matsList.innerHTML=mats.map(mt=>`
     <div style="display:flex;align-items:center;gap:0.5rem">
       <a href="${mt.url}" target="_blank" class="material-link">📄 ${mt.name}</a>
-      <button class="icon-btn danger" onclick="openAdmin('delMat_${id}_${mt.id}')" title="Eliminar">🗑️</button>
-    </div>`).join('');}
-  renderReflexiones();
+      <button class="icon-btn danger" onclick="openAdmin('delMat_${id}_${mt.id}')">🗑️</button>
+    </div>`).join('');
+  loadReflexiones(id);
   goTo('meeting-detail');
 }
-
-function saveMeeting(){
+window.saveMeeting = async function(){
   const editId=document.getElementById('editMeetId').value;
   const title=document.getElementById('meetTitle').value.trim();
   const date=document.getElementById('meetDate').value;
   const topic=document.getElementById('meetTopic').value.trim();
   const summary=document.getElementById('meetSummary').value.trim();
   if(!title||!date)return alert('El título y la fecha son obligatorios.');
-  if(editId){
-    const i=meetings.findIndex(m=>m.id===parseInt(editId));
-    if(i>=0){meetings[i]={...meetings[i],title,date,topic,summary};}
-  } else {
-    meetings.push({id:Date.now(),title,date,topic,summary,materials:[]});
-  }
-  save('ifily_meetings',meetings);
+  if(editId) await updateDoc(doc(db,'meetings',editId),{title,date,topic,summary});
+  else await addDoc(collection(db,'meetings'),{title,date,topic,summary,materials:[],createdAt:serverTimestamp()});
   closeModal('meetingModal');
-  if(editId&&currentMeetingId)openMeeting(currentMeetingId);
-  else renderMeetings();
+  if(editId&&currentMeetingId) openMeeting(currentMeetingId);
+  else loadMeetings();
 }
-
-function addMaterial(){
+window.addMaterial = async function(){
   const name=document.getElementById('matName').value.trim();
   const url=document.getElementById('matUrl').value.trim();
   if(!name||!url)return alert('Completa el nombre y el link.');
-  const m=meetings.find(m=>m.id===currentMeetingId);
-  if(!m)return;
-  if(!m.materials)m.materials=[];
-  m.materials.push({id:Date.now(),name,url});
-  save('ifily_meetings',meetings);
+  const snap=await getDocs(collection(db,'meetings'));
+  const mdoc=snap.docs.find(d=>d.id===currentMeetingId);
+  if(!mdoc)return;
+  const mats=[...(mdoc.data().materials||[]),{id:Date.now().toString(),name,url}];
+  await updateDoc(doc(db,'meetings',currentMeetingId),{materials:mats});
   closeModal('materialModal');
   openMeeting(currentMeetingId);
-  document.getElementById('matName').value='';document.getElementById('matUrl').value='';
+  document.getElementById('matName').value=''; document.getElementById('matUrl').value='';
 }
 
 // ── REFLEXIONES ──
-function renderReflexiones(){
+async function loadReflexiones(meetingId){
   const list=document.getElementById('reflexionesList');
-  const filtered=reflexiones.filter(r=>r.meetingId===currentMeetingId)
-    .sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  const snap=await getDocs(query(collection(db,'reflexiones'),orderBy('createdAt','desc')));
+  const filtered=snap.docs.filter(d=>d.data().meetingId===meetingId);
   if(!filtered.length){list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;text-align:center;padding:1rem">Sé el primero en compartir tu reflexión ✨</p>';return;}
-  list.innerHTML=filtered.map(r=>`
-    <div class="reflex-item">
+  list.innerHTML=filtered.map(d=>{
+    const r={...d.data(),id:d.id};
+    return `<div class="reflex-item">
       <div class="reflex-author-row">
         <div class="reflex-author">${r.author||'Anónimo'} ✨</div>
         <div style="display:flex;align-items:center;gap:0.5rem">
-          <span class="reflex-date-small">${r.date}</span>
-          <button class="icon-btn danger" onclick="confirmDelReflex(${r.id})" title="Eliminar">🗑️</button>
+          <span class="reflex-date-small">${r.date||''}</span>
+          <button class="icon-btn danger" onclick="confirmDelReflex('${r.id}')">🗑️</button>
         </div>
       </div>
       <div class="reflex-text">${r.text}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
-
-function addReflex(){
+window.addReflex = async function(){
   const text=document.getElementById('reflexText').value.trim();
   if(!text)return alert('Escribe algo antes de publicar.');
-  const author=document.getElementById('reflexName').value.trim();
-  reflexiones.push({
-    id:Date.now(),meetingId:currentMeetingId,
-    author:author||'',text,
-    date:new Date().toLocaleDateString('es-CO'),
-    createdAt:new Date().toISOString()
+  await addDoc(collection(db,'reflexiones'),{
+    meetingId:currentMeetingId,
+    author:document.getElementById('reflexName').value.trim(),
+    text, date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
   });
-  save('ifily_reflexiones',reflexiones);
-  document.getElementById('reflexText').value='';document.getElementById('reflexName').value='';
-  renderReflexiones();
-  renderMeetings();
+  document.getElementById('reflexText').value=''; document.getElementById('reflexName').value='';
+  loadReflexiones(currentMeetingId); loadMeetings();
+}
+window.confirmDelReflex = function(id){
+  if(confirm('¿Eliminar esta reflexión?')) deleteDoc(doc(db,'reflexiones',id)).then(()=>loadReflexiones(currentMeetingId));
 }
 
-function confirmDelReflex(id){
-  if(confirm('¿Eliminar esta reflexión?')){
-    reflexiones=reflexiones.filter(r=>r.id!==id);
-    save('ifily_reflexiones',reflexiones);renderReflexiones();renderMeetings();
-  }
-}
-
-// ── EXPRESIÓN LIBRE ──
-function renderMuro(){
+// ── MURO ──
+async function loadMuro(){
   const grid=document.getElementById('muroGrid');
-  if(!muroPosts.length){grid.innerHTML='<p class="empty-msg">Sé el primero en dejar algo en el muro ✨</p>';return;}
-  const sorted=[...muroPosts].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'muro'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Sé el primero en dejar algo en el muro ✨</p>';return;}
   const moodLabel={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
-  grid.innerHTML=sorted.map(e=>`
-    <div class="expr-card mood-${e.mood}">
+  grid.innerHTML=snap.docs.map(d=>{
+    const e={...d.data(),id:d.id};
+    return `<div class="expr-card mood-${e.mood}">
       <div class="expr-top">
         <div class="expr-author">${e.author||'Anónimo'}</div>
         <span class="expr-mood-badge">${moodLabel[e.mood]||e.mood}</span>
       </div>
       <div class="expr-text">${e.text}</div>
       <div class="expr-bottom">
-        <span class="expr-date">${e.date}</span>
-        <button class="icon-btn danger" onclick="confirmDelMuro(${e.id})">🗑️ Eliminar</button>
+        <span class="expr-date">${e.date||''}</span>
+        <button class="icon-btn danger" onclick="confirmDelMuro('${e.id}')">🗑️ Eliminar</button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
-
-function addMuro(){
+window.addMuro = async function(){
   const text=document.getElementById('muroText').value.trim();
   if(!text)return alert('Escribe algo antes de publicar.');
-  const author=document.getElementById('muroName').value.trim();
-  muroPosts.push({
-    id:Date.now(),author:author||'',
+  await addDoc(collection(db,'muro'),{
+    author:document.getElementById('muroName').value.trim(),
     mood:document.getElementById('muroMood').value,
-    text,date:new Date().toLocaleDateString('es-CO'),
-    createdAt:new Date().toISOString()
+    text, date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
   });
-  save('ifily_muro',muroPosts);
-  document.getElementById('muroText').value='';document.getElementById('muroName').value='';
-  renderMuro();
+  document.getElementById('muroText').value=''; document.getElementById('muroName').value='';
+  loadMuro();
 }
-
-function confirmDelMuro(id){
-  if(confirm('¿Eliminar esta publicación?')){
-    muroPosts=muroPosts.filter(e=>e.id!==id);
-    save('ifily_muro',muroPosts);renderMuro();
-  }
+window.confirmDelMuro = function(id){
+  if(confirm('¿Eliminar esta publicación?')) deleteDoc(doc(db,'muro',id)).then(loadMuro);
 }
-
 
 // ── INTEGRANTES ──
-const roleLabel={coordinador:"Coordinador/a",integrante:"Integrante",tesorero:"Tesorero/a",secretario:"Secretario/a",asesor:"Asesor/a",otro:"Otro"};
-function openMemberForm(){
-  ["memName","memBio","memPhoto","memIg","memTt","memOther"].forEach(i=>document.getElementById(i).value="");
-  document.getElementById("memRole").value="integrante";
-  const el=document.getElementById("memberModal");
-  el.style.display="flex";el.classList.add("active");
+window.openMemberForm = function(){
+  ['memName','memBio','memPhoto','memIg','memTt','memOther'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('memRole').value='integrante';
+  openModal('memberModal');
 }
-function saveMember(){
-  const name=document.getElementById("memName").value.trim();
-  if(!name)return alert("Tu nombre es obligatorio 😊");
-  const bio=document.getElementById("memBio").value.trim();
-  const photo=document.getElementById("memPhoto").value.trim();
-  const ig=document.getElementById("memIg").value.trim();
-  const tt=document.getElementById("memTt").value.trim();
-  const other=document.getElementById("memOther").value.trim();
-  members.push({id:Date.now(),name,role:document.getElementById("memRole").value,bio,photo,ig,tt,other,date:new Date().toLocaleDateString("es-CO")});
-  save("ifily_members",members);
-  closeModal("memberModal");
-  renderMembers();
-}
-function renderMembers(){
-  const grid=document.getElementById("membersGrid");
-  if(!members.length){grid.innerHTML='<p class="empty-msg">Aún no hay perfiles. ¡Sé el primero en agregarte! 👋</p>';return;}
-  const roleClass={coordinador:"role-coordinador",integrante:"role-integrante",tesorero:"role-tesorero",secretario:"role-secretario",asesor:"role-asesor",otro:"role-otro"};
-  grid.innerHTML=members.map(m=>{
+
+async function loadMembers(){
+  const grid=document.getElementById('membersGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'members'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay perfiles. ¡Sé el primero en agregarte! 👋</p>';return;}
+  const roleClass={coordinador:'role-coordinador',integrante:'role-integrante',tesorero:'role-tesorero',secretario:'role-secretario',asesor:'role-asesor',otro:'role-otro'};
+  const roleLabel={coordinador:'Coordinador/a',integrante:'Integrante',tesorero:'Tesorero/a',secretario:'Secretario/a',asesor:'Asesor/a',otro:'Otro'};
+  grid.innerHTML=snap.docs.map(d=>{
+    const m={...d.data(),id:d.id};
     const avatar=m.photo
       ?`<img src="${m.photo}" class="member-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-      :"";
-    const placeholder=`<div class="member-avatar-placeholder" ${m.photo?'style="display:none"':""}>${m.name.charAt(0).toUpperCase()}</div>`;
-    const socials=[m.ig?`<a href="https://instagram.com/${m.ig.replace("@","")}" target="_blank" class="member-social-link">📸 ${m.ig}</a>`:"",m.tt?`<a href="https://tiktok.com/${m.tt.replace("@","")}" target="_blank" class="member-social-link">🎵 ${m.tt}</a>`:"",m.other?`<span class="member-social-link">🔗 ${m.other}</span>`:""].filter(Boolean).join("");
+      :'';
+    const placeholder=`<div class="member-avatar-placeholder" style="${m.photo?'display:none':''}">${m.name.charAt(0).toUpperCase()}</div>`;
+    const socials=[
+      m.ig?`<a href="https://instagram.com/${m.ig.replace('@','')}" target="_blank" class="member-social-link">📸 ${m.ig}</a>`:'',
+      m.tt?`<a href="https://tiktok.com/${m.tt.replace('@','')}" target="_blank" class="member-social-link">🎵 ${m.tt}</a>`:'',
+      m.other?`<span class="member-social-link">🔗 ${m.other}</span>`:''
+    ].filter(Boolean).join('');
     return `<div class="member-card">
-      <button class="member-del-btn" onclick="confirmDelMember(${m.id},'${m.name.replace(/'/g,'\'')}')" title="Eliminar perfil">🗑️</button>
+      <button class="member-del-btn" onclick="confirmDelMember('${m.id}','${m.name.replace(/'/g,"\\'")}')">🗑️</button>
       ${avatar}${placeholder}
       <div class="member-name">${m.name}</div>
-      <span class="member-role ${roleClass[m.role]||"role-otro"}">${roleLabel[m.role]||m.role}</span>
-      ${m.bio?`<div class="member-bio">${m.bio}</div>`:""}
-      ${socials?`<div class="member-socials">${socials}</div>`:""}
+      <span class="member-role ${roleClass[m.role]||'role-otro'}">${roleLabel[m.role]||m.role}</span>
+      ${m.bio?`<div class="member-bio">${m.bio}</div>`:''}
+      ${socials?`<div class="member-socials">${socials}</div>`:''}
     </div>`;
-  }).join("");
+  }).join('');
 }
-function confirmDelMember(id,name){
+window.saveMember = async function(){
+  const name=document.getElementById('memName').value.trim();
+  if(!name)return alert('Tu nombre es obligatorio 😊');
+  const photoUrl=document.getElementById('memPhoto').value.trim();
+  await addDoc(collection(db,'members'),{
+    name, role:document.getElementById('memRole').value,
+    bio:document.getElementById('memBio').value.trim(),
+    photo:photoUrl,
+    ig:document.getElementById('memIg').value.trim(),
+    tt:document.getElementById('memTt').value.trim(),
+    other:document.getElementById('memOther').value.trim(),
+    createdAt:serverTimestamp()
+  });
+  closeModal('memberModal'); loadMembers();
+}
+window.confirmDelMember = function(id,name){
   const input=prompt(`Para eliminar el perfil de "${name}", escribe su nombre exactamente:`);
   if(input&&input.trim().toLowerCase()===name.toLowerCase()){
-    members=members.filter(m=>m.id!==id);
-    save("ifily_members",members);renderMembers();
+    deleteDoc(doc(db,'members',id)).then(loadMembers);
   } else if(input!==null){
-    alert("El nombre no coincide. No se eliminó el perfil.");
+    alert('El nombre no coincide. No se eliminó el perfil.');
   }
 }
 
 // ── FINANCES ──
 const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
-function updateProjectSuggestions(){
-  const projects=[...new Set(finances.map(f=>f.project).filter(Boolean))];
-  document.getElementById('projectSuggestions').innerHTML=projects.map(p=>`<option value="${p}">`).join('');
-}
-function renderFinances(){
+async function loadFinances(){
+  const snap=await getDocs(query(collection(db,'finances'),orderBy('createdAt','desc')));
+  const finances=snap.docs.map(d=>({...d.data(),id:d.id}));
   const totalIn=finances.filter(f=>f.type==='income').reduce((s,f)=>s+f.amount,0);
   const totalEx=finances.filter(f=>f.type==='expense').reduce((s,f)=>s+f.amount,0);
   document.getElementById('totalIncome').textContent=fmt(totalIn);
   document.getElementById('totalExpense').textContent=fmt(totalEx);
   const bal=totalIn-totalEx;
   const balEl=document.getElementById('totalBalance');
-  balEl.textContent=fmt(bal);balEl.style.color=bal>=0?'var(--green)':'var(--red)';
+  balEl.textContent=fmt(bal); balEl.style.color=bal>=0?'var(--green)':'var(--red)';
   // Projects
   const pg=document.getElementById('projectsGrid');
   if(!finances.length){pg.innerHTML='<p class="empty-msg">Agrega registros para ver el resumen por propósito.</p>';}
@@ -1215,21 +1220,19 @@ function renderFinances(){
     }).join('');
   }
   // Table
-  const sorted=[...finances].sort((a,b)=>new Date(b.date)-new Date(a.date));
   const tbody=document.getElementById('transactionsBody');
-  if(!sorted.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';}
-  else{tbody.innerHTML=sorted.map(f=>`<tr>
-    <td>${new Date(f.date+'T00:00:00').toLocaleDateString('es-CO')}</td>
-    <td>${f.desc}</td><td><span class="proj-tag">${f.project||'General'}</span></td>
+  if(!finances.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';}
+  else{tbody.innerHTML=finances.map(f=>`<tr>
+    <td>${f.date||''}</td><td>${f.desc}</td>
+    <td><span class="proj-tag">${f.project||'General'}</span></td>
     <td>${f.type==='income'?'<span style="color:var(--green);font-weight:800">Ingreso</span>':'<span style="color:var(--red);font-weight:800">Gasto</span>'}</td>
     <td class="amt-${f.type}">${f.type==='income'?'+':'-'}${fmt(f.amount)}</td>
     <td><button class="del-btn" onclick="openAdmin('delFin_${f.id}')">🗑️</button></td>
   </tr>`).join('');}
-  buildCharts();
-}
-function buildCharts(){
+  // Charts
+  const sorted=[...finances].sort((a,b)=>new Date(a.date)-new Date(b.date));
   const mm={};
-  finances.forEach(f=>{
+  sorted.forEach(f=>{
     const d=new Date(f.date+'T00:00:00');
     const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
     const label=d.toLocaleDateString('es-CO',{month:'short',year:'2-digit'});
@@ -1238,7 +1241,7 @@ function buildCharts(){
   });
   const months=Object.values(mm);
   const labels=months.map(m=>m.label);
-  let run=0;const balances=months.map(m=>{run+=m.income-m.expense;return run;});
+  let run=0; const balances=months.map(m=>{run+=m.income-m.expense;return run;});
   const tc='#8B7BAE',gc='rgba(123,47,190,0.07)';
   const opts={plugins:{legend:{labels:{color:tc,font:{family:'Nunito',weight:'700'}}}},scales:{x:{ticks:{color:tc},grid:{color:gc}},y:{ticks:{color:tc},grid:{color:gc}}}};
   if(barChart)barChart.destroy();
@@ -1246,22 +1249,24 @@ function buildCharts(){
   if(lineChart)lineChart.destroy();
   lineChart=new Chart(document.getElementById('lineChart'),{type:'line',data:{labels,datasets:[{label:'Balance',data:balances,borderColor:'#7B2FBE',backgroundColor:'rgba(123,47,190,0.08)',tension:0.4,fill:true,pointBackgroundColor:'#7B2FBE',pointRadius:5}]},options:{responsive:true,...opts}});
 }
-function addFinance(){
+window.addFinance = async function(){
   const desc=document.getElementById('finDesc').value.trim();
   const amount=parseFloat(document.getElementById('finAmount').value);
   const date=document.getElementById('finDate').value;
   if(!desc||!amount||!date)return alert('Completa todos los campos.');
-  finances.push({id:Date.now(),type:document.getElementById('finType').value,desc,project:document.getElementById('finProject').value.trim()||'General',amount,date});
-  save('ifily_finances',finances);renderFinances();closeModal('financeModal');
+  await addDoc(collection(db,'finances'),{
+    type:document.getElementById('finType').value,
+    desc, project:document.getElementById('finProject').value.trim()||'General',
+    amount, date:new Date(date+'T00:00:00').toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
+  });
+  loadFinances(); closeModal('financeModal');
   ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
 }
 
-// init
-document.getElementById('pwOverlay').style.display='none';
-document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
-renderNews();renderEvents();renderMeetings();renderMuro();renderFinances();renderMembers();
-goTo('inicio');
-window.addEventListener('popstate',e=>{ const page=e.state?.page||'inicio'; goTo(page,false); });
+// Init
+goTo('inicio', false);
+history.replaceState({page:'inicio'},'','#inicio');
 </script>
 </body>
 </html>
