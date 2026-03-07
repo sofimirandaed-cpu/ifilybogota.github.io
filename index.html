@@ -318,6 +318,54 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   .form-row{grid-template-columns:1fr}
   .back-btn{top:1rem;left:1rem}
 }
+
+/* EUCARISTÍAS */
+#page-eucaristias{background:var(--bg2)}
+#page-euc-detail{background:var(--bg)}
+.euc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.euc-card{background:var(--card);border-radius:20px;border:2px solid var(--border);overflow:hidden;transition:box-shadow 0.25s;cursor:pointer}
+.euc-card:hover{box-shadow:0 8px 30px rgba(123,47,190,0.15)}
+.euc-cover{padding:1.3rem 1.5rem;position:relative}
+.euc-cover.h8{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.euc-cover.h10{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.euc-cover.h12{background:linear-gradient(135deg,#B45309,#F97316)}
+.euc-cover.h17{background:linear-gradient(135deg,#065F46,#22C55E)}
+.euc-cover-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.3rem 0.8rem;font-size:0.78rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.5rem}
+.euc-cover-hora{font-family:'Fredoka One',cursive;color:#fff;font-size:1.4rem}
+.euc-cover-actions{position:absolute;top:0.8rem;right:0.8rem;display:flex;gap:0.3rem}
+.euc-cover-btn{background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:#fff;padding:0.3rem 0.5rem;cursor:pointer;font-size:0.82rem;transition:background 0.2s}
+.euc-cover-btn:hover{background:rgba(255,255,255,0.35)}
+.euc-preview{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.euc-roles-preview{display:flex;flex-wrap:wrap;gap:0.4rem}
+.euc-role-chip{font-size:0.72rem;font-weight:700;background:var(--ps);color:var(--purple);padding:0.2rem 0.6rem;border-radius:12px}
+.euc-open-btn{background:var(--ps);border:none;border-radius:30px;color:var(--purple);padding:0.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:all 0.2s;white-space:nowrap}
+.euc-open-btn:hover{background:var(--purple);color:#fff}
+
+/* Detail */
+.euc-detail-cover{padding:3rem 2rem 2rem;text-align:center;position:relative}
+.euc-detail-cover.h8{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.euc-detail-cover.h10{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.euc-detail-cover.h12{background:linear-gradient(135deg,#B45309,#F97316)}
+.euc-detail-cover.h17{background:linear-gradient(135deg,#065F46,#22C55E)}
+.euc-detail-body{max-width:900px;margin:0 auto;padding:2rem}
+
+/* Roles grid */
+.roles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.role-box{background:var(--card);border-radius:18px;padding:1.3rem;border:2px solid var(--border);text-align:center}
+.role-box-icon{font-size:1.8rem;margin-bottom:0.4rem}
+.role-box-name{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem;margin-bottom:0.3rem}
+.role-box-person{font-size:0.9rem;font-weight:700;color:var(--text)}
+.role-box-empty{font-size:0.85rem;color:var(--muted);font-weight:600;font-style:italic}
+
+/* Asistencia */
+.asistencia-box{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:2rem}
+.asistencia-header{padding:1.2rem 1.5rem;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.asistencia-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem}
+.asistencia-list{padding:1rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.6rem}
+.asistente-chip{display:flex;align-items:center;gap:0.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.3rem 0.8rem;font-size:0.82rem;font-weight:700;color:var(--text)}
+.asistente-chip.presente{background:rgba(34,197,94,0.1);border-color:var(--green);color:#16A34A}
+.asistente-chip.ausente{background:rgba(232,69,69,0.08);border-color:rgba(232,69,69,0.3);color:var(--red)}
+
 </style>
 </head>
 <body>
@@ -332,6 +380,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <li><a onclick="goTo('reuniones')">Reuniones</a></li>
     <li><a onclick="goTo('muro')">Muro</a></li>
     <li><a onclick="goTo('integrantes')">Integrantes</a></li>
+    <li><a onclick="goTo('eucaristias')">Eucaristías</a></li>
     <li><a onclick="goTo('finanzas')">Finanzas</a></li>
     <li><a onclick="goTo('contacto')">Contacto</a></li>
   </ul>
@@ -364,6 +413,7 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="qcard" onclick="goTo('reuniones')"><div class="qcard-icon">🙏</div><div class="qcard-label">Reuniones</div></div>
     <div class="qcard" onclick="goTo('muro')"><div class="qcard-icon">💬</div><div class="qcard-label">Muro</div></div>
     <div class="qcard" onclick="goTo('integrantes')"><div class="qcard-icon">👥</div><div class="qcard-label">Integrantes</div></div>
+    <div class="qcard" onclick="goTo('eucaristias')"><div class="qcard-icon">⛪</div><div class="qcard-label">Eucaristías</div></div>
     <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
     <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
   </div>
@@ -454,6 +504,13 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       </div>
       <div class="materials-list" id="materialsList"></div>
     </div>
+    <div class="asistencia-box" style="margin-bottom:2rem">
+      <div class="asistencia-header">
+        <h3>✅ Asistencia a la Reunión</h3>
+        <button class="icon-btn" onclick="openAdmin('editAsistenciaReunion')">✏️ Registrar</button>
+      </div>
+      <div class="asistencia-list" id="reunionAsistenciaList"><p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p></div>
+    </div>
     <div class="reflexiones-section">
       <h3>💬 Reflexiones del Grupo</h3>
       <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1rem">Comparte lo que te dejó esta reunión — no se necesita contraseña</p>
@@ -518,6 +575,109 @@ footer{background:var(--dark);padding:2rem;text-align:center}
 </div>
 
 <!-- FINANZAS -->
+
+<!-- EUCARISTÍAS -->
+<div class="page" id="page-eucaristias">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">⛪ Liturgia</div>
+      <h2 class="section-title">Eucaristías</h2>
+      <p class="section-sub">Registro de domingos, roles y asistencia</p>
+    </div>
+    <div class="euc-grid" id="eucGrid"><div class="loading">Cargando</div></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('addEuc')">+ Agregar Domingo</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- EUCARISTÍA DETALLE -->
+<div class="page" id="page-euc-detail">
+  <div class="euc-detail-cover" id="eucDetailCover">
+    <button class="back-btn" onclick="goTo('eucaristias')">← Volver</button>
+    <div class="detail-date" id="eucDetailDate"></div>
+    <div class="detail-title" id="eucDetailHora"></div>
+    <div class="detail-topic" id="eucDetailNota"></div>
+  </div>
+  <div class="euc-detail-body">
+    <!-- Roles -->
+    <div style="margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem">🎙️ Roles de la Misa</h3>
+        <button class="icon-btn" onclick="openAdmin('editRoles')">✏️ Editar roles</button>
+      </div>
+      <div class="roles-grid" id="rolesGrid"></div>
+    </div>
+    <!-- Asistencia -->
+    <div class="asistencia-box">
+      <div class="asistencia-header">
+        <h3>✅ Asistencia</h3>
+        <button class="icon-btn" onclick="openAdmin('editAsistencia')">✏️ Registrar</button>
+      </div>
+      <div class="asistencia-list" id="eucAsistenciaList"><p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.5rem">Sin registro aún.</p></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- EUC MODAL -->
+<div class="modal-overlay" id="eucModal">
+  <div class="modal">
+    <h3 id="eucModalTitle">⛪ Agregar Domingo</h3>
+    <input type="hidden" id="editEucId">
+    <div class="form-row">
+      <div class="form-group"><label>Fecha (domingo)</label><input type="date" id="eucDate"></div>
+      <div class="form-group"><label>Hora de la misa</label>
+        <select id="eucHora">
+          <option value="8">8:00 AM</option>
+          <option value="10">10:00 AM</option>
+          <option value="12">12:00 M</option>
+          <option value="17">5:00 PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group"><label>Nota (opcional)</label><input type="text" id="eucNota" placeholder="Ej: Misa de primera comunión, fecha especial..."></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('eucModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="eucSaveBtn" onclick="saveEuc()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROLES MODAL -->
+<div class="modal-overlay" id="rolesModal">
+  <div class="modal">
+    <h3>🎙️ Roles de la Misa</h3>
+    <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1.2rem">Deja en blanco si no hay asignación aún</p>
+    <div class="form-group"><label>🎤 Moniciones</label><input type="text" id="rolMoniciones" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>📖 Primera Lectura</label><input type="text" id="rolPrimera" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>🎵 Salmo</label><input type="text" id="rolSalmo" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>📖 Segunda Lectura</label><input type="text" id="rolSegunda" placeholder="Nombre del integrante"></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('rolesModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveRoles()">Guardar roles</button>
+    </div>
+  </div>
+</div>
+
+<!-- ASISTENCIA MODAL -->
+<div class="modal-overlay" id="asistenciaModal">
+  <div class="modal">
+    <h3>✅ Registrar Asistencia</h3>
+    <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1.2rem">Marca quién asistió a esta eucaristía</p>
+    <div id="asistenciaCheckList" style="display:flex;flex-direction:column;gap:0.6rem;max-height:350px;overflow-y:auto"></div>
+    <div class="form-group" style="margin-top:1rem"><label>Agregar nombre manual</label>
+      <input type="text" id="asistenciaManual" placeholder="Nombre de alguien no registrado">
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('asistenciaModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveAsistencia()">Guardar asistencia</button>
+    </div>
+  </div>
+</div>
+
+
 <div class="page" id="page-finanzas">
   <div class="container">
     <div class="section-header">
@@ -782,6 +942,7 @@ window.goTo = function(page, push=true) {
   window.scrollTo(0,0);
   document.getElementById('navLinks').classList.remove('open');
   if(push) history.pushState({page},'','#'+page);
+  if(page==='eucaristias') loadEucaristias();
   if(page==='finanzas') setTimeout(loadFinances,100);
   if(page==='reuniones') loadMeetings();
   if(page==='muro') loadMuro();
@@ -805,11 +966,49 @@ window.closePw = function() {
 }
 function openModal(id){const el=document.getElementById(id);el.style.display='flex';el.classList.add('active');}
 window.closeModal = function(id){const el=document.getElementById(id);el.classList.remove('active');el.style.display='none';}
-window.checkPw = function() {
+window.checkPw = async function() {
   if(document.getElementById('adminPw').value===PASS){
     const action=pendingAction; pendingAction=null; closePw();
-    setTimeout(()=>{
-      if(action==='news') openModal('newsModal');
+    setTimeout(async()=>{
+      // ── EUCARISTÍAS ──
+      if(action==='addEuc'){
+        document.getElementById('eucModalTitle').textContent='⛪ Agregar Domingo';
+        document.getElementById('editEucId').value='';
+        document.getElementById('eucDate').valueAsDate=new Date();
+        document.getElementById('eucNota').value='';
+        document.getElementById('eucSaveBtn').textContent='Guardar';
+        openModal('eucModal');
+      } else if(action==='editRoles'){
+        const snap=await getDocs(collection(db,'eucaristias'));
+        const edoc=snap.docs.find(d=>d.id===currentEucId);
+        const roles=edoc?.data()?.roles||{};
+        document.getElementById('rolMoniciones').value=roles.moniciones||'';
+        document.getElementById('rolPrimera').value=roles.primera||'';
+        document.getElementById('rolSalmo').value=roles.salmo||'';
+        document.getElementById('rolSegunda').value=roles.segunda||'';
+        openModal('rolesModal');
+      } else if(action==='editAsistencia'){
+        await openAsistenciaModal(currentEucId, 'euc');
+      } else if(action==='editAsistenciaReunion'){
+        await openAsistenciaModal(currentMeetingId, 'reunion');
+      } else if(action&&action.startsWith('editEuc_')){
+        const id=action.split('_')[1];
+        const snap=await getDocs(collection(db,'eucaristias'));
+        const edoc=snap.docs.find(d=>d.id===id);
+        if(!edoc)return;
+        const e=edoc.data();
+        document.getElementById('eucModalTitle').textContent='✏️ Editar Domingo';
+        document.getElementById('editEucId').value=id;
+        document.getElementById('eucDate').value=e.date;
+        document.getElementById('eucHora').value=e.hora;
+        document.getElementById('eucNota').value=e.nota||'';
+        document.getElementById('eucSaveBtn').textContent='Actualizar';
+        openModal('eucModal');
+      } else if(action&&action.startsWith('delEuc_')){
+        if(confirm('¿Eliminar este domingo?')) deleteDoc(doc(db,'eucaristias',action.split('_')[1])).then(loadEucaristias);
+      }
+      // ── NOTICIAS, EVENTOS, REUNIONES, FINANZAS ──
+      else if(action==='news') openModal('newsModal');
       else if(action==='event'){
         document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
         document.getElementById('editEvId').value='';
@@ -828,19 +1027,18 @@ window.checkPw = function() {
       }
       else if(action==='editSummary'){
         const mid=currentMeetingId;
-        getDocs(collection(db,'meetings')).then(snap=>{
-          const m=snap.docs.find(d=>d.id===mid);
-          if(!m)return;
-          const data=m.data();
-          document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
-          document.getElementById('editMeetId').value=mid;
-          document.getElementById('meetTitle').value=data.title||'';
-          document.getElementById('meetTopic').value=data.topic||'';
-          document.getElementById('meetSummary').value=data.summary||'';
-          document.getElementById('meetDate').value=data.date||'';
-          document.getElementById('meetSaveBtn').textContent='Guardar cambios';
-          openModal('meetingModal');
-        });
+        const snap=await getDocs(collection(db,'meetings'));
+        const m=snap.docs.find(d=>d.id===mid);
+        if(!m)return;
+        const data=m.data();
+        document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
+        document.getElementById('editMeetId').value=mid;
+        document.getElementById('meetTitle').value=data.title||'';
+        document.getElementById('meetTopic').value=data.topic||'';
+        document.getElementById('meetSummary').value=data.summary||'';
+        document.getElementById('meetDate').value=data.date||'';
+        document.getElementById('meetSaveBtn').textContent='Guardar cambios';
+        openModal('meetingModal');
       }
       else if(action==='addMaterial') openModal('materialModal');
       else if(action==='finance'){
@@ -849,19 +1047,18 @@ window.checkPw = function() {
       }
       else if(action&&action.startsWith('edit_')){
         const id=action.split('_')[1];
-        getDocs(collection(db,'events')).then(snap=>{
-          const ev=snap.docs.find(d=>d.id===id);
-          if(!ev)return;
-          const data=ev.data();
-          document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
-          document.getElementById('editEvId').value=id;
-          document.getElementById('evCat').value=data.cat;
-          document.getElementById('evName').value=data.name;
-          document.getElementById('evDate').value=data.date;
-          document.getElementById('evMeta').value=data.meta||'';
-          document.getElementById('evSaveBtn').textContent='Actualizar';
-          openModal('eventModal');
-        });
+        const snap=await getDocs(collection(db,'events'));
+        const ev=snap.docs.find(d=>d.id===id);
+        if(!ev)return;
+        const data=ev.data();
+        document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
+        document.getElementById('editEvId').value=id;
+        document.getElementById('evCat').value=data.cat;
+        document.getElementById('evName').value=data.name;
+        document.getElementById('evDate').value=data.date;
+        document.getElementById('evMeta').value=data.meta||'';
+        document.getElementById('evSaveBtn').textContent='Actualizar';
+        openModal('eventModal');
       }
       else if(action&&action.startsWith('delEv_')){
         deleteDoc(doc(db,'events',action.split('_')[1])).then(loadEvents);
@@ -882,12 +1079,11 @@ window.checkPw = function() {
         const parts=action.split('_');
         const mid=parts[1], matId=parts[2];
         const mref=doc(db,'meetings',mid);
-        getDocs(collection(db,'meetings')).then(snap=>{
-          const m=snap.docs.find(d=>d.id===mid);
-          if(!m)return;
-          const mats=(m.data().materials||[]).filter(mt=>mt.id!==matId);
-          updateDoc(mref,{materials:mats}).then(()=>openMeeting(mid));
-        });
+        const snap=await getDocs(collection(db,'meetings'));
+        const m=snap.docs.find(d=>d.id===mid);
+        if(!m)return;
+        const mats=(m.data().materials||[]).filter(mt=>mt.id!==matId);
+        updateDoc(mref,{materials:mats}).then(()=>openMeeting(mid));
       }
       else if(action&&action.startsWith('delReflex_')){
         deleteDoc(doc(db,'reflexiones',action.split('_')[1])).then(()=>loadReflexiones(currentMeetingId));
@@ -901,6 +1097,37 @@ window.checkPw = function() {
     },150);
   } else { document.getElementById('pwErr').style.display='block'; }
 }
+
+async function openAsistenciaModal(id, mode){
+  const msnap=await getDocs(collection(db,'members'));
+  const members=msnap.docs.map(d=>d.data().name);
+  let current=[];
+  if(mode==='euc'){
+    const snap=await getDocs(collection(db,'eucaristias'));
+    const edoc=snap.docs.find(d=>d.id===id);
+    current=(edoc?.data()?.asistencia)||[];
+  } else {
+    const snap=await getDocs(collection(db,'meetings'));
+    const mdoc=snap.docs.find(d=>d.id===id);
+    current=(mdoc?.data()?.asistencia)||[];
+  }
+  const list=document.getElementById('asistenciaCheckList');
+  if(!members.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay integrantes registrados. Agrega nombres manualmente abajo.</p>';
+  } else {
+    list.innerHTML=members.map(m=>`
+      <label style="display:flex;align-items:center;gap:0.7rem;padding:0.5rem;border-radius:10px;cursor:pointer;font-weight:700;font-size:0.9rem;color:var(--text)">
+        <input type="checkbox" value="${m}" ${current.includes(m)?'checked':''} style="width:18px;height:18px;accent-color:var(--purple)">
+        ${m}
+      </label>`).join('');
+  }
+  document.getElementById('asistenciaManual').value='';
+  const saveBtn=document.querySelector('#asistenciaModal .modal-buttons .btn-primary');
+  saveBtn.onclick = mode==='euc' ? saveAsistencia : saveAsistenciaReunion;
+  openModal('asistenciaModal');
+}
+
+
 document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
 
 // ── NEWS ──
@@ -1029,6 +1256,11 @@ window.openMeeting = async function(id){
       <button class="icon-btn danger" onclick="openAdmin('delMat_${id}_${mt.id}')">🗑️</button>
     </div>`).join('');
   loadReflexiones(id);
+  // load asistencia
+  const asEl=document.getElementById('reunionAsistenciaList');
+  const asistencia=m.asistencia||[];
+  if(!asistencia.length) asEl.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';
+  else asEl.innerHTML=asistencia.map(a=>`<span class="asistente-chip presente">✅ ${a}</span>`).join('');
   goTo('meeting-detail');
 }
 window.saveMeeting = async function(){
@@ -1262,6 +1494,151 @@ window.addFinance = async function(){
   });
   loadFinances(); closeModal('financeModal');
   ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
+}
+
+// ── EUCARISTÍAS ──
+const horaLabel={'8':'8:00 AM','10':'10:00 AM','12':'12:00 M','17':'5:00 PM'};
+const horaClass={'8':'h8','10':'h10','12':'h12','17':'h17'};
+let currentEucId = null;
+
+async function loadEucaristias(){
+  const grid=document.getElementById('eucGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'eucaristias'),orderBy('date','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay domingos registrados. ¡Agrega el primero!</p>';return;}
+  grid.innerHTML=snap.docs.map(d=>{
+    const e={...d.data(),id:d.id};
+    const dt=new Date(e.date+'T00:00:00');
+    const dateStr=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const hc=horaClass[e.hora]||'h10';
+    const roles=e.roles||{};
+    const chips=[
+      roles.moniciones?`<span class="euc-role-chip">🎤 ${roles.moniciones}</span>`:'',
+      roles.primera?`<span class="euc-role-chip">📖 ${roles.primera}</span>`:'',
+      roles.salmo?`<span class="euc-role-chip">🎵 ${roles.salmo}</span>`:'',
+      roles.segunda?`<span class="euc-role-chip">📖 ${roles.segunda}</span>`:'',
+    ].filter(Boolean).join('');
+    const asistentes=(e.asistencia||[]).length;
+    return `<div class="euc-card">
+      <div class="euc-cover ${hc}" onclick="openEuc('${e.id}')">
+        <div class="euc-cover-actions">
+          <button class="euc-cover-btn" onclick="event.stopPropagation();openAdmin('editEuc_${e.id}')">✏️</button>
+          <button class="euc-cover-btn" onclick="event.stopPropagation();openAdmin('delEuc_${e.id}')">🗑️</button>
+        </div>
+        <div class="euc-cover-date">${dateStr}</div>
+        <div class="euc-cover-hora">⛪ ${horaLabel[e.hora]||e.hora}</div>
+        ${e.nota?`<div style="color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:600;margin-top:0.3rem">📌 ${e.nota}</div>`:''}
+      </div>
+      <div class="euc-preview">
+        <div class="euc-roles-preview">${chips||'<span style="color:var(--muted);font-size:0.8rem;font-weight:600">Sin roles asignados aún</span>'}</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem">
+          <span style="font-size:0.75rem;color:var(--muted);font-weight:700">✅ ${asistentes} asistente${asistentes!==1?'s':''}</span>
+          <button class="euc-open-btn" onclick="openEuc('${e.id}')">Ver →</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.openEuc = async function(id){
+  currentEucId=id;
+  const snap=await getDocs(collection(db,'eucaristias'));
+  const edoc=snap.docs.find(d=>d.id===id);
+  if(!edoc)return;
+  const e=edoc.data();
+  const dt=new Date(e.date+'T00:00:00');
+  const hc=horaClass[e.hora]||'h10';
+  const cover=document.getElementById('eucDetailCover');
+  cover.className='euc-detail-cover '+hc;
+  document.getElementById('eucDetailDate').textContent=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('eucDetailHora').textContent='⛪ '+( horaLabel[e.hora]||e.hora);
+  document.getElementById('eucDetailNota').textContent=e.nota?'📌 '+e.nota:'';
+  // Roles
+  const roles=e.roles||{};
+  const roleItems=[
+    {icon:'🎤',name:'Moniciones',key:'moniciones'},
+    {icon:'📖',name:'Primera Lectura',key:'primera'},
+    {icon:'🎵',name:'Salmo',key:'salmo'},
+    {icon:'📖',name:'Segunda Lectura',key:'segunda'},
+  ];
+  document.getElementById('rolesGrid').innerHTML=roleItems.map(r=>`
+    <div class="role-box">
+      <div class="role-box-icon">${r.icon}</div>
+      <div class="role-box-name">${r.name}</div>
+      ${roles[r.key]
+        ?`<div class="role-box-person">👤 ${roles[r.key]}</div>`
+        :`<div class="role-box-empty">Sin asignar</div>`}
+    </div>`).join('');
+  // Asistencia
+  renderEucAsistencia(e.asistencia||[]);
+  goTo('euc-detail');
+}
+
+function renderEucAsistencia(lista){
+  const el=document.getElementById('eucAsistenciaList');
+  if(!lista.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';return;}
+  el.innerHTML=lista.map(a=>`
+    <span class="asistente-chip presente">✅ ${a}</span>`).join('');
+}
+
+window.saveEuc = async function(){
+  const editId=document.getElementById('editEucId').value;
+  const date=document.getElementById('eucDate').value;
+  const hora=document.getElementById('eucHora').value;
+  const nota=document.getElementById('eucNota').value.trim();
+  if(!date)return alert('Selecciona la fecha.');
+  if(editId) await updateDoc(doc(db,'eucaristias',editId),{date,hora,nota});
+  else await addDoc(collection(db,'eucaristias'),{date,hora,nota,roles:{},asistencia:[],createdAt:serverTimestamp()});
+  closeModal('eucModal'); loadEucaristias();
+}
+
+window.saveRoles = async function(){
+  const roles={
+    moniciones:document.getElementById('rolMoniciones').value.trim(),
+    primera:document.getElementById('rolPrimera').value.trim(),
+    salmo:document.getElementById('rolSalmo').value.trim(),
+    segunda:document.getElementById('rolSegunda').value.trim(),
+  };
+  await updateDoc(doc(db,'eucaristias',currentEucId),{roles});
+  closeModal('rolesModal'); openEuc(currentEucId);
+}
+
+window.saveAsistencia = async function(){
+  const checks=document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
+  const lista=[...checks].map(c=>c.value);
+  const manual=document.getElementById('asistenciaManual').value.trim();
+  if(manual) lista.push(manual);
+  await updateDoc(doc(db,'eucaristias',currentEucId),{asistencia:lista});
+  closeModal('asistenciaModal'); openEuc(currentEucId);
+}
+
+// ── ASISTENCIA REUNIONES ──
+async function loadAsistenciaReunion(meetingId){
+  // injected into meeting detail
+  const snap=await getDocs(collection(db,'eucaristias')); // reuse members
+  const msnap=await getDocs(collection(db,'members'));
+  const members=msnap.docs.map(d=>d.data().name);
+  // get current asistencia from meeting
+  const msnap2=await getDocs(collection(db,'meetings'));
+  const mdoc=msnap2.docs.find(d=>d.id===meetingId);
+  const current=(mdoc?.data()?.asistencia)||[];
+  const el=document.getElementById('reunionAsistenciaList');
+  if(!el)return;
+  if(!current.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';return;}
+  el.innerHTML=current.map(a=>`<span class="asistente-chip presente">✅ ${a}</span>`).join('');
+}
+
+// ── PATCH checkPw for new actions ──
+window.saveAsistenciaReunion = async function(){
+  const checks=document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
+  const lista=[...checks].map(c=>c.value);
+  const manual=document.getElementById('asistenciaManual').value.trim();
+  if(manual) lista.push(manual);
+  await updateDoc(doc(db,'meetings',currentMeetingId),{asistencia:lista});
+  closeModal('asistenciaModal');
+  // restore default save button action
+  document.querySelector('#asistenciaModal .modal-buttons .btn-primary').onclick=saveAsistencia;
+  openMeeting(currentMeetingId);
 }
 
 // Init
