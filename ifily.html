@@ -1,0 +1,2349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iFily — Comunidad Juvenil</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩷</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --purple:#7B2FBE;--pl:#9B59D0;--ps:rgba(123,47,190,0.12);
+  --orange:#F97316;--ol:#FB923C;--yellow:#FBBF24;
+  --red:#E84545;--blue:#3B82F6;--green:#22C55E;
+  --bg:#FAF5FF;--bg2:#F3E8FF;--card:#fff;
+  --dark:#2D1B69;--text:#3B2070;--muted:#8B7BAE;--border:#E9D5FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:3px solid var(--purple);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(123,47,190,0.1)}
+.nav-logo{font-size:1.8rem;color:var(--purple);cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:0px}
+.nav-logo .serif-i{font-family:'Playfair Display',serif;font-weight:700;color:var(--purple)}
+.nav-logo .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
+.nav-links{display:flex;gap:0.15rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:0.82rem;padding:0.35rem 0.7rem;border-radius:30px;transition:all 0.2s;cursor:pointer;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--purple);background:var(--ps)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10}
+.hamburger span{width:25px;height:2.5px;background:var(--purple);border-radius:2px}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:64px;animation:pageIn 0.3s ease}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* SHARED */
+.container{max-width:1100px;margin:0 auto;padding:3rem 2rem}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-tag{display:inline-block;background:var(--ps);color:var(--purple);font-weight:800;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;padding:0.3rem 1rem;border-radius:20px;margin-bottom:0.6rem}
+.section-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5vw,3rem);color:var(--purple)}
+.section-sub{color:var(--muted);margin-top:0.4rem;font-size:1rem;font-weight:600}
+.btn{padding:0.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;border:none;transition:all 0.25s;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;box-shadow:0 4px 20px rgba(123,47,190,0.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(123,47,190,0.4)}
+.btn-secondary{background:linear-gradient(135deg,var(--orange),var(--ol));color:#fff}
+.btn-secondary:hover{transform:translateY(-3px)}
+.btn-green{background:linear-gradient(135deg,var(--green),#4ADE80);color:#fff}
+.btn-green:hover{transform:translateY(-3px)}
+.btn-cancel{background:var(--bg2);color:var(--muted);border:2px solid var(--border)}
+.btn-sm{padding:0.55rem 1.3rem;font-size:0.88rem;border-radius:30px}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:0.9rem;padding:0.3rem 0.5rem;border-radius:8px;transition:background 0.2s;font-family:'Nunito',sans-serif;font-weight:700;color:var(--muted)}
+.icon-btn:hover{background:var(--ps);color:var(--purple)}
+.icon-btn.danger:hover{background:rgba(232,69,69,0.1);color:var(--red)}
+
+/* HERO */
+#page-inicio{background:linear-gradient(135deg,#FAF5FF 0%,#F3E8FF 50%,#FFF7ED 100%);position:relative;overflow:hidden}
+.hero-blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.28;animation:blobFloat 8s ease-in-out infinite}
+.blob1{width:420px;height:420px;background:var(--purple);top:-120px;left:-100px}
+.blob2{width:320px;height:320px;background:var(--orange);bottom:-60px;right:-60px;animation-delay:3s}
+.blob3{width:260px;height:260px;background:var(--yellow);top:45%;left:62%;animation-delay:5s}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-20px) scale(1.05)}}
+.hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 64px);text-align:center;padding:3rem 2rem}
+.hero-content{max-width:720px}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff;padding:0.5rem 1.4rem;border-radius:50px;font-size:0.85rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;box-shadow:0 4px 20px rgba(123,47,190,0.3);animation:fadeUp 0.8s ease both}
+.hero-parish{font-size:0.9rem;color:var(--muted);font-weight:600;margin-bottom:0.5rem;animation:fadeUp 0.8s ease 0.1s both}
+.hero-h1{font-size:clamp(3.5rem,10vw,6.5rem);line-height:1;animation:fadeUp 0.8s ease 0.2s both;display:flex;align-items:center;justify-content:center;gap:0.15em}
+.hero-h1 .serif-i{font-family:'Playfair Display',serif;font-weight:700;color:var(--purple)}
+.hero-h1 .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
+.hero-sub{font-size:1.1rem;color:var(--muted);margin-top:1rem;line-height:1.7;font-weight:600;animation:fadeUp 0.8s ease 0.4s both}
+.hero-pills{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem;animation:fadeUp 0.8s ease 0.5s both}
+.pill{background:#fff;border:2px solid var(--border);border-radius:50px;padding:0.5rem 1.2rem;font-size:0.85rem;font-weight:700;color:var(--purple)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.quick-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;padding:0 2rem 3rem;max-width:1100px;margin:0 auto}
+.qcard{background:var(--card);border-radius:20px;padding:1.4rem;text-align:center;border:2px solid var(--border);cursor:pointer;transition:transform 0.25s,box-shadow 0.25s}
+.qcard:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.qcard-icon{font-size:2rem;margin-bottom:0.4rem}
+.qcard-label{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.9rem}
+
+/* NOVEDADES */
+#page-novedades{background:var(--bg2)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.news-card{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.news-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.news-card.type-reflexion::before{background:linear-gradient(90deg,var(--green),#86EFAC)}
+.news-card.type-reunion::before{background:linear-gradient(90deg,var(--purple),var(--pl))}
+.news-card.type-anuncio::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.news-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.news-badge{display:inline-block;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.b-reflexion{background:rgba(34,197,94,0.12);color:#16A34A}
+.b-reunion{background:var(--ps);color:var(--purple)}
+.b-anuncio{background:rgba(249,115,22,0.12);color:var(--orange)}
+.news-date{font-size:0.8rem;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
+.news-title{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.15rem;margin-bottom:0.5rem}
+.news-body{color:var(--muted);font-size:0.9rem;line-height:1.6;white-space:pre-wrap}
+.card-footer{display:flex;justify-content:flex-end;margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border)}
+
+/* EVENTOS */
+#page-eventos{background:var(--bg)}
+.notice-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px solid var(--border);border-radius:20px;padding:1.5rem 2rem;margin-bottom:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.notice-item{display:flex;align-items:flex-start;gap:0.8rem}
+.notice-icon{font-size:1.8rem;flex-shrink:0}
+.notice-text strong{color:var(--purple);font-size:0.95rem;display:block}
+.notice-text span{color:var(--muted);font-size:0.83rem}
+.cat-filters{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;justify-content:center}
+.cat-btn{padding:0.4rem 1rem;border-radius:30px;border:2px solid var(--border);background:#fff;color:var(--muted);font-weight:700;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif}
+.cat-btn.active,.cat-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+.events-list{display:flex;flex-direction:column;gap:0.8rem}
+.event-item{background:var(--card);border-radius:16px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1.2rem;border:2px solid var(--border);transition:transform 0.2s}
+.event-item:hover{transform:translateX(4px)}
+.event-date-box{border-radius:12px;padding:0.5rem 0.9rem;text-align:center;min-width:58px;flex-shrink:0}
+.event-day{font-family:'Fredoka One',cursive;font-size:1.6rem;line-height:1;color:#fff}
+.event-month{font-size:0.68rem;font-weight:800;color:rgba(255,255,255,0.85);text-transform:uppercase}
+.event-info{flex:1}
+.event-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.05rem}
+.event-meta{color:var(--muted);font-size:0.82rem;margin-top:0.15rem;font-weight:600}
+.event-tag{padding:0.25rem 0.8rem;border-radius:20px;font-size:0.73rem;font-weight:800;white-space:nowrap;text-transform:uppercase}
+.event-actions{display:flex;gap:0.3rem}
+.cat-hora-santa .event-date-box{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.cat-hora-santa .event-tag{background:var(--ps);color:var(--purple)}
+.cat-bazar .event-date-box{background:linear-gradient(135deg,#F97316,#FB923C)}
+.cat-bazar .event-tag{background:rgba(249,115,22,0.12);color:var(--orange)}
+.cat-retiro .event-date-box{background:linear-gradient(135deg,#3B82F6,#60A5FA)}
+.cat-retiro .event-tag{background:rgba(59,130,246,0.12);color:var(--blue)}
+.cat-mision .event-date-box{background:linear-gradient(135deg,#22C55E,#4ADE80)}
+.cat-mision .event-tag{background:rgba(34,197,94,0.12);color:#16A34A}
+.cat-parroquial .event-date-box{background:linear-gradient(135deg,#E84545,#F87171)}
+.cat-parroquial .event-tag{background:rgba(232,69,69,0.12);color:var(--red)}
+.cat-cumpleanos .event-date-box{background:linear-gradient(135deg,#FBBF24,#FDE68A)}
+.cat-cumpleanos .event-day,.cat-cumpleanos .event-month{color:#78350F}
+.cat-cumpleanos .event-tag{background:rgba(251,191,36,0.2);color:#92400E}
+
+/* REUNIONES */
+#page-reuniones{background:var(--bg2)}
+.meetings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.meeting-card{background:var(--card);border-radius:20px;border:2px solid var(--border);overflow:hidden;transition:box-shadow 0.25s;cursor:pointer}
+.meeting-card:hover{box-shadow:0 8px 30px rgba(123,47,190,0.15)}
+.meeting-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:1.5rem;position:relative}
+.meeting-cover-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.35rem 0.8rem;font-size:0.78rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.6rem}
+.meeting-cover-title{font-family:'Fredoka One',cursive;color:#fff;font-size:1.3rem;line-height:1.2;margin-bottom:0.4rem}
+.meeting-cover-sub{color:rgba(255,255,255,0.7);font-size:0.83rem;font-weight:600}
+.meeting-cover-actions{position:absolute;top:1rem;right:1rem;display:flex;gap:0.3rem}
+.meeting-cover-btn{background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:#fff;padding:0.3rem 0.5rem;cursor:pointer;font-size:0.85rem;transition:background 0.2s}
+.meeting-cover-btn:hover{background:rgba(255,255,255,0.35)}
+.meeting-preview{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.meeting-stats{display:flex;gap:1rem}
+.meeting-stat{font-size:0.8rem;color:var(--muted);font-weight:700}
+.meeting-stat span{color:var(--purple);font-weight:800}
+.meeting-open-btn{background:var(--ps);border:none;border-radius:30px;color:var(--purple);padding:0.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:all 0.2s}
+.meeting-open-btn:hover{background:var(--purple);color:#fff}
+
+/* MEETING DETAIL */
+#page-meeting-detail{background:var(--bg)}
+.meeting-detail-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:3rem 2rem 2rem;text-align:center;position:relative}
+.back-btn{position:absolute;top:1.5rem;left:1.5rem;background:rgba(255,255,255,0.2);border:none;border-radius:30px;color:#fff;padding:0.5rem 1.2rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;transition:background 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.35)}
+.detail-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.35rem 0.8rem;font-size:0.8rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.8rem}
+.detail-title{font-family:'Fredoka One',cursive;color:#fff;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:0.5rem}
+.detail-topic{color:rgba(255,255,255,0.8);font-size:1rem;font-weight:600}
+.detail-body{max-width:1100px;margin:0 auto;padding:2rem}
+.detail-summary-box{background:var(--card);border-radius:20px;padding:1.8rem;border:2px solid var(--border);margin-bottom:2rem}
+.detail-summary-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+.detail-summary-text{color:var(--text);font-size:0.95rem;line-height:1.8;white-space:pre-wrap}
+.detail-materials{margin-bottom:2rem}
+.detail-materials h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem;margin-bottom:0.8rem}
+.materials-list{display:flex;flex-wrap:wrap;gap:0.8rem}
+.material-link{display:flex;align-items:center;gap:0.6rem;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:0.7rem 1.2rem;text-decoration:none;color:var(--purple);font-weight:700;font-size:0.88rem;transition:all 0.2s}
+.material-link:hover{background:var(--ps);border-color:var(--purple);transform:translateY(-2px)}
+.reflexiones-section{margin-bottom:2rem}
+.reflexiones-section h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+.write-reflex-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);margin-bottom:1.5rem}
+.write-reflex-box h4{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;margin-bottom:1rem}
+.reflexiones-list{display:flex;flex-direction:column;gap:0.8rem}
+.reflex-item{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border);border-left:4px solid var(--green)}
+.reflex-author-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+.reflex-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem}
+.reflex-date-small{font-size:0.75rem;color:var(--muted);font-weight:600}
+.reflex-text{color:var(--text);font-size:0.9rem;line-height:1.6;white-space:pre-wrap}
+
+/* MURO */
+#page-muro{background:var(--bg2)}
+.muro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.expr-card{background:var(--card);border-radius:18px;padding:1.3rem;border:2px solid var(--border);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.expr-card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(123,47,190,0.1)}
+.expr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.expr-card.mood-feliz::before{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.expr-card.mood-reflexivo::before{background:linear-gradient(90deg,var(--purple),var(--pl))}
+.expr-card.mood-agradecido::before{background:linear-gradient(90deg,var(--green),#86EFAC)}
+.expr-card.mood-oracion::before{background:linear-gradient(90deg,var(--blue),#60A5FA)}
+.expr-card.mood-otro::before{background:linear-gradient(90deg,var(--muted),#C4B5D4)}
+.expr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+.expr-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem}
+.expr-mood-badge{font-size:0.72rem;font-weight:800;text-transform:uppercase;padding:0.15rem 0.6rem;border-radius:12px}
+.mood-feliz .expr-mood-badge{background:rgba(251,191,36,0.2);color:#92400E}
+.mood-reflexivo .expr-mood-badge{background:var(--ps);color:var(--purple)}
+.mood-agradecido .expr-mood-badge{background:rgba(34,197,94,0.12);color:#16A34A}
+.mood-oracion .expr-mood-badge{background:rgba(59,130,246,0.12);color:var(--blue)}
+.mood-otro .expr-mood-badge{background:rgba(139,123,174,0.15);color:var(--muted)}
+.expr-text{color:var(--text);font-size:0.9rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.6rem}
+.expr-bottom{display:flex;align-items:center;justify-content:space-between}
+.expr-date{font-size:0.75rem;color:var(--muted);font-weight:600}
+.write-box{background:var(--card);border-radius:20px;padding:1.5rem;border:2px solid var(--border);margin-bottom:2rem}
+.write-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:1rem}
+
+/* INTEGRANTES */
+#page-integrantes{background:var(--bg)}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+.member-card{background:var(--card);border-radius:22px;padding:1.8rem 1.5rem;border:2px solid var(--border);text-align:center;transition:transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--orange))}
+.member-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.member-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--border);margin:0 auto 1rem;display:block}
+.member-avatar-placeholder{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pl));display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:2.2rem;color:#fff;font-family:'Fredoka One',cursive}
+.member-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1.2rem;margin-bottom:0.3rem}
+.member-role{display:inline-block;padding:0.25rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.role-coordinador{background:linear-gradient(135deg,var(--purple),var(--pl));color:#fff}
+.role-integrante{background:var(--ps);color:var(--purple)}
+.role-tesorero{background:rgba(34,197,94,0.15);color:#16A34A}
+.role-secretario{background:rgba(59,130,246,0.15);color:var(--blue)}
+.role-asesor{background:rgba(249,115,22,0.15);color:var(--orange)}
+.role-otro{background:rgba(139,123,174,0.15);color:var(--muted)}
+.member-bio{color:var(--muted);font-size:0.88rem;line-height:1.6;white-space:pre-wrap;margin-bottom:0.8rem}
+.member-socials{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap}
+.member-social-link{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:700;color:var(--purple);text-decoration:none;transition:all 0.2s}
+.member-social-link:hover{background:var(--ps);border-color:var(--purple)}
+.member-del-btn{position:absolute;top:0.8rem;right:0.8rem;background:none;border:none;cursor:pointer;color:var(--border);font-size:1rem;transition:color 0.2s;padding:0.2rem}
+.member-del-btn:hover{color:var(--red)}
+.join-box{background:linear-gradient(135deg,#EDE9FE,#FFF7ED);border:2px dashed var(--border);border-radius:22px;padding:2rem;text-align:center;margin-bottom:2rem}
+.join-box h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem;margin-bottom:0.4rem}
+.join-box p{color:var(--muted);font-size:0.9rem;font-weight:600;margin-bottom:1.2rem}
+
+
+
+/* FINANZAS */
+#page-finanzas{background:var(--bg2)}
+.finance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.fin-card{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border);text-align:center}
+.fin-label{color:var(--muted);font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.fin-value{font-family:'Fredoka One',cursive;font-size:1.9rem;margin-top:0.3rem}
+.fin-value.income{color:var(--green)}.fin-value.expense{color:var(--red)}.fin-value.balance{color:var(--purple)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem}
+.project-card{background:var(--card);border-radius:16px;padding:1.2rem 1.5rem;border:2px solid var(--border)}
+.project-name{font-family:'Fredoka One',cursive;color:var(--dark);font-size:1rem;margin-bottom:0.5rem}
+.project-bar-wrap{height:8px;background:var(--bg2);border-radius:10px;overflow:hidden;margin-bottom:0.4rem}
+.project-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--pl));transition:width 0.5s}
+.project-nums{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:700}
+.project-in{color:var(--green)}.project-ex{color:var(--red)}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.chart-box{background:var(--card);border-radius:18px;padding:1.5rem;border:2px solid var(--border)}
+.chart-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1rem;font-size:1.05rem}
+.transactions-table{background:var(--card);border-radius:18px;overflow:hidden;border:2px solid var(--border)}
+.table-header{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;border-bottom:2px solid var(--border)}
+.table-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg2);color:var(--muted);font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;padding:0.8rem 1.2rem;text-align:left;font-weight:800}
+td{padding:0.9rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.amt-in{color:var(--green);font-weight:800}.amt-ex{color:var(--red);font-weight:800}
+.proj-tag{display:inline-block;padding:0.15rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:700;background:var(--ps);color:var(--purple)}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s}
+.del-btn:hover{color:var(--red)}
+
+/* CONTACTO */
+#page-contacto{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.contact-card{background:var(--card);border-radius:20px;padding:2rem;text-align:center;border:2px solid var(--border);transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;display:block}
+.contact-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(123,47,190,0.12)}
+.contact-icon{font-size:2.8rem;margin-bottom:0.8rem}
+.contact-name{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.15rem}
+.contact-handle{color:var(--muted);font-size:0.88rem;margin-top:0.3rem;font-weight:600}
+
+/* FORM */
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;color:var(--muted);font-size:0.83rem;font-weight:800;margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:0.7rem 1rem;color:var(--text);font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:600;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--purple)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-hint{font-size:0.78rem;color:var(--muted);margin-top:0.3rem;font-weight:600}
+
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.5);z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:24px;padding:2rem;width:100%;max-width:520px;border:2px solid var(--border);animation:slideUp 0.3s ease;box-shadow:0 20px 60px rgba(123,47,190,0.2);max-height:90vh;overflow-y:auto}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:1.5rem;font-size:1.4rem}
+.modal-buttons{display:flex;gap:0.8rem;margin-top:1.5rem}
+
+/* PASSWORD */
+.pw-overlay{display:none;position:fixed;inset:0;background:rgba(45,27,105,0.7);z-index:3000;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.pw-box{background:var(--card);border-radius:24px;padding:2.5rem;text-align:center;border:2px solid var(--border);max-width:360px;width:90%;animation:slideUp 0.3s ease}
+.pw-box h3{font-family:'Fredoka One',cursive;color:var(--purple);margin-bottom:0.4rem;font-size:1.4rem}
+.pw-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;font-weight:600}
+.pw-err{color:var(--red);font-size:0.85rem;margin-top:0.5rem;display:none;font-weight:700}
+
+/* LOADING */
+.loading{text-align:center;padding:2rem;color:var(--muted);font-weight:600}
+.loading::after{content:'';display:inline-block;width:20px;height:20px;border:3px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin 0.8s linear infinite;margin-left:0.5rem;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+footer{background:var(--dark);padding:2rem;text-align:center}
+.footer-logo{font-size:1.8rem;color:#fff;margin-bottom:0.3rem;display:flex;align-items:center;justify-content:center;gap:2px}
+.footer-logo .serif-i{font-family:'Playfair Display',serif;font-weight:700}
+.footer-logo .fily{font-family:'Fredoka One',cursive;color:var(--orange)}
+.footer-sub{color:rgba(255,255,255,0.45);font-size:0.82rem;font-weight:600}
+.empty-msg{text-align:center;color:var(--muted);padding:2rem;font-weight:600;grid-column:1/-1}
+
+@media(max-width:768px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1rem;border-bottom:2px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .notice-box{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+  .event-item{flex-direction:column;align-items:flex-start;gap:0.8rem}
+  .form-row{grid-template-columns:1fr}
+  .back-btn{top:1rem;left:1rem}
+}
+
+/* EUCARISTÍAS */
+#page-eucaristias{background:var(--bg2)}
+#page-euc-detail{background:var(--bg)}
+.euc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.euc-card{background:var(--card);border-radius:20px;border:2px solid var(--border);overflow:hidden;transition:box-shadow 0.25s;cursor:pointer}
+.euc-card:hover{box-shadow:0 8px 30px rgba(123,47,190,0.15)}
+.euc-cover{padding:1.3rem 1.5rem;position:relative}
+.euc-cover.h8{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.euc-cover.h10{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.euc-cover.h12{background:linear-gradient(135deg,#B45309,#F97316)}
+.euc-cover.h17{background:linear-gradient(135deg,#065F46,#22C55E)}
+.euc-cover-date{background:rgba(255,255,255,0.2);border-radius:10px;padding:0.3rem 0.8rem;font-size:0.78rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.5rem}
+.euc-cover-hora{font-family:'Fredoka One',cursive;color:#fff;font-size:1.4rem}
+.euc-cover-actions{position:absolute;top:0.8rem;right:0.8rem;display:flex;gap:0.3rem}
+.euc-cover-btn{background:rgba(255,255,255,0.2);border:none;border-radius:8px;color:#fff;padding:0.3rem 0.5rem;cursor:pointer;font-size:0.82rem;transition:background 0.2s}
+.euc-cover-btn:hover{background:rgba(255,255,255,0.35)}
+.euc-preview{padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.euc-roles-preview{display:flex;flex-wrap:wrap;gap:0.4rem}
+.euc-role-chip{font-size:0.72rem;font-weight:700;background:var(--ps);color:var(--purple);padding:0.2rem 0.6rem;border-radius:12px}
+.euc-open-btn{background:var(--ps);border:none;border-radius:30px;color:var(--purple);padding:0.4rem 1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:all 0.2s;white-space:nowrap}
+.euc-open-btn:hover{background:var(--purple);color:#fff}
+
+/* Detail */
+.euc-detail-cover{padding:3rem 2rem 2rem;text-align:center;position:relative}
+.euc-detail-cover.h8{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.euc-detail-cover.h10{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.euc-detail-cover.h12{background:linear-gradient(135deg,#B45309,#F97316)}
+.euc-detail-cover.h17{background:linear-gradient(135deg,#065F46,#22C55E)}
+.euc-detail-body{max-width:900px;margin:0 auto;padding:2rem}
+
+/* Roles grid */
+.roles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.role-box{background:var(--card);border-radius:18px;padding:1.3rem;border:2px solid var(--border);text-align:center}
+.role-box-icon{font-size:1.8rem;margin-bottom:0.4rem}
+.role-box-name{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem;margin-bottom:0.3rem}
+.role-box-person{font-size:0.9rem;font-weight:700;color:var(--text)}
+.role-box-empty{font-size:0.85rem;color:var(--muted);font-weight:600;font-style:italic}
+
+/* Asistencia */
+.asistencia-box{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:2rem}
+.asistencia-header{padding:1.2rem 1.5rem;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.asistencia-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem}
+.asistencia-list{padding:1rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.6rem}
+.asistente-chip{display:flex;align-items:center;gap:0.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:0.3rem 0.8rem;font-size:0.82rem;font-weight:700;color:var(--text)}
+.asistente-chip.presente{background:rgba(34,197,94,0.1);border-color:var(--green);color:#16A34A}
+.asistente-chip.ausente{background:rgba(232,69,69,0.08);border-color:rgba(232,69,69,0.3);color:var(--red)}
+
+
+/* MEMBER DETAIL */
+#page-member-detail{background:var(--bg2)}
+.member-detail-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:3rem 2rem 2rem;text-align:center;position:relative}
+.member-detail-avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,0.4);margin:0 auto 1rem;display:block}
+.member-detail-placeholder{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:3rem;color:#fff;font-family:'Fredoka One',cursive}
+.member-detail-name{font-family:'Fredoka One',cursive;color:#fff;font-size:2rem}
+.member-detail-role{background:rgba(255,255,255,0.2);border-radius:20px;padding:0.3rem 1rem;font-size:0.82rem;font-weight:800;color:#fff;display:inline-block;margin-top:0.4rem}
+.member-detail-body{max-width:900px;margin:0 auto;padding:2rem}
+.attendance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem}
+.att-stat{background:var(--card);border-radius:18px;padding:1.2rem;text-align:center;border:2px solid var(--border)}
+.att-stat-num{font-family:'Fredoka One',cursive;font-size:2rem}
+.att-stat-num.good{color:var(--green)}.att-stat-num.bad{color:var(--red)}.att-stat-num.neutral{color:var(--purple)}
+.att-stat-label{font-size:0.78rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:0.2rem}
+.att-section{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.2rem}
+.att-section-header{padding:1rem 1.5rem;background:var(--bg2);font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;border-bottom:2px solid var(--border)}
+.att-rows{padding:0.8rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+.att-row{display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600}
+.att-row:last-child{border-bottom:none}
+.att-row-label{color:var(--text)}
+.att-badge{padding:0.2rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:800}
+.att-badge.presente{background:rgba(34,197,94,0.12);color:#16A34A}
+.att-badge.ausente{background:rgba(232,69,69,0.1);color:var(--red)}
+
+/* MURO REACTIONS */
+.muro-reactions{display:flex;gap:0.4rem;flex-wrap:wrap;margin:0.6rem 0 0.3rem}
+.reaction-btn{background:var(--bg2);border:1.5px solid var(--border);border-radius:20px;padding:0.2rem 0.7rem;font-size:0.82rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;color:var(--text);transition:all 0.2s}
+.reaction-btn:hover,.reaction-btn.reacted{background:var(--ps);border-color:var(--purple);color:var(--purple)}
+.muro-comments{margin-top:0.6rem;border-top:1px solid var(--border);padding-top:0.6rem}
+.muro-comment{font-size:0.82rem;color:var(--text);padding:0.35rem 0;border-bottom:1px solid var(--border);line-height:1.5;font-weight:600}
+.muro-comment:last-child{border-bottom:none}
+.muro-comment-author{font-weight:800;color:var(--purple)}
+.muro-add-comment{display:flex;gap:0.4rem;margin-top:0.6rem}
+.muro-add-comment input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:0.4rem 0.9rem;font-family:'Nunito',sans-serif;font-size:0.83rem;font-weight:600;color:var(--text);outline:none}
+.muro-add-comment input:focus{border-color:var(--purple)}
+.muro-add-comment button{background:var(--purple);border:none;border-radius:20px;color:#fff;padding:0.4rem 0.9rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:background 0.2s}
+.muro-add-comment button:hover{background:var(--pl)}
+.muro-toggle-comments{background:none;border:none;color:var(--muted);font-size:0.78rem;font-weight:700;cursor:pointer;padding:0;font-family:'Nunito',sans-serif;margin-top:0.3rem}
+.muro-toggle-comments:hover{color:var(--purple)}
+
+/* EVENT ASISTENCIA */
+.event-item{position:relative}
+.event-att-count{font-size:0.75rem;font-weight:800;color:var(--green);white-space:nowrap}
+
+
+/* MURO DETAIL PAGE */
+#page-muro-detail{background:var(--bg2)}
+.muro-detail-cover{padding:2.5rem 2rem 1.5rem;position:relative}
+.muro-detail-cover.mood-feliz{background:linear-gradient(135deg,#B45309,#F97316)}
+.muro-detail-cover.mood-reflexivo{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.muro-detail-cover.mood-agradecido{background:linear-gradient(135deg,#065F46,#22C55E)}
+.muro-detail-cover.mood-oracion{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.muro-detail-cover.mood-otro{background:linear-gradient(135deg,#4B5563,#9CA3AF)}
+.muro-detail-author{font-family:'Fredoka One',cursive;color:#fff;font-size:1.5rem;margin-bottom:0.3rem}
+.muro-detail-mood{background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.9rem;font-size:0.82rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.8rem}
+.muro-detail-text{color:#fff;font-size:1.05rem;line-height:1.8;white-space:pre-wrap;margin-bottom:0.8rem}
+.muro-detail-date{color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:600}
+.muro-detail-body{max-width:800px;margin:0 auto;padding:2rem}
+.reactions-section{background:var(--card);border-radius:18px;padding:1.3rem 1.5rem;border:2px solid var(--border);margin-bottom:1.5rem}
+.reactions-section h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;margin-bottom:0.8rem}
+.reactions-row{display:flex;gap:0.6rem;flex-wrap:wrap}
+.reaction-big-btn{background:var(--bg2);border:2px solid var(--border);border-radius:16px;padding:0.5rem 1.1rem;font-size:1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;color:var(--text);transition:all 0.2s}
+.reaction-big-btn:hover{background:var(--ps);border-color:var(--purple);transform:scale(1.05)}
+.comments-section{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
+.comments-header{padding:1rem 1.5rem;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.comments-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem}
+.comments-list{padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem}
+.comment-item{background:var(--bg2);border-radius:14px;padding:0.9rem 1.1rem;border:1px solid var(--border)}
+.comment-item.pending{border-left:4px solid var(--yellow);background:rgba(251,191,36,0.06)}
+.comment-item.approved{border-left:4px solid var(--green)}
+.comment-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.9rem}
+.comment-text{color:var(--text);font-size:0.88rem;line-height:1.5;margin-top:0.2rem;white-space:pre-wrap}
+.comment-meta{display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem}
+.comment-date{font-size:0.75rem;color:var(--muted);font-weight:600}
+.comment-status{font-size:0.72rem;font-weight:800;padding:0.15rem 0.6rem;border-radius:12px}
+.status-pending{background:rgba(251,191,36,0.2);color:#92400E}
+.status-approved{background:rgba(34,197,94,0.12);color:#16A34A}
+.write-comment-box{padding:1.2rem 1.5rem;border-top:2px solid var(--border);display:flex;flex-direction:column;gap:0.7rem}
+.write-comment-box input,.write-comment-box textarea{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:600;color:var(--text);outline:none;width:100%}
+.write-comment-box input:focus,.write-comment-box textarea:focus{border-color:var(--purple)}
+
+/* PUNTOS */
+.pts-badge{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#fff;border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:800;display:inline-flex;align-items:center;gap:0.3rem}
+.pts-detail{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
+.pts-header{padding:1rem 1.5rem;background:linear-gradient(135deg,var(--yellow),var(--orange));display:flex;justify-content:space-between;align-items:center}
+.pts-header h3{font-family:'Fredoka One',cursive;color:#fff;font-size:1rem}
+.pts-total{font-family:'Fredoka One',cursive;color:#fff;font-size:1.8rem}
+.pts-rows{padding:0.8rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;max-height:250px;overflow-y:auto}
+.pts-row{display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.85rem;font-weight:600}
+.pts-row:last-child{border-bottom:none}
+.pts-row-desc{color:var(--text)}
+.pts-row-val{font-weight:800}
+.pts-row-val.pos{color:var(--green)}.pts-row-val.neg{color:var(--red)}
+.pts-admin-box{padding:1rem 1.5rem;border-top:2px solid var(--border);display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="goTo('inicio')"><span class="serif-i">I</span><span class="fily">Fily</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="goTo('inicio')">Inicio</a></li>
+    <li><a onclick="goTo('novedades')">Novedades</a></li>
+    <li><a onclick="goTo('eventos')">Eventos</a></li>
+    <li><a onclick="goTo('reuniones')">Reuniones</a></li>
+    <li><a onclick="goTo('muro')">Muro</a></li>
+    <li><a onclick="goTo('integrantes')">Integrantes</a></li>
+    <li><a onclick="goTo('eucaristias')">Eucaristías</a></li>
+    <li><a onclick="goTo('finanzas')">Finanzas</a></li>
+    <li><a onclick="goTo('contacto')">Contacto</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- INICIO -->
+<div class="page active" id="page-inicio">
+  <div class="hero-blobs"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">✨ Comunidad Juvenil</div>
+      <p class="hero-parish">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</p>
+      <div class="hero-h1"><span class="serif-i">I</span><span class="fily">Fily</span></div>
+      <p class="hero-sub">Un espacio para crecer juntos en fe, amistad y comunidad.</p>
+      <div class="hero-pills">
+        <span class="pill">📅 Sábados 10AM–12PM</span>
+        <span class="pill">⛪ Eucaristía domingos</span>
+        <span class="pill">📍 En la parroquia</span>
+      </div>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="goTo('reuniones')">Ver Reuniones</button>
+        <button class="btn btn-secondary" onclick="goTo('muro')">Muro</button>
+      </div>
+    </div>
+  </div>
+  <div class="quick-nav">
+    <div class="qcard" onclick="goTo('novedades')"><div class="qcard-icon">📢</div><div class="qcard-label">Novedades</div></div>
+    <div class="qcard" onclick="goTo('eventos')"><div class="qcard-icon">📅</div><div class="qcard-label">Cronograma</div></div>
+    <div class="qcard" onclick="goTo('reuniones')"><div class="qcard-icon">🙏</div><div class="qcard-label">Reuniones</div></div>
+    <div class="qcard" onclick="goTo('muro')"><div class="qcard-icon">💬</div><div class="qcard-label">Muro</div></div>
+    <div class="qcard" onclick="goTo('integrantes')"><div class="qcard-icon">👥</div><div class="qcard-label">Integrantes</div></div>
+    <div class="qcard" onclick="goTo('eucaristias')"><div class="qcard-icon">⛪</div><div class="qcard-label">Eucaristías</div></div>
+    <div class="qcard" onclick="goTo('finanzas')"><div class="qcard-icon">💰</div><div class="qcard-label">Finanzas</div></div>
+    <div class="qcard" onclick="goTo('contacto')"><div class="qcard-icon">📱</div><div class="qcard-label">Contacto</div></div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- NOVEDADES -->
+<div class="page" id="page-novedades">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📢 Actualizaciones</div>
+      <h2 class="section-title">Novedades del Grupo</h2>
+      <p class="section-sub">Reflexiones, anuncios y resúmenes de reuniones</p>
+    </div>
+    <div class="news-grid" id="newsGrid"><div class="loading">Cargando</div></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('news')">+ Agregar Novedad</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- EVENTOS -->
+<div class="page" id="page-eventos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📅 Cronograma 2026</div>
+      <h2 class="section-title">Actividades del Año</h2>
+      <p class="section-sub">Todas nuestras actividades y compromisos del grupo</p>
+    </div>
+    <div class="notice-box">
+      <div class="notice-item"><div class="notice-icon">🤝</div><div class="notice-text"><strong>Reuniones — Todos los sábados</strong><span>10:00 AM a 12:00 PM · Parroquia</span></div></div>
+      <div class="notice-item"><div class="notice-icon">⛪</div><div class="notice-text"><strong>Eucaristía — Todos los domingos</strong><span>Compromiso del grupo. La inasistencia debe ser justificada.</span></div></div>
+    </div>
+    <div style="text-align:center;margin-bottom:0.8rem">
+      <button class="cat-btn" id="togglePastBtn" onclick="togglePast()" style="background:var(--ps);color:var(--purple);border-color:var(--purple)">👁️ Ocultar pasadas</button>
+    </div>
+    <div class="cat-filters">
+      <button class="cat-btn active" onclick="filterEvents('all',this)">Todos</button>
+      <button class="cat-btn" onclick="filterEvents('hora-santa',this)">🕯️ Hora Santa</button>
+      <button class="cat-btn" onclick="filterEvents('bazar',this)">🛍️ Bazar</button>
+      <button class="cat-btn" onclick="filterEvents('mision',this)">🤝 Misión</button>
+      <button class="cat-btn" onclick="filterEvents('parroquial',this)">⛪ Parroquial</button>
+      <button class="cat-btn" onclick="filterEvents('retiro',this)">🏕️ Retiro</button>
+      <button class="cat-btn" onclick="filterEvents('cumpleanos',this)">🎂 Cumpleaños</button>
+    </div>
+    <div class="events-list" id="eventsList"><div class="loading">Cargando</div></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('event')">+ Agregar Evento</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- REUNIONES -->
+<div class="page" id="page-reuniones">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🙏 Espacio Comunitario</div>
+      <h2 class="section-title">Nuestras Reuniones</h2>
+      <p class="section-sub">Haz clic en una reunión para ver el resumen, materiales y compartir tu reflexión</p>
+    </div>
+    <div class="meetings-grid" id="meetingsGrid"><div class="loading">Cargando</div></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('meeting')">+ Nueva Reunión</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- DETALLE REUNIÓN -->
+<div class="page" id="page-meeting-detail">
+  <div class="meeting-detail-cover" id="detailCover">
+    <button class="back-btn" onclick="goTo('reuniones')">← Volver</button>
+    <div class="detail-date" id="detailDate"></div>
+    <div class="detail-title" id="detailTitle"></div>
+    <div class="detail-topic" id="detailTopic"></div>
+  </div>
+  <div class="detail-body">
+    <div class="detail-summary-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem">📝 Resumen de la Reunión</h3>
+        <button class="icon-btn" onclick="openAdmin('editSummary')">✏️ Editar</button>
+      </div>
+      <div class="detail-summary-text" id="detailSummaryText"></div>
+    </div>
+    <div class="detail-materials">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.1rem">📎 Materiales y Lecturas</h3>
+        <button class="icon-btn" onclick="openAdmin('addMaterial')">+ Agregar</button>
+      </div>
+      <div class="materials-list" id="materialsList"></div>
+    </div>
+    <div class="asistencia-box" style="margin-bottom:2rem">
+      <div class="asistencia-header">
+        <h3>✅ Asistencia a la Reunión</h3>
+        <button class="icon-btn" onclick="openAdmin('editAsistenciaReunion')">✏️ Registrar</button>
+      </div>
+      <div class="asistencia-list" id="reunionAsistenciaList"><p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p></div>
+    </div>
+    <div class="reflexiones-section">
+      <h3>💬 Reflexiones del Grupo</h3>
+      <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1rem">Comparte lo que te dejó esta reunión — no se necesita contraseña</p>
+      <div class="write-reflex-box">
+        <h4>✍️ Escribe tu reflexión</h4>
+        <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="reflexName" placeholder="Anónimo si lo prefieres"></div>
+        <div class="form-group"><label>Tu reflexión</label><textarea id="reflexText" placeholder="¿Qué te llevás de esta reunión?"></textarea></div>
+        <button class="btn btn-green btn-sm" onclick="addReflex()">Publicar reflexión</button>
+      </div>
+      <div class="reflexiones-list" id="reflexionesList"></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- MEMBER DETAIL -->
+<div class="page" id="page-member-detail">
+  <div class="member-detail-cover">
+    <button class="back-btn" onclick="goTo('integrantes')">← Volver</button>
+    <div id="mdAvatar"></div>
+    <div class="member-detail-name" id="mdName"></div>
+    <div class="member-detail-role" id="mdRole"></div>
+    <div style="color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:600;margin-top:0.6rem" id="mdBio"></div>
+    <div style="display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-top:0.8rem" id="mdSocials"></div>
+  </div>
+  <div class="member-detail-body">
+    <div class="attendance-summary">
+      <div class="att-stat"><div class="att-stat-num good" id="mdTotalPresente">0</div><div class="att-stat-label">Asistencias</div></div>
+      <div class="att-stat"><div class="att-stat-num bad" id="mdTotalAusente">0</div><div class="att-stat-label">Inasistencias</div></div>
+      <div class="att-stat"><div class="att-stat-num neutral" id="mdPorcentaje">0%</div><div class="att-stat-label">Asistencia</div></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">🤝 Reuniones</div>
+      <div class="att-rows" id="mdReuniones"></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">⛪ Eucaristías</div>
+      <div class="att-rows" id="mdEucaristias"></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">📅 Eventos</div>
+      <div class="att-rows" id="mdEventos"></div>
+    </div>
+    <div class="pts-detail" id="mdPtsBox">
+      <div class="pts-header">
+        <h3>⭐ Puntos</h3>
+        <div class="pts-total" id="mdPtsTotal">0 pts</div>
+      </div>
+      <div class="pts-rows" id="mdPtsRows"></div>
+      <!-- Admin panel (hidden until password entered) -->
+      <div id="mdPtsAdminBox" style="display:none;padding:1rem 1.5rem;border-top:2px solid var(--border);display:none;flex-direction:column;gap:0.8rem">
+        <p style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.95rem;margin:0">Agregar o quitar puntos</p>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center">
+          <input type="number" id="mdPtsAmount" placeholder="Puntos (ej: 10 o -5)" style="width:140px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:0.45rem 0.8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);outline:none">
+          <input type="text" id="mdPtsReason" placeholder="Razón" style="flex:1;min-width:140px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:0.45rem 0.8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);outline:none">
+          <button class="btn btn-primary btn-sm" onclick="applyPoints()">Aplicar</button>
+        </div>
+        <p style="font-size:0.78rem;color:var(--muted);font-weight:600;margin:0">Pon un número positivo para agregar (ej: 10) o negativo para quitar (ej: -5)</p>
+        <div id="mdPtsEditList" style="display:flex;flex-direction:column;gap:0.4rem;max-height:200px;overflow-y:auto"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:1.5rem">
+      <div id="ptsAdminToggle" style="text-align:center">
+        <button class="btn btn-cancel btn-sm" onclick="showPtsAdminPanel()">🔐 Admin: gestionar puntos</button>
+      </div>
+      <div id="ptsAdminPwBox" style="display:none;background:var(--card);border-radius:16px;border:2px solid var(--border);padding:1.2rem 1.5rem">
+        <p style="font-size:0.88rem;font-weight:700;color:var(--muted);margin-bottom:0.7rem">Ingresa la contraseña para gestionar puntos</p>
+        <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap">
+          <input type="password" id="ptsAdminPwInput" placeholder="Contraseña admin" style="flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:0.5rem 0.9rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);outline:none" onkeydown="if(event.key==='Enter')checkPtsAdminPw()">
+          <button class="btn btn-primary btn-sm" onclick="checkPtsAdminPw()">Entrar</button>
+          <button class="btn btn-cancel btn-sm" onclick="hidePtsAdminPanel()">Cancelar</button>
+        </div>
+        <p id="ptsAdminPwErr" style="color:var(--red);font-size:0.82rem;font-weight:700;margin-top:0.5rem;display:none">Contraseña incorrecta ❌</p>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- MURO DETAIL -->
+<div class="page" id="page-muro-detail">
+  <div class="muro-detail-cover" id="muroDetailCover">
+    <button class="back-btn" onclick="goTo('muro')">← Volver</button>
+    <div style="margin-top:0.5rem">
+      <div class="muro-detail-mood" id="mdMoodBadge"></div>
+      <div class="muro-detail-author" id="mdAuthor"></div>
+      <div class="muro-detail-text" id="mdText"></div>
+      <div class="muro-detail-date" id="mdDate"></div>
+    </div>
+  </div>
+  <div class="muro-detail-body">
+    <div class="reactions-section">
+      <h3>Reacciones</h3>
+      <div class="reactions-row" id="muroDetailReactions"></div>
+    </div>
+    <div class="comments-section">
+      <div class="comments-header">
+        <h3>💬 Comentarios</h3>
+        <span id="muroCommentCount" style="font-size:0.82rem;color:var(--muted);font-weight:700"></span>
+      </div>
+      <div class="comments-list" id="muroDetailComments"></div>
+      <div class="write-comment-box">
+        <input type="text" id="detailCommentName" placeholder="Tu nombre (opcional)">
+        <textarea id="detailCommentText" placeholder="Escribe tu comentario..." style="min-height:70px;resize:vertical"></textarea>
+        <button class="btn btn-green btn-sm" onclick="submitComment()" style="align-self:flex-start">Comentar</button>
+      </div>
+    </div>
+
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- MURO -->
+<div class="page" id="page-muro">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">💬 Espacio Abierto</div>
+      <h2 class="section-title">Muro</h2>
+      <p class="section-sub">Comparte lo que quieras con el grupo — sin contraseña ❤️</p>
+    </div>
+    <div class="write-box">
+      <h3>✍️ ¿Qué tienes en el corazón hoy?</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="muroName" placeholder="Anónimo si lo prefieres"></div>
+        <div class="form-group"><label>Estado de ánimo</label>
+          <select id="muroMood">
+            <option value="feliz">😄 Feliz / Alegre</option>
+            <option value="reflexivo">🤔 Reflexivo</option>
+            <option value="agradecido">🙏 Agradecido</option>
+            <option value="oracion">✝️ En oración</option>
+            <option value="otro">💭 Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Lo que quieres compartir</label><textarea id="muroText" placeholder="Lo que sea — una oración, una frase, algo que te alegró el día..."></textarea></div>
+      <button class="btn btn-green btn-sm" onclick="addMuro()">Publicar</button>
+    </div>
+    <div class="muro-grid" id="muroGrid"><div class="loading">Cargando</div></div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- INTEGRANTES -->
+<div class="page" id="page-integrantes">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">👥 El Grupo</div>
+      <h2 class="section-title">Integrantes</h2>
+      <p class="section-sub">Conoce a las personas que hacen parte de iFily</p>
+    </div>
+    <div class="join-box">
+      <h3>¿Eres parte del grupo?</h3>
+      <p>Agrega tu perfil — todo es opcional, comparte lo que quieras 🙌</p>
+      <button class="btn btn-primary btn-sm" onclick="openMemberForm()">+ Agregar mi perfil</button>
+    </div>
+    <div class="members-grid" id="membersGrid"><div class="loading">Cargando</div></div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- FINANZAS -->
+
+<!-- EUCARISTÍAS -->
+<div class="page" id="page-eucaristias">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">⛪ Liturgia</div>
+      <h2 class="section-title">Eucaristías</h2>
+      <p class="section-sub">Registro de domingos, roles y asistencia</p>
+    </div>
+    <div class="euc-grid" id="eucGrid"><div class="loading">Cargando</div></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-primary" onclick="openAdmin('addEuc')">+ Agregar Domingo</button>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- EUCARISTÍA DETALLE -->
+<div class="page" id="page-euc-detail">
+  <div class="euc-detail-cover" id="eucDetailCover">
+    <button class="back-btn" onclick="goTo('eucaristias')">← Volver</button>
+    <div class="detail-date" id="eucDetailDate"></div>
+    <div class="detail-title" id="eucDetailHora"></div>
+    <div class="detail-topic" id="eucDetailNota"></div>
+  </div>
+  <div class="euc-detail-body">
+    <!-- Roles -->
+    <div style="margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3 style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1.2rem">🎙️ Roles de la Misa</h3>
+        <button class="icon-btn" onclick="openAdmin('editRoles')">✏️ Editar roles</button>
+      </div>
+      <div class="roles-grid" id="rolesGrid"></div>
+    </div>
+    <!-- Asistencia -->
+    <div class="asistencia-box">
+      <div class="asistencia-header">
+        <h3>✅ Asistencia</h3>
+        <button class="icon-btn" onclick="openAdmin('editAsistencia')">✏️ Registrar</button>
+      </div>
+      <div class="asistencia-list" id="eucAsistenciaList"><p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.5rem">Sin registro aún.</p></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- EUC MODAL -->
+<div class="modal-overlay" id="eucModal">
+  <div class="modal">
+    <h3 id="eucModalTitle">⛪ Agregar Domingo</h3>
+    <input type="hidden" id="editEucId">
+    <div class="form-row">
+      <div class="form-group"><label>Fecha (domingo)</label><input type="date" id="eucDate"></div>
+      <div class="form-group"><label>Hora de la misa</label>
+        <select id="eucHora">
+          <option value="8">8:00 AM</option>
+          <option value="10">10:00 AM</option>
+          <option value="12">12:00 M</option>
+          <option value="17">5:00 PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group"><label>Nota (opcional)</label><input type="text" id="eucNota" placeholder="Ej: Misa de primera comunión, fecha especial..."></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('eucModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="eucSaveBtn" onclick="saveEuc()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROLES MODAL -->
+<div class="modal-overlay" id="rolesModal">
+  <div class="modal">
+    <h3>🎙️ Roles de la Misa</h3>
+    <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1.2rem">Deja en blanco si no hay asignación aún</p>
+    <div class="form-group"><label>🎤 Moniciones</label><input type="text" id="rolMoniciones" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>📖 Primera Lectura</label><input type="text" id="rolPrimera" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>🎵 Salmo</label><input type="text" id="rolSalmo" placeholder="Nombre del integrante"></div>
+    <div class="form-group"><label>📖 Segunda Lectura</label><input type="text" id="rolSegunda" placeholder="Nombre del integrante"></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('rolesModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveRoles()">Guardar roles</button>
+    </div>
+  </div>
+</div>
+
+<!-- ASISTENCIA MODAL -->
+<div class="modal-overlay" id="asistenciaModal">
+  <div class="modal">
+    <h3>✅ Registrar Asistencia</h3>
+    <p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:1.2rem">Marca quién asistió a esta eucaristía</p>
+    <div id="asistenciaCheckList" style="display:flex;flex-direction:column;gap:0.6rem;max-height:350px;overflow-y:auto"></div>
+    <div class="form-group" style="margin-top:1rem"><label>Agregar nombre manual</label>
+      <input type="text" id="asistenciaManual" placeholder="Nombre de alguien no registrado">
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('asistenciaModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveAsistencia()">Guardar asistencia</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="page" id="page-finanzas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">💰 Transparencia</div>
+      <h2 class="section-title">Finanzas del Grupo</h2>
+      <p class="section-sub">Registro de ingresos y gastos para toda la comunidad</p>
+    </div>
+    <div class="finance-summary">
+      <div class="fin-card"><div class="fin-label">Total Ingresos</div><div class="fin-value income" id="totalIncome">$0</div></div>
+      <div class="fin-card"><div class="fin-label">Total Gastos</div><div class="fin-value expense" id="totalExpense">$0</div></div>
+      <div class="fin-card"><div class="fin-label">Balance Actual</div><div class="fin-value balance" id="totalBalance">$0</div></div>
+    </div>
+    <div class="section-header" style="margin-bottom:1rem">
+      <div class="section-tag">📁 Por Propósito</div>
+      <h3 class="section-title" style="font-size:1.5rem">Resumen por Propósito</h3>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+    <div class="charts-grid" style="margin-top:1rem">
+      <div class="chart-box"><h3>📊 Ingresos vs Gastos</h3><canvas id="barChart"></canvas></div>
+      <div class="chart-box"><h3>📈 Balance Histórico</h3><canvas id="lineChart"></canvas></div>
+    </div>
+    <div class="transactions-table">
+      <div class="table-header">
+        <h3>Todos los Registros</h3>
+        <div style="display:flex;gap:0.6rem">
+          <button class="btn btn-primary btn-sm" onclick="openAdmin('finance')">+ Admin</button>
+          <button class="btn btn-secondary btn-sm" onclick="openTesorero()">+ Tesorero</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table><thead><tr><th>Fecha</th><th>Descripción</th><th>Propósito</th><th>Tipo</th><th>Monto</th><th></th></tr></thead>
+        <tbody id="transactionsBody"></tbody></table>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- CONTACTO -->
+<div class="page" id="page-contacto">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📱 Conéctate</div>
+      <h2 class="section-title">Síguenos</h2>
+      <p class="section-sub">¡Únete a nuestra comunidad en redes!</p>
+    </div>
+    <div class="contact-grid">
+      <a href="https://instagram.com/ifilybogota" target="_blank" class="contact-card"><div class="contact-icon">📸</div><div class="contact-name">Instagram</div><div class="contact-handle">@ifilybogota</div></a>
+      <a href="https://tiktok.com/@ifilybogota" target="_blank" class="contact-card"><div class="contact-icon">🎵</div><div class="contact-name">TikTok</div><div class="contact-handle">@ifilybogota</div></a>
+      <a href="#" class="contact-card"><div class="contact-icon">📍</div><div class="contact-name">Parroquia</div><div class="contact-handle">Ntra. Sra. de la Dulce Espera · Bogotá</div></a>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- TESORERO PASSWORD -->
+<div class="pw-overlay" id="tesOverlay" style="display:none">
+  <div class="pw-box">
+    <div style="font-size:3rem;margin-bottom:0.8rem">💰</div>
+    <h3>Área Tesorero</h3>
+    <p>Ingresa la contraseña del tesorero para agregar un registro</p>
+    <div class="form-group"><input type="password" id="tesPw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkTesPw()"></div>
+    <p class="pw-err" id="tesErr">Contraseña incorrecta ❌</p>
+    <div class="modal-buttons" style="justify-content:center">
+      <button class="btn btn-cancel btn-sm" onclick="closeTes()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="checkTesPw()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<!-- PASSWORD -->
+<div class="pw-overlay" id="pwOverlay" style="display:none">
+  <div class="pw-box">
+    <div style="font-size:3rem;margin-bottom:0.8rem">🔐</div>
+    <h3>Área Admin</h3>
+    <p>Ingresa la contraseña para continuar</p>
+    <div class="form-group"><input type="password" id="adminPw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPw()"></div>
+    <p class="pw-err" id="pwErr">Contraseña incorrecta ❌</p>
+    <div class="modal-buttons" style="justify-content:center">
+      <button class="btn btn-cancel btn-sm" onclick="closePw()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="checkPw()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS MODAL -->
+<div class="modal-overlay" id="newsModal">
+  <div class="modal">
+    <h3>📢 Agregar Novedad</h3>
+    <div class="form-group"><label>Tipo</label>
+      <select id="newsType"><option value="anuncio">📢 Anuncio</option><option value="reflexion">✨ Reflexión</option><option value="reunion">🤝 Reunión</option></select>
+    </div>
+    <div class="form-group"><label>Título</label><input type="text" id="newsTitle" placeholder="Título de la novedad"></div>
+    <div class="form-group"><label>Contenido</label><textarea id="newsContent" placeholder="Escribe el contenido aquí..."></textarea></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('newsModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addNews()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div class="modal-overlay" id="eventModal">
+  <div class="modal">
+    <h3 id="evModalTitle">📅 Agregar Evento</h3>
+    <input type="hidden" id="editEvId">
+    <div class="form-group"><label>Categoría</label>
+      <select id="evCat">
+        <option value="hora-santa">🕯️ Hora Santa</option><option value="bazar">🛍️ Bazar</option>
+        <option value="retiro">🏕️ Retiro</option><option value="mision">🤝 Misión</option>
+        <option value="parroquial">⛪ Actividad Parroquial</option><option value="cumpleanos">🎂 Cumpleaños</option>
+        <option value="otro">📌 Otro</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Nombre</label><input type="text" id="evName" placeholder="Ej: Hora Santa de Marzo"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Fecha</label><input type="date" id="evDate"></div>
+      <div class="form-group"><label>Hora y lugar</label><input type="text" id="evMeta" placeholder="6:00 PM · Iglesia"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('eventModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="evSaveBtn" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING MODAL -->
+<div class="modal-overlay" id="meetingModal">
+  <div class="modal">
+    <h3 id="meetModalTitle">🙏 Nueva Reunión</h3>
+    <input type="hidden" id="editMeetId">
+    <div class="form-group"><label>Título</label><input type="text" id="meetTitle" placeholder="Ej: Reunión de Marzo — Fe y Comunidad"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Fecha</label><input type="date" id="meetDate"></div>
+      <div class="form-group"><label>Tema principal</label><input type="text" id="meetTopic" placeholder="Ej: La oración en comunidad"></div>
+    </div>
+    <div class="form-group"><label>Resumen</label><textarea id="meetSummary" style="min-height:120px" placeholder="Describe lo que se habló..."></textarea></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('meetingModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="meetSaveBtn" onclick="saveMeeting()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MATERIAL MODAL -->
+<div class="modal-overlay" id="materialModal">
+  <div class="modal">
+    <h3>📎 Agregar Material</h3>
+    <div class="form-group"><label>Nombre del material</label><input type="text" id="matName" placeholder="Ej: Lectura del Evangelio"></div>
+    <div class="form-group">
+      <label>Link (Google Drive, PDF, etc.)</label>
+      <input type="url" id="matUrl" placeholder="https://drive.google.com/...">
+      <div class="form-hint">Pega el link de Google Drive o cualquier otro servicio</div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('materialModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addMaterial()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBER MODAL -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <h3>👤 Mi Perfil</h3>
+    <div class="form-group">
+      <label>Foto — link de imagen (opcional)</label>
+      <input type="url" id="memPhoto" placeholder="https://... (link de Google Fotos, Drive, etc.)">
+      <div class="form-hint">Sube tu foto a Google Fotos o Drive, copia el link directo y pégalo aquí</div>
+    </div>
+    <div class="form-group"><label>Tu nombre *</label><input type="text" id="memName" placeholder="¿Cómo te llamamos?"></div>
+    <div class="form-group"><label>Rol en el grupo</label>
+      <select id="memRole">
+        <option value="integrante">Integrante</option>
+        <option value="coordinador">Coordinador/a</option>
+        <option value="tesorero">Tesorero/a</option>
+        <option value="secretario">Secretario/a</option>
+        <option value="asesor">Asesor/a</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Presentación (opcional)</label><textarea id="memBio" placeholder="Cuéntale al grupo algo sobre ti..."></textarea></div>
+    <div class="form-group"><label>Instagram (opcional)</label><input type="text" id="memIg" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>TikTok (opcional)</label><input type="text" id="memTt" placeholder="@tuusuario"></div>
+    <div class="form-group"><label>Otro link o red social (opcional)</label><input type="text" id="memOther" placeholder="Ej: WhatsApp, Twitter..."></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('memberModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="memSaveBtn" onclick="saveMember()">Publicar perfil</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCE MODAL -->
+<div class="modal-overlay" id="financeModal">
+  <div class="modal">
+    <h3>💰 Agregar Registro</h3>
+    <div class="form-group"><label>Tipo</label>
+      <select id="finType"><option value="income">✅ Ingreso</option><option value="expense">❌ Gasto</option></select>
+    </div>
+    <div class="form-group"><label>Descripción</label><input type="text" id="finDesc" placeholder="Ej: Aporte para JMJ"></div>
+    <div class="form-group">
+      <label>Propósito / Proyecto</label>
+      <input type="text" id="finProject" placeholder="Ej: JMJ 2027, Comidas reunión..." list="projectSuggestions">
+      <datalist id="projectSuggestions"></datalist>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Monto (COP)</label><input type="number" id="finAmount" placeholder="0" min="0"></div>
+      <div class="form-group"><label>Fecha</label><input type="date" id="finDate"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('financeModal')">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="addFinance()">Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MURO COMMENT MODAL -->
+<div class="modal-overlay" id="muroCommentModal">
+  <div class="modal">
+    <h3>💬 Comentarios</h3>
+    <div id="muroCommentsList" style="max-height:250px;overflow-y:auto;margin-bottom:1rem"></div>
+    <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="commentName" placeholder="Anónimo"></div>
+    <div class="form-group"><label>Tu comentario</label><textarea id="commentText" placeholder="Escribe algo..." style="min-height:70px"></textarea></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('muroCommentModal')">Cerrar</button>
+      <button class="btn btn-green btn-sm" onclick="addComment()">Publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- FIREBASE SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYf7OcdlmPqRuk7kMXNu1baNMeTraxZhs",
+  authDomain: "ifily-1b904.firebaseapp.com",
+  projectId: "ifily-1b904",
+  storageBucket: "ifily-1b904.firebasestorage.app",
+  messagingSenderId: "748689771617",
+  appId: "1:748689771617:web:56526d3a305358bacbae20"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+const PASS = 'ifily2024';
+const PASS_TESORERO = 'tesorero2024';
+let pendingAction = null;
+let currentFilter = 'all';
+let hidePast = true;
+let currentMeetingId = null;
+let barChart, lineChart;
+
+
+// Default events
+const defaultEvents = [
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-03-14',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-04-11',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-05-09',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-06-13',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-07-11',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-09-19',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-10-10',meta:'Parroquia'},
+  {cat:'hora-santa',name:'Hora Santa',date:'2026-11-14',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-05-17',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-06-21',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-07-19',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-08-16',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-09-20',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-10-18',meta:'Parroquia'},
+  {cat:'bazar',name:'Bazar',date:'2026-11-15',meta:'Parroquia'},
+  {cat:'retiro',name:'Retiro',date:'2026-09-12',meta:'Por confirmar'},
+  {cat:'mision',name:'Misión — Día del Niño',date:'2026-04-25',meta:'Parroquia'},
+  {cat:'mision',name:'Misión a Ancianato',date:'2026-12-26',meta:'Por confirmar'},
+  {cat:'parroquial',name:'Viacrucis',date:'2026-04-03',meta:'Parroquia'},
+  {cat:'parroquial',name:'San Francisco de Asís',date:'2026-10-03',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-03-21',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-06-27',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-09-26',meta:'Parroquia'},
+  {cat:'cumpleanos',name:'Celebración de Cumpleaños',date:'2026-12-19',meta:'Parroquia'},
+];
+
+// ── NAVIGATION ──
+window.goTo = function(page, push=true) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes("'"+page+"'"))a.classList.add('active');
+  });
+  window.scrollTo(0,0);
+  document.getElementById('navLinks').classList.remove('open');
+  if(push) history.pushState({page},'','#'+page);
+  if(page==='eucaristias') loadEucaristias();
+  if(page==='member-detail') {} // loaded by openMemberDetail
+  if(page==='muro-detail') {} // loaded by openMuroDetail
+  if(page==='finanzas') setTimeout(loadFinances,100);
+  if(page==='reuniones') loadMeetings();
+  if(page==='muro') loadMuro();
+  if(page==='novedades') loadNews();
+  if(page==='integrantes') loadMembers();
+  if(page==='eventos') loadEvents();
+}
+window.addEventListener('popstate', e=>goTo(e.state?.page||'inicio', false));
+window.toggleMenu = ()=>document.getElementById('navLinks').classList.toggle('open');
+
+// ── PASSWORD ──
+window.openAdmin = function(action) {
+  pendingAction = action;
+  document.getElementById('adminPw').value='';
+  document.getElementById('pwErr').style.display='none';
+  const ov=document.getElementById('pwOverlay');
+  ov.style.display='flex'; setTimeout(()=>document.getElementById('adminPw').focus(),100);
+}
+window.closePw = function() {
+  document.getElementById('pwOverlay').style.display='none'; pendingAction=null;
+}
+function openModal(id){const el=document.getElementById(id);el.style.display='flex';el.classList.add('active');}
+window.closeModal = function(id){const el=document.getElementById(id);el.classList.remove('active');el.style.display='none';}
+window.checkPw = async function() {
+  if(document.getElementById('adminPw').value===PASS){
+    const action=pendingAction; pendingAction=null; closePw();
+    await new Promise(r=>setTimeout(r,150));
+    (async()=>{
+      // ── EUCARISTÍAS ──
+      if(action==='addEuc'){
+        document.getElementById('eucModalTitle').textContent='⛪ Agregar Domingo';
+        document.getElementById('editEucId').value='';
+        document.getElementById('eucDate').valueAsDate=new Date();
+        document.getElementById('eucNota').value='';
+        document.getElementById('eucSaveBtn').textContent='Guardar';
+        openModal('eucModal');
+      } else if(action==='editRoles'){
+        const snap=await getDocs(collection(db,'eucaristias'));
+        const edoc=snap.docs.find(d=>d.id===currentEucId);
+        const roles=edoc?.data()?.roles||{};
+        document.getElementById('rolMoniciones').value=roles.moniciones||'';
+        document.getElementById('rolPrimera').value=roles.primera||'';
+        document.getElementById('rolSalmo').value=roles.salmo||'';
+        document.getElementById('rolSegunda').value=roles.segunda||'';
+        openModal('rolesModal');
+      } else if(action==='editAsistencia'){
+        await openAsistenciaModal(currentEucId, 'euc');
+      } else if(action==='editAsistenciaReunion'){
+        await openAsistenciaModal(currentMeetingId, 'reunion');
+      } else if(action&&action.startsWith('editEuc_')){
+        const id=action.split('_')[1];
+        const snap=await getDocs(collection(db,'eucaristias'));
+        const edoc=snap.docs.find(d=>d.id===id);
+        if(!edoc)return;
+        const e=edoc.data();
+        document.getElementById('eucModalTitle').textContent='✏️ Editar Domingo';
+        document.getElementById('editEucId').value=id;
+        document.getElementById('eucDate').value=e.date;
+        document.getElementById('eucHora').value=e.hora;
+        document.getElementById('eucNota').value=e.nota||'';
+        document.getElementById('eucSaveBtn').textContent='Actualizar';
+        openModal('eucModal');
+      } else if(action&&action.startsWith('delEuc_')){
+        if(confirm('¿Eliminar este domingo?')) deleteDoc(doc(db,'eucaristias',action.split('_')[1])).then(loadEucaristias);
+      }
+      // ── NOTICIAS, EVENTOS, REUNIONES, FINANZAS ──
+      else if(action==='news') openModal('newsModal');
+      else if(action==='event'){
+        document.getElementById('evModalTitle').textContent='📅 Agregar Evento';
+        document.getElementById('editEvId').value='';
+        ['evName','evMeta'].forEach(i=>document.getElementById(i).value='');
+        document.getElementById('evDate').valueAsDate=new Date();
+        document.getElementById('evSaveBtn').textContent='Guardar';
+        openModal('eventModal');
+      }
+      else if(action==='meeting'){
+        document.getElementById('meetModalTitle').textContent='🙏 Nueva Reunión';
+        document.getElementById('editMeetId').value='';
+        ['meetTitle','meetTopic','meetSummary'].forEach(i=>document.getElementById(i).value='');
+        document.getElementById('meetDate').valueAsDate=new Date();
+        document.getElementById('meetSaveBtn').textContent='Publicar';
+        openModal('meetingModal');
+      }
+      else if(action==='editSummary'){
+        const mid=currentMeetingId;
+        const snap=await getDocs(collection(db,'meetings'));
+        const m=snap.docs.find(d=>d.id===mid);
+        if(!m)return;
+        const data=m.data();
+        document.getElementById('meetModalTitle').textContent='✏️ Editar Reunión';
+        document.getElementById('editMeetId').value=mid;
+        document.getElementById('meetTitle').value=data.title||'';
+        document.getElementById('meetTopic').value=data.topic||'';
+        document.getElementById('meetSummary').value=data.summary||'';
+        document.getElementById('meetDate').value=data.date||'';
+        document.getElementById('meetSaveBtn').textContent='Guardar cambios';
+        openModal('meetingModal');
+      }
+      else if(action==='addMaterial') openModal('materialModal');
+      else if(action==='finance'){
+        document.getElementById('finDate').valueAsDate=new Date();
+        openModal('financeModal');
+      }
+      else if(action&&action.startsWith('edit_')){
+        const id=action.split('_')[1];
+        const snap=await getDocs(collection(db,'events'));
+        const ev=snap.docs.find(d=>d.id===id);
+        if(!ev)return;
+        const data=ev.data();
+        document.getElementById('evModalTitle').textContent='✏️ Editar Evento';
+        document.getElementById('editEvId').value=id;
+        document.getElementById('evCat').value=data.cat;
+        document.getElementById('evName').value=data.name;
+        document.getElementById('evDate').value=data.date;
+        document.getElementById('evMeta').value=data.meta||'';
+        document.getElementById('evSaveBtn').textContent='Actualizar';
+        openModal('eventModal');
+      }
+      else if(action&&action.startsWith('delEv_')){
+        deleteDoc(doc(db,'events',action.split('_')[1])).then(loadEvents);
+      }
+      else if(action&&action.startsWith('delNews_')){
+        deleteDoc(doc(db,'news',action.split('_')[1])).then(loadNews);
+      }
+      else if(action&&action.startsWith('delMeet_')){
+        const mid=action.split('_')[1];
+        deleteDoc(doc(db,'meetings',mid)).then(()=>{
+          getDocs(collection(db,'reflexiones')).then(snap=>{
+            snap.docs.filter(d=>d.data().meetingId===mid).forEach(d=>deleteDoc(d.ref));
+            loadMeetings();
+          });
+        });
+      }
+      else if(action&&action.startsWith('delMat_')){
+        const parts=action.split('_');
+        const mid=parts[1], matId=parts[2];
+        const mref=doc(db,'meetings',mid);
+        const snap=await getDocs(collection(db,'meetings'));
+        const m=snap.docs.find(d=>d.id===mid);
+        if(!m)return;
+        const mats=(m.data().materials||[]).filter(mt=>mt.id!==matId);
+        updateDoc(mref,{materials:mats}).then(()=>openMeeting(mid));
+      }
+      else if(action&&action.startsWith('delReflex_')){
+        deleteDoc(doc(db,'reflexiones',action.split('_')[1])).then(()=>loadReflexiones(currentMeetingId));
+      }
+      else if(action&&action.startsWith('delFin_')){
+        deleteDoc(doc(db,'finances',action.split('_')[1])).then(loadFinances);
+      }
+      else if(action&&action.startsWith('delMember_')){
+        deleteDoc(doc(db,'members',action.split('_')[1])).then(loadMembers);
+      }
+      else if(action&&action.startsWith('evAtt_')){
+        await openAsistenciaModal(action.split('_')[1],'evento');
+      }
+      else if(action==='showPtsAdmin'){
+        await loadMemberPoints(window._currentMemberDetailId, true);
+      }
+      else if(action==='muroAdmin'){
+        const snap=await getDocs(collection(db,'muro'));
+        const mdoc=snap.docs.find(d=>d.id===window.currentMuroDetailId);
+        if(mdoc) renderDetailComments(mdoc.data().comments||[]);
+      }
+    })();
+  } else { document.getElementById('pwErr').style.display='block'; }
+}
+
+async function openAsistenciaModal(id, mode){
+  const msnap=await getDocs(collection(db,'members'));
+  const members=msnap.docs.map(d=>d.data().name);
+  let current=[];
+  if(mode==='euc'){
+    const snap=await getDocs(collection(db,'eucaristias'));
+    const edoc=snap.docs.find(d=>d.id===id);
+    current=(edoc?.data()?.asistencia)||[];
+  } else if(mode==='evento'){
+    const snap=await getDocs(collection(db,'events'));
+    const edoc=snap.docs.find(d=>d.id===id);
+    current=(edoc?.data()?.asistencia)||[];
+  } else {
+    const snap=await getDocs(collection(db,'meetings'));
+    const mdoc=snap.docs.find(d=>d.id===id);
+    current=(mdoc?.data()?.asistencia)||[];
+  }
+  const list=document.getElementById('asistenciaCheckList');
+  if(!members.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay integrantes registrados. Agrega nombres manualmente abajo.</p>';
+  } else {
+    list.innerHTML=members.map(m=>`
+      <label style="display:flex;align-items:center;gap:0.7rem;padding:0.5rem;border-radius:10px;cursor:pointer;font-weight:700;font-size:0.9rem;color:var(--text)">
+        <input type="checkbox" value="${m}" ${current.includes(m)?'checked':''} style="width:18px;height:18px;accent-color:var(--purple)">
+        ${m}
+      </label>`).join('');
+  }
+  document.getElementById('asistenciaManual').value='';
+  const saveBtn=document.querySelector('#asistenciaModal .modal-buttons .btn-primary');
+  // store mode and id for saving
+  saveBtn._asistMode=mode; saveBtn._asistId=id;
+  saveBtn.onclick = ()=>saveAsistenciaGeneric(id,mode);
+  openModal('asistenciaModal');
+}
+
+
+document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
+
+// ── NEWS ──
+async function loadNews(){
+  const grid=document.getElementById('newsGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'news'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">No hay novedades aún.</p>';return;}
+  grid.innerHTML=snap.docs.map(d=>{
+    const n={...d.data(),id:d.id};
+    return `<div class="news-card type-${n.type}">
+      <span class="news-badge b-${n.type}">${n.type==='reflexion'?'✨ Reflexión':n.type==='reunion'?'🤝 Reunión':'📢 Anuncio'}</span>
+      <div class="news-date">${n.date||''}</div>
+      <div class="news-title">${n.title}</div>
+      <div class="news-body">${n.content}</div>
+      <div class="card-footer"><button class="icon-btn danger" onclick="openAdmin('delNews_${n.id}')">🗑️ Eliminar</button></div>
+    </div>`;
+  }).join('');
+}
+window.addNews = async function(){
+  const btn=document.querySelector('#newsModal .btn-primary');
+  if(btn.disabled)return;
+  const title=document.getElementById('newsTitle').value.trim();
+  const content=document.getElementById('newsContent').value.trim();
+  if(!title||!content)return alert('Completa todos los campos.');
+  btn.disabled=true; btn.textContent='Publicando...';
+  await addDoc(collection(db,'news'),{
+    type:document.getElementById('newsType').value,
+    title,content,
+    date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
+  });
+  btn.disabled=false; btn.textContent='Publicar';
+  loadNews(); closeModal('newsModal');
+  document.getElementById('newsTitle').value=''; document.getElementById('newsContent').value='';
+}
+
+// ── EVENTS ──
+const catLabels={'hora-santa':'🕯️ Hora Santa','bazar':'🛍️ Bazar','retiro':'🏕️ Retiro','mision':'🤝 Misión','parroquial':'⛪ Parroquial','cumpleanos':'🎂 Cumpleaños','otro':'📌 Otro'};
+async function loadEvents(){
+  const list=document.getElementById('eventsList');
+  list.innerHTML='<div class="loading">Cargando</div>';
+  let snap=await getDocs(collection(db,'events'));
+  if(!snap.docs.length){
+    for(const ev of defaultEvents) await addDoc(collection(db,'events'),ev);
+    snap=await getDocs(collection(db,'events'));
+  }
+  let evs=snap.docs.map(d=>({...d.data(),id:d.id}));
+  if(currentFilter!=='all') evs=evs.filter(e=>e.cat===currentFilter);
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(hidePast) evs=evs.filter(e=>new Date(e.date+'T00:00:00')>=today);
+  evs.sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(!evs.length){list.innerHTML='<p class="empty-msg">No hay eventos en esta categoría.</p>';return;}
+  list.innerHTML=evs.map(e=>{
+    const d=new Date(e.date+'T00:00:00');
+    const attCount=(e.asistencia||[]).length;
+    return `<div class="event-item cat-${e.cat}">
+      <div class="event-date-box"><div class="event-day">${d.getDate()}</div><div class="event-month">${d.toLocaleDateString('es-CO',{month:'short'}).replace('.','')}</div></div>
+      <div class="event-info"><div class="event-name">${e.name}</div><div class="event-meta">📍 ${e.meta||'Parroquia'}</div></div>
+      <span class="event-tag">${catLabels[e.cat]||e.cat}</span>
+      <div class="event-actions" style="display:flex;align-items:center;gap:0.3rem">
+        ${attCount?`<span class="event-att-count">✅${attCount}</span>`:''}
+        <button class="icon-btn" onclick="openAdmin('evAtt_${e.id}')">👥</button>
+        <button class="icon-btn" onclick="openAdmin('edit_${e.id}')">✏️</button>
+        <button class="icon-btn danger" onclick="openAdmin('delEv_${e.id}')">🗑️</button>
+      </div></div>`;
+  }).join('');
+}
+window.filterEvents = function(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); loadEvents();
+}
+window.togglePast = function(){
+  hidePast=!hidePast;
+  const btn=document.getElementById('togglePastBtn');
+  btn.textContent=hidePast?'👁️ Ocultar pasadas':'👁️ Mostrar todas';
+  btn.style.background=hidePast?'var(--ps)':'var(--bg2)';
+  loadEvents();
+}
+window.saveEvent = async function(){
+  const editId=document.getElementById('editEvId').value;
+  const cat=document.getElementById('evCat').value;
+  const name=document.getElementById('evName').value.trim();
+  const date=document.getElementById('evDate').value;
+  const meta=document.getElementById('evMeta').value.trim()||'Parroquia';
+  if(!name||!date)return alert('Completa los campos requeridos.');
+  if(editId) await updateDoc(doc(db,'events',editId),{cat,name,date,meta});
+  else await addDoc(collection(db,'events'),{cat,name,date,meta});
+  loadEvents(); closeModal('eventModal');
+}
+
+// ── MEETINGS ──
+async function loadMeetings(){
+  const grid=document.getElementById('meetingsGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'meetings'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay reuniones publicadas. ¡Agrega la primera!</p>';return;}
+  const reflexSnap=await getDocs(collection(db,'reflexiones'));
+  grid.innerHTML=snap.docs.map(d=>{
+    const m={...d.data(),id:d.id};
+    const reflexCount=reflexSnap.docs.filter(r=>r.data().meetingId===m.id).length;
+    const matCount=(m.materials||[]).length;
+    const dt=new Date(m.date+'T00:00:00');
+    const dateStr=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+    return `<div class="meeting-card">
+      <div class="meeting-cover" onclick="openMeeting('${m.id}')">
+        <div class="meeting-cover-actions">
+          <button class="meeting-cover-btn" onclick="event.stopPropagation();openAdmin('delMeet_${m.id}')">🗑️</button>
+        </div>
+        <div class="meeting-cover-date">${dateStr}</div>
+        <div class="meeting-cover-title">${m.title}</div>
+        ${m.topic?`<div class="meeting-cover-sub">📌 ${m.topic}</div>`:''}
+      </div>
+      <div class="meeting-preview">
+        <div class="meeting-stats">
+          <div class="meeting-stat">💬 <span>${reflexCount}</span> reflexión${reflexCount!==1?'es':''}</div>
+          <div class="meeting-stat">📎 <span>${matCount}</span> material${matCount!==1?'es':''}</div>
+        </div>
+        <button class="meeting-open-btn" onclick="openMeeting('${m.id}')">Ver reunión →</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+window.openMeeting = async function(id){
+  currentMeetingId=id;
+  const snap=await getDocs(collection(db,'meetings'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const m=mdoc.data();
+  const dt=new Date(m.date+'T00:00:00');
+  document.getElementById('detailDate').textContent=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('detailTitle').textContent=m.title;
+  document.getElementById('detailTopic').textContent=m.topic?'📌 '+m.topic:'';
+  document.getElementById('detailSummaryText').textContent=m.summary||'(Sin resumen aún)';
+  const mats=m.materials||[];
+  const matsList=document.getElementById('materialsList');
+  if(!mats.length) matsList.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600">No hay materiales aún.</p>';
+  else matsList.innerHTML=mats.map(mt=>`
+    <div style="display:flex;align-items:center;gap:0.5rem">
+      <a href="${mt.url}" target="_blank" class="material-link">📄 ${mt.name}</a>
+      <button class="icon-btn danger" onclick="openAdmin('delMat_${id}_${mt.id}')">🗑️</button>
+    </div>`).join('');
+  loadReflexiones(id);
+  // load asistencia
+  const asEl=document.getElementById('reunionAsistenciaList');
+  const asistencia=m.asistencia||[];
+  if(!asistencia.length) asEl.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';
+  else asEl.innerHTML=asistencia.map(a=>`<span class="asistente-chip presente">✅ ${a}</span>`).join('');
+  goTo('meeting-detail');
+}
+window.saveMeeting = async function(){
+  const btn=document.getElementById('meetSaveBtn');
+  if(btn.disabled)return;
+  const editId=document.getElementById('editMeetId').value;
+  const title=document.getElementById('meetTitle').value.trim();
+  const date=document.getElementById('meetDate').value;
+  const topic=document.getElementById('meetTopic').value.trim();
+  const summary=document.getElementById('meetSummary').value.trim();
+  if(!title||!date)return alert('El título y la fecha son obligatorios.');
+  btn.disabled=true; btn.textContent='Guardando...';
+  if(editId) await updateDoc(doc(db,'meetings',editId),{title,date,topic,summary});
+  else await addDoc(collection(db,'meetings'),{title,date,topic,summary,materials:[],createdAt:serverTimestamp()});
+  btn.disabled=false;
+  closeModal('meetingModal');
+  if(editId&&currentMeetingId) openMeeting(currentMeetingId);
+  else loadMeetings();
+}
+window.addMaterial = async function(){
+  const name=document.getElementById('matName').value.trim();
+  const url=document.getElementById('matUrl').value.trim();
+  if(!name||!url)return alert('Completa el nombre y el link.');
+  const snap=await getDocs(collection(db,'meetings'));
+  const mdoc=snap.docs.find(d=>d.id===currentMeetingId);
+  if(!mdoc)return;
+  const mats=[...(mdoc.data().materials||[]),{id:Date.now().toString(),name,url}];
+  await updateDoc(doc(db,'meetings',currentMeetingId),{materials:mats});
+  closeModal('materialModal');
+  openMeeting(currentMeetingId);
+  document.getElementById('matName').value=''; document.getElementById('matUrl').value='';
+}
+
+// ── REFLEXIONES ──
+
+
+
+// ── MURO ──
+async function loadMuro(){
+  const grid=document.getElementById('muroGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'muro'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Sé el primero en dejar algo en el muro ✨</p>';return;}
+  const moodLabel={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
+  const REACTIONS=['❤️','🙏','😄','🔥','🕊️'];
+  grid.innerHTML=snap.docs.map(d=>{
+    const e={...d.data(),id:d.id};
+    const reactions=e.reactions||{};
+    const comments=e.comments||[];
+    const reactionBtns=REACTIONS.map(r=>{
+      const count=reactions[r]||0;
+      return `<button class="reaction-btn" onclick="toggleReaction('${e.id}','${r}')">${r}${count?` ${count}`:''}</button>`;
+    }).join('');
+    const commentCount=comments.length;
+    return `<div class="expr-card mood-${e.mood}" onclick="openMuroDetail('${e.id}')" style="cursor:pointer">
+      <div class="expr-top">
+        <div class="expr-author">${e.author||'Anónimo'}</div>
+        <span class="expr-mood-badge">${moodLabel[e.mood]||e.mood}</span>
+      </div>
+      <div class="expr-text">${e.text}</div>
+      <div class="muro-reactions">${reactionBtns}</div>
+      <div class="expr-bottom" style="cursor:default">
+        <span class="expr-date">${e.date||''}</span>
+        <div style="display:flex;gap:0.3rem;align-items:center">
+          <button class="muro-toggle-comments" onclick="openMuroDetail('${e.id}')">💬 ${commentCount} comentario${commentCount!==1?'s':''}</button>
+          <button class="icon-btn danger" onclick="confirmDelMuro('${e.id}')">🗑️</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+window.addMuro = async function(){
+  const text=document.getElementById('muroText').value.trim();
+  if(!text)return alert('Escribe algo antes de publicar.');
+  await addDoc(collection(db,'muro'),{
+    author:document.getElementById('muroName').value.trim(),
+    mood:document.getElementById('muroMood').value,
+    text, date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
+  });
+  document.getElementById('muroText').value=''; document.getElementById('muroName').value='';
+  loadMuro();
+}
+window.confirmDelMuro = function(id){
+  if(confirm('¿Eliminar esta publicación?')) deleteDoc(doc(db,'muro',id)).then(loadMuro);
+}
+
+// ── INTEGRANTES ──
+window.openMemberForm = function(){
+  ['memName','memBio','memPhoto','memIg','memTt','memOther'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('memRole').value='integrante';
+  openModal('memberModal');
+}
+
+async function loadMembers(){
+  const grid=document.getElementById('membersGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'members'),orderBy('createdAt','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay perfiles. ¡Sé el primero en agregarte! 👋</p>';return;}
+  const roleClass={coordinador:'role-coordinador',integrante:'role-integrante',tesorero:'role-tesorero',secretario:'role-secretario',asesor:'role-asesor',otro:'role-otro'};
+  const roleLabel={coordinador:'Coordinador/a',integrante:'Integrante',tesorero:'Tesorero/a',secretario:'Secretario/a',asesor:'Asesor/a',otro:'Otro'};
+  grid.innerHTML=snap.docs.map(d=>{
+    const m={...d.data(),id:d.id};
+    const avatar=m.photo
+      ?`<img src="${m.photo}" class="member-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      :'';
+    const placeholder=`<div class="member-avatar-placeholder" style="${m.photo?'display:none':''}">${m.name.charAt(0).toUpperCase()}</div>`;
+    const socials=[
+      m.ig?`<a href="https://instagram.com/${m.ig.replace('@','')}" target="_blank" class="member-social-link">📸 ${m.ig}</a>`:'',
+      m.tt?`<a href="https://tiktok.com/${m.tt.replace('@','')}" target="_blank" class="member-social-link">🎵 ${m.tt}</a>`:'',
+      m.other?`<span class="member-social-link">🔗 ${m.other}</span>`:''
+    ].filter(Boolean).join('');
+    return `<div class="member-card" onclick="openMemberDetail('${m.id}')" style="cursor:pointer">
+      <button class="member-del-btn" onclick="event.stopPropagation();confirmDelMember('${m.id}','${m.name.replace(/'/g,"\\'")}')">🗑️</button>
+      ${avatar}${placeholder}
+      <div class="member-name">${m.name}</div>
+      <span class="member-role ${roleClass[m.role]||'role-otro'}">${roleLabel[m.role]||m.role}</span>
+      ${m.bio?`<div class="member-bio">${m.bio}</div>`:''}
+      ${socials?`<div class="member-socials">${socials}</div>`:''}
+      <div style="margin-top:0.8rem;font-size:0.78rem;font-weight:700;color:var(--muted)">Ver historial →</div>
+    </div>`;
+  }).join('');
+}
+window.saveMember = async function(){
+  const name=document.getElementById('memName').value.trim();
+  if(!name)return alert('Tu nombre es obligatorio 😊');
+  const photoUrl=document.getElementById('memPhoto').value.trim();
+  await addDoc(collection(db,'members'),{
+    name, role:document.getElementById('memRole').value,
+    bio:document.getElementById('memBio').value.trim(),
+    photo:photoUrl,
+    ig:document.getElementById('memIg').value.trim(),
+    tt:document.getElementById('memTt').value.trim(),
+    other:document.getElementById('memOther').value.trim(),
+    createdAt:serverTimestamp()
+  });
+  closeModal('memberModal'); loadMembers();
+}
+window.confirmDelMember = function(id,name){
+  const input=prompt(`Para eliminar el perfil de "${name}", escribe su nombre exactamente:`);
+  if(input&&input.trim().toLowerCase()===name.toLowerCase()){
+    deleteDoc(doc(db,'members',id)).then(loadMembers);
+  } else if(input!==null){
+    alert('El nombre no coincide. No se eliminó el perfil.');
+  }
+}
+
+// ── FINANCES ──
+const fmt=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
+async function loadFinances(){
+  const snap=await getDocs(query(collection(db,'finances'),orderBy('createdAt','desc')));
+  const finances=snap.docs.map(d=>({...d.data(),id:d.id}));
+  const totalIn=finances.filter(f=>f.type==='income').reduce((s,f)=>s+f.amount,0);
+  const totalEx=finances.filter(f=>f.type==='expense').reduce((s,f)=>s+f.amount,0);
+  document.getElementById('totalIncome').textContent=fmt(totalIn);
+  document.getElementById('totalExpense').textContent=fmt(totalEx);
+  const bal=totalIn-totalEx;
+  const balEl=document.getElementById('totalBalance');
+  balEl.textContent=fmt(bal); balEl.style.color=bal>=0?'var(--green)':'var(--red)';
+  // Projects
+  const pg=document.getElementById('projectsGrid');
+  if(!finances.length){pg.innerHTML='<p class="empty-msg">Agrega registros para ver el resumen por propósito.</p>';}
+  else{
+    const pm={};
+    finances.forEach(f=>{const p=f.project||'General';if(!pm[p])pm[p]={income:0,expense:0};if(f.type==='income')pm[p].income+=f.amount;else pm[p].expense+=f.amount;});
+    pg.innerHTML=Object.entries(pm).map(([name,{income,expense}])=>{
+      const b=income-expense,pct=income>0?Math.min(100,Math.round(income/(income+expense)*100)):0;
+      return `<div class="project-card">
+        <div class="project-name">${name}</div>
+        <div class="project-bar-wrap"><div class="project-bar" style="width:${pct}%"></div></div>
+        <div class="project-nums"><span class="project-in">▲ ${fmt(income)}</span><span class="project-ex">▼ ${fmt(expense)}</span></div>
+        <div style="margin-top:0.4rem;font-size:0.82rem;font-weight:800;color:${b>=0?'var(--green)':'var(--red)'}">Balance: ${fmt(b)}</div>
+      </div>`;
+    }).join('');
+  }
+  // Table
+  const tbody=document.getElementById('transactionsBody');
+  if(!finances.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:2rem">No hay registros aún.</td></tr>';}
+  else{tbody.innerHTML=finances.map(f=>`<tr>
+    <td>${f.date||''}</td><td>${f.desc}</td>
+    <td><span class="proj-tag">${f.project||'General'}</span></td>
+    <td>${f.type==='income'?'<span style="color:var(--green);font-weight:800">Ingreso</span>':'<span style="color:var(--red);font-weight:800">Gasto</span>'}</td>
+    <td class="amt-${f.type}">${f.type==='income'?'+':'-'}${fmt(f.amount)}</td>
+    <td><button class="del-btn" onclick="openAdmin('delFin_${f.id}')">🗑️</button></td>
+  </tr>`).join('');}
+  // Charts
+  const sorted=[...finances].sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const mm={};
+  sorted.forEach(f=>{
+    const d=new Date(f.date+'T00:00:00');
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    const label=d.toLocaleDateString('es-CO',{month:'short',year:'2-digit'});
+    if(!mm[key])mm[key]={label,income:0,expense:0};
+    if(f.type==='income')mm[key].income+=f.amount;else mm[key].expense+=f.amount;
+  });
+  const months=Object.values(mm);
+  const labels=months.map(m=>m.label);
+  let run=0; const balances=months.map(m=>{run+=m.income-m.expense;return run;});
+  const tc='#8B7BAE',gc='rgba(123,47,190,0.07)';
+  const opts={plugins:{legend:{labels:{color:tc,font:{family:'Nunito',weight:'700'}}}},scales:{x:{ticks:{color:tc},grid:{color:gc}},y:{ticks:{color:tc},grid:{color:gc}}}};
+  if(barChart)barChart.destroy();
+  barChart=new Chart(document.getElementById('barChart'),{type:'bar',data:{labels,datasets:[{label:'Ingresos',data:months.map(m=>m.income),backgroundColor:'rgba(34,197,94,0.7)',borderRadius:8},{label:'Gastos',data:months.map(m=>m.expense),backgroundColor:'rgba(232,69,69,0.7)',borderRadius:8}]},options:{responsive:true,...opts}});
+  if(lineChart)lineChart.destroy();
+  lineChart=new Chart(document.getElementById('lineChart'),{type:'line',data:{labels,datasets:[{label:'Balance',data:balances,borderColor:'#7B2FBE',backgroundColor:'rgba(123,47,190,0.08)',tension:0.4,fill:true,pointBackgroundColor:'#7B2FBE',pointRadius:5}]},options:{responsive:true,...opts}});
+}
+window.addFinance = async function(){
+  const btn=document.querySelector('#financeModal .btn-primary');
+  if(btn.disabled)return;
+  const desc=document.getElementById('finDesc').value.trim();
+  const amount=parseFloat(document.getElementById('finAmount').value);
+  const date=document.getElementById('finDate').value;
+  if(!desc||!amount||!date)return alert('Completa todos los campos.');
+  btn.disabled=true; btn.textContent='Registrando...';
+  await addDoc(collection(db,'finances'),{
+    type:document.getElementById('finType').value,
+    desc, project:document.getElementById('finProject').value.trim()||'General',
+    amount, date:new Date(date+'T00:00:00').toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp()
+  });
+  btn.disabled=false; btn.textContent='Registrar';
+  loadFinances(); closeModal('financeModal');
+  ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
+}
+
+// ── EUCARISTÍAS ──
+const horaLabel={'8':'8:00 AM','10':'10:00 AM','12':'12:00 M','17':'5:00 PM'};
+const horaClass={'8':'h8','10':'h10','12':'h12','17':'h17'};
+let currentEucId = null;
+
+async function loadEucaristias(){
+  const grid=document.getElementById('eucGrid');
+  grid.innerHTML='<div class="loading">Cargando</div>';
+  const snap=await getDocs(query(collection(db,'eucaristias'),orderBy('date','desc')));
+  if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Aún no hay domingos registrados. ¡Agrega el primero!</p>';return;}
+  grid.innerHTML=snap.docs.map(d=>{
+    const e={...d.data(),id:d.id};
+    const dt=new Date(e.date+'T00:00:00');
+    const dateStr=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const hc=horaClass[e.hora]||'h10';
+    const roles=e.roles||{};
+    const chips=[
+      roles.moniciones?`<span class="euc-role-chip">🎤 ${roles.moniciones}</span>`:'',
+      roles.primera?`<span class="euc-role-chip">📖 ${roles.primera}</span>`:'',
+      roles.salmo?`<span class="euc-role-chip">🎵 ${roles.salmo}</span>`:'',
+      roles.segunda?`<span class="euc-role-chip">📖 ${roles.segunda}</span>`:'',
+    ].filter(Boolean).join('');
+    const asistentes=(e.asistencia||[]).length;
+    return `<div class="euc-card">
+      <div class="euc-cover ${hc}" onclick="openEuc('${e.id}')">
+        <div class="euc-cover-actions">
+          <button class="euc-cover-btn" onclick="event.stopPropagation();openAdmin('editEuc_${e.id}')">✏️</button>
+          <button class="euc-cover-btn" onclick="event.stopPropagation();openAdmin('delEuc_${e.id}')">🗑️</button>
+        </div>
+        <div class="euc-cover-date">${dateStr}</div>
+        <div class="euc-cover-hora">⛪ ${horaLabel[e.hora]||e.hora}</div>
+        ${e.nota?`<div style="color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:600;margin-top:0.3rem">📌 ${e.nota}</div>`:''}
+      </div>
+      <div class="euc-preview">
+        <div class="euc-roles-preview">${chips||'<span style="color:var(--muted);font-size:0.8rem;font-weight:600">Sin roles asignados aún</span>'}</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem">
+          <span style="font-size:0.75rem;color:var(--muted);font-weight:700">✅ ${asistentes} asistente${asistentes!==1?'s':''}</span>
+          <button class="euc-open-btn" onclick="openEuc('${e.id}')">Ver →</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.openEuc = async function(id){
+  currentEucId=id;
+  const snap=await getDocs(collection(db,'eucaristias'));
+  const edoc=snap.docs.find(d=>d.id===id);
+  if(!edoc)return;
+  const e=edoc.data();
+  const dt=new Date(e.date+'T00:00:00');
+  const hc=horaClass[e.hora]||'h10';
+  const cover=document.getElementById('eucDetailCover');
+  cover.className='euc-detail-cover '+hc;
+  document.getElementById('eucDetailDate').textContent=dt.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('eucDetailHora').textContent='⛪ '+( horaLabel[e.hora]||e.hora);
+  document.getElementById('eucDetailNota').textContent=e.nota?'📌 '+e.nota:'';
+  // Roles
+  const roles=e.roles||{};
+  const roleItems=[
+    {icon:'🎤',name:'Moniciones',key:'moniciones'},
+    {icon:'📖',name:'Primera Lectura',key:'primera'},
+    {icon:'🎵',name:'Salmo',key:'salmo'},
+    {icon:'📖',name:'Segunda Lectura',key:'segunda'},
+  ];
+  document.getElementById('rolesGrid').innerHTML=roleItems.map(r=>`
+    <div class="role-box">
+      <div class="role-box-icon">${r.icon}</div>
+      <div class="role-box-name">${r.name}</div>
+      ${roles[r.key]
+        ?`<div class="role-box-person">👤 ${roles[r.key]}</div>`
+        :`<div class="role-box-empty">Sin asignar</div>`}
+    </div>`).join('');
+  // Asistencia
+  renderEucAsistencia(e.asistencia||[]);
+  goTo('euc-detail');
+}
+
+function renderEucAsistencia(lista){
+  const el=document.getElementById('eucAsistenciaList');
+  if(!lista.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';return;}
+  el.innerHTML=lista.map(a=>`
+    <span class="asistente-chip presente">✅ ${a}</span>`).join('');
+}
+
+window.saveEuc = async function(){
+  const btn=document.getElementById('eucSaveBtn');
+  if(btn.disabled)return;
+  const editId=document.getElementById('editEucId').value;
+  const date=document.getElementById('eucDate').value;
+  const hora=document.getElementById('eucHora').value;
+  const nota=document.getElementById('eucNota').value.trim();
+  if(!date)return alert('Selecciona la fecha.');
+  btn.disabled=true; btn.textContent='Guardando...';
+  if(editId) await updateDoc(doc(db,'eucaristias',editId),{date,hora,nota});
+  else await addDoc(collection(db,'eucaristias'),{date,hora,nota,roles:{},asistencia:[],createdAt:serverTimestamp()});
+  btn.disabled=false;
+  closeModal('eucModal'); loadEucaristias();
+}
+
+window.saveRoles = async function(){
+  const roles={
+    moniciones:document.getElementById('rolMoniciones').value.trim(),
+    primera:document.getElementById('rolPrimera').value.trim(),
+    salmo:document.getElementById('rolSalmo').value.trim(),
+    segunda:document.getElementById('rolSegunda').value.trim(),
+  };
+  await updateDoc(doc(db,'eucaristias',currentEucId),{roles});
+  closeModal('rolesModal'); openEuc(currentEucId);
+}
+
+
+
+// ── ASISTENCIA REUNIONES ──
+async function loadAsistenciaReunion(meetingId){
+  // injected into meeting detail
+  const snap=await getDocs(collection(db,'eucaristias')); // reuse members
+  const msnap=await getDocs(collection(db,'members'));
+  const members=msnap.docs.map(d=>d.data().name);
+  // get current asistencia from meeting
+  const msnap2=await getDocs(collection(db,'meetings'));
+  const mdoc=msnap2.docs.find(d=>d.id===meetingId);
+  const current=(mdoc?.data()?.asistencia)||[];
+  const el=document.getElementById('reunionAsistenciaList');
+  if(!el)return;
+  if(!current.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.3rem">Sin registro aún.</p>';return;}
+  el.innerHTML=current.map(a=>`<span class="asistente-chip presente">✅ ${a}</span>`).join('');
+}
+
+// ── PATCH checkPw for new actions ──
+
+
+// ── POINTS SYSTEM ──
+const PTS = { reunion:5, eucaristia:5, evento:5, comentario:10, reflexion:10 };
+
+async function addPoints(memberName, type, desc){
+  if(!memberName || memberName.trim()==='') return;
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>(d.data().name||'').toLowerCase().trim()===memberName.toLowerCase().trim());
+  if(!mdoc) return; // silently skip if member not found
+  const existing = mdoc.data().puntos||[];
+  const newPts = [...existing, {pts:PTS[type]||5, desc, date:new Date().toLocaleDateString('es-CO'), type}];
+  await updateDoc(doc(db,'members',mdoc.id),{puntos:newPts});
+}
+
+// ── MURO DETAIL ──
+window.currentMuroDetailId = null;
+const moodLabelFull={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
+const REACTIONS=['❤️','🙏','😄','🔥','🕊️'];
+
+window.openMuroDetail = async function(id){
+  window.currentMuroDetailId = id;
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const e = {...mdoc.data(), id};
+  // Cover
+  const cover = document.getElementById('muroDetailCover');
+  cover.className = 'muro-detail-cover mood-'+(e.mood||'otro');
+  document.getElementById('mdMoodBadge').textContent = moodLabelFull[e.mood]||e.mood;
+  document.getElementById('mdAuthor').textContent = e.author||'Anónimo';
+  document.getElementById('mdText').textContent = e.text;
+  document.getElementById('mdDate').textContent = e.date||'';
+  // Reactions
+  const reactions = e.reactions||{};
+  document.getElementById('muroDetailReactions').innerHTML = REACTIONS.map(r=>{
+    const count = reactions[r]||0;
+    return `<button class="reaction-big-btn" onclick="toggleReactionDetail('${id}','${r}')">${r} ${count||''}</button>`;
+  }).join('');
+  // Comments
+  renderDetailComments(e.comments||[]);
+  // Clear form
+  document.getElementById('detailCommentName').value='';
+  document.getElementById('detailCommentText').value='';
+  goTo('muro-detail');
+}
+
+function renderDetailComments(comments){
+  const countEl = document.getElementById('muroCommentCount');
+  countEl.textContent = `${comments.length} comentario${comments.length!==1?'s':''}`;
+  const list = document.getElementById('muroDetailComments');
+  if(!comments.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.5rem">Sé el primero en comentar ✨</p>';
+    return;
+  }
+  list.innerHTML = comments.map((c,i)=>`
+    <div class="comment-item approved">
+      <div class="comment-author">${c.author||'Anónimo'}</div>
+      <div class="comment-text">${c.text}</div>
+      <div class="comment-meta">
+        <span class="comment-date">${c.date||''}</span>
+      </div>
+    </div>`).join('');
+}
+
+window.toggleReactionDetail = async function(id, emoji){
+  const ref_ = doc(db,'muro',id);
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const reactions = {...(mdoc.data().reactions||{})};
+  reactions[emoji] = (reactions[emoji]||0)+1;
+  await updateDoc(ref_,{reactions});
+  // update buttons inline
+  const btns = document.querySelectorAll('#muroDetailReactions .reaction-big-btn');
+  REACTIONS.forEach((r,i)=>{ btns[i].textContent = r+' '+(reactions[r]||''); });
+  loadMuro(); // refresh grid too
+}
+
+window.submitComment = async function(){
+  const text = document.getElementById('detailCommentText').value.trim();
+  if(!text) return alert('Escribe algo antes de comentar.');
+  const ref_ = doc(db,'muro',currentMuroDetailId);
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===currentMuroDetailId);
+  const comments = [...(mdoc?.data()?.comments||[]), {
+    author: document.getElementById('detailCommentName').value.trim(),
+    text, date: new Date().toLocaleDateString('es-CO'),
+    approved: true
+  }];
+  await updateDoc(ref_,{comments});
+  document.getElementById('detailCommentText').value='';
+  renderDetailComments(comments);
+  loadMuro();
+}
+
+
+window.deleteComment = async function(muroId, idx){
+  if(!confirm('¿Eliminar este comentario?')) return;
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===muroId);
+  if(!mdoc) return;
+  const comments = (mdoc.data().comments||[]).filter((_,i)=>i!==idx);
+  await updateDoc(doc(db,'muro',muroId),{comments});
+  renderDetailComments(comments);
+  loadMuro();
+}
+
+// ── POINTS in openMemberDetail ── (patch after load)
+window.openMemberDetail = async function(id){
+  window._currentMemberDetailId = id;
+  await _origOpenMemberDetail(id);
+  await loadMemberPoints(id, false);
+}
+
+async function loadMemberPoints(id, isAdmin){
+  if(!id){ console.error('loadMemberPoints: no id'); return; }
+  try{
+    const msnap = await getDocs(collection(db,'members'));
+    const mdoc = msnap.docs.find(d=>d.id===id);
+    if(!mdoc) return;
+    const m = mdoc.data();
+    const puntos = m.puntos||[];
+    const total = puntos.reduce((s,p)=>s+p.pts,0);
+    document.getElementById('mdPtsTotal').textContent = total+' pts';
+    const rows = document.getElementById('mdPtsRows');
+    const visible = isAdmin ? puntos : puntos.filter(p=>p.pts>0);
+    if(!visible.length){
+      rows.innerHTML='<p style="color:var(--muted);font-size:0.85rem;padding:0.5rem;font-weight:600">Aún no hay puntos registrados.</p>';
+    } else {
+      rows.innerHTML = [...visible].reverse().map((p,i)=>`
+        <div class="pts-row">
+          <span class="pts-row-desc">${p.desc||p.type}</span>
+          <span class="pts-row-val ${p.pts>0?'pos':'neg'}">${p.pts>0?'+':''}${p.pts} pts</span>
+          ${isAdmin?`<button onclick="deletePoint('${id}',${puntos.indexOf(p)})" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:0.85rem" title="Eliminar">🗑️</button>`:''}
+        </div>`).join('');
+    }
+    // show admin panel
+    const adminBox = document.getElementById('mdPtsAdminBox');
+    if(isAdmin){
+      adminBox.style.display='flex';
+      // also show all entries for editing
+      const editList = document.getElementById('mdPtsEditList');
+      editList.innerHTML = puntos.length ? '<p style="font-size:0.78rem;font-weight:800;color:var(--muted);margin:0">Historial completo (incluyendo negativos):</p>' +
+        [...puntos].reverse().map((p,i)=>`
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;font-weight:600;padding:0.25rem 0;border-bottom:1px solid var(--border)">
+            <span style="color:var(--text)">${p.desc||p.type} <span style="color:var(--muted)">${p.date||''}</span></span>
+            <span style="color:${p.pts>0?'var(--green)':'var(--red)'};font-weight:800">${p.pts>0?'+':''}${p.pts}</span>
+          </div>`).join('')
+        : '<p style="font-size:0.82rem;color:var(--muted);font-weight:600">Sin registros.</p>';
+    } else {
+      adminBox.style.display='none';
+    }
+  } catch(e){ console.error('loadMemberPoints error:',e); }
+}
+
+window.applyPoints = async function(){
+  const pts = parseInt(document.getElementById('mdPtsAmount').value);
+  const reason = document.getElementById('mdPtsReason').value.trim();
+  if(!pts || pts===0) return alert('Ingresa un número válido (positivo para agregar, negativo para quitar).');
+  if(!reason) return alert('Por favor ingresa una razón.');
+  const id = window._currentMemberDetailId;
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const puntos = [...(mdoc.data().puntos||[])];
+  puntos.push({pts, desc:reason, date:new Date().toLocaleDateString('es-CO'), type: pts>0?'bonus':'deduccion'});
+  await updateDoc(doc(db,'members',id),{puntos});
+  document.getElementById('mdPtsAmount').value='';
+  document.getElementById('mdPtsReason').value='';
+  loadMemberPoints(id, true);
+}
+
+window.deletePoint = async function(id, idx){
+  if(!confirm('¿Eliminar este registro de puntos?')) return;
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const puntos = (mdoc.data().puntos||[]).filter((_,i)=>i!==idx);
+  await updateDoc(doc(db,'members',id),{puntos});
+  loadMemberPoints(id, true);
+}
+
+
+window.deductPoints = async function(){
+  const pts = parseInt(document.getElementById('mdPtsDeduct').value);
+  if(!pts||pts<=0) return alert('Ingresa un número válido de puntos a quitar.');
+  const reason = document.getElementById('mdPtsDeductReason').value.trim()||'Deducción admin';
+  const id = window._currentMemberDetailId;
+  if(!id){ alert('Error: no hay integrante seleccionado.'); return; }
+  try {
+    const msnap = await getDocs(collection(db,'members'));
+    const mdoc = msnap.docs.find(d=>d.id===id);
+    if(!mdoc){ alert('No se encontró el integrante.'); return; }
+    const puntos = [...(mdoc.data().puntos||[]), {pts:-pts, desc:reason, date:new Date().toLocaleDateString('es-CO'), type:'deduccion'}];
+    await updateDoc(doc(db,'members',id),{puntos});
+    document.getElementById('mdPtsDeduct').value='';
+    document.getElementById('mdPtsDeductReason').value='';
+    await loadMemberPoints(id, true);
+    alert('✅ Puntos quitados correctamente.');
+  } catch(e){ alert('Error: '+e.message); }
+}
+
+// ── POINTS for reflexiones ──
+
+
+async function loadReflexiones(meetingId){
+  const list = document.getElementById('reflexionesList');
+  const snap = await getDocs(query(collection(db,'reflexiones'),orderBy('createdAt','desc')));
+  const filtered = snap.docs.filter(d=>d.data().meetingId===meetingId);
+  if(!filtered.length){list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;text-align:center;padding:1rem">Sé el primero en compartir tu reflexión ✨</p>';return;}
+  list.innerHTML = filtered.map(d=>{
+    const r={...d.data(),id:d.id};
+    const isPending = !r.approved;
+    return `<div class="reflex-item" style="${isPending?'border-left-color:var(--yellow);opacity:0.8':''}">
+      <div class="reflex-author-row">
+        <div class="reflex-author">${r.author||'Anónimo'} ✨ ${isPending?'<span style="font-size:0.72rem;font-weight:700;background:rgba(251,191,36,0.2);color:#92400E;padding:0.1rem 0.5rem;border-radius:10px">⏳ Pendiente</span>':''}</div>
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <span class="reflex-date-small">${r.date||''}</span>
+          ${isPending?`<button class="btn btn-sm" style="background:var(--green);color:#fff;border-radius:10px;padding:0.2rem 0.6rem;font-size:0.72rem;border:none;cursor:pointer" onclick="approveReflex('${r.id}','${(r.author||'').replace(/'/g,"\\'")}')">✅ Aprobar +10pts</button>`:''}
+          <button class="icon-btn danger" onclick="confirmDelReflex('${r.id}')">🗑️</button>
+        </div>
+      </div>
+      <div class="reflex-text">${r.text}</div>
+    </div>`;
+  }).join('');
+}
+
+window.addReflex = async function(){
+  const text = document.getElementById('reflexText').value.trim();
+  const author = document.getElementById('reflexName').value.trim();
+  if(!text) return alert('Escribe algo antes de publicar.');
+  await addDoc(collection(db,'reflexiones'),{
+    meetingId:currentMeetingId,
+    author, text,
+    date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp(),
+    approved:false
+  });
+  document.getElementById('reflexText').value='';
+  document.getElementById('reflexName').value='';
+  loadReflexiones(currentMeetingId);
+  loadMeetings();
+}
+
+window.confirmDelReflex = function(id){
+  if(confirm('¿Eliminar esta reflexión?')) deleteDoc(doc(db,'reflexiones',id)).then(()=>loadReflexiones(currentMeetingId));
+}
+
+window.approveReflex = async function(reflexId, author){
+  await updateDoc(doc(db,'reflexiones',reflexId),{approved:true});
+  if(author) await addPoints(author,'reflexion',`Reflexión aprobada en reunión (${new Date().toLocaleDateString('es-CO')})`);
+  loadReflexiones(currentMeetingId);
+}
+
+// ── POINTS for asistencia (auto on save) ──
+window.saveAsistenciaGeneric = async function(id, mode){
+  // Get previous list to find new attendees
+  let prevList = [];
+  if(mode==='euc'){const s=await getDocs(collection(db,'eucaristias'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  else if(mode==='evento'){const s=await getDocs(collection(db,'events'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  else{const s=await getDocs(collection(db,'meetings'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  const checks = document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
+  const newList = [...checks].map(c=>c.value);
+  const manual = document.getElementById('asistenciaManual').value.trim();
+  if(manual&&!newList.includes(manual)) newList.push(manual);
+  // Award points to newly added attendees
+  const newAttendees = newList.filter(n=>!prevList.includes(n));
+  const typeKey = mode==='euc'?'eucaristia':mode==='evento'?'evento':'reunion';
+  const typeLabel = mode==='euc'?'Eucaristía':mode==='evento'?'Evento':'Reunión';
+  for(const name of newAttendees){
+    await addPoints(name, typeKey, `Asistencia a ${typeLabel} (${new Date().toLocaleDateString('es-CO')})`);
+  }
+  // Save
+  if(mode==='euc') await updateDoc(doc(db,'eucaristias',id),{asistencia:newList});
+  else if(mode==='evento') await updateDoc(doc(db,'events',id),{asistencia:newList});
+  else await updateDoc(doc(db,'meetings',id),{asistencia:newList});
+  closeModal('asistenciaModal');
+  if(mode==='euc') openEuc(currentEucId);
+  else if(mode==='evento') loadEvents();
+  else openMeeting(currentMeetingId);
+}
+
+// ── MURO ADMIN INLINE ──
+window.showMuroAdminPanel = function(){
+  document.getElementById('muroAdminToggle').style.display='none';
+  document.getElementById('muroAdminPwBox').style.display='block';
+  setTimeout(()=>document.getElementById('muroAdminPwInput').focus(),100);
+}
+window.hideMuroAdminPanel = function(){
+  document.getElementById('muroAdminToggle').style.display='block';
+  document.getElementById('muroAdminPwBox').style.display='none';
+  document.getElementById('muroAdminPwInput').value='';
+  document.getElementById('muroAdminPwErr').style.display='none';
+}
+window.checkMuroAdminPw = async function(){
+  if(document.getElementById('muroAdminPwInput').value !== PASS){
+    document.getElementById('muroAdminPwErr').style.display='block'; return;
+  }
+  document.getElementById('muroAdminPwBox').style.display='none';
+  document.getElementById('muroAdminPwErr').style.display='none';
+  // Load comments in admin mode
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===currentMuroDetailId);
+  if(mdoc) renderDetailComments(mdoc.data().comments||[]);
+}
+
+// ── PUNTOS ADMIN INLINE ──
+window.showPtsAdminPanel = function(){
+  document.getElementById('ptsAdminToggle').style.display='none';
+  document.getElementById('ptsAdminPwBox').style.display='block';
+  setTimeout(()=>document.getElementById('ptsAdminPwInput').focus(),100);
+}
+window.hidePtsAdminPanel = function(){
+  document.getElementById('ptsAdminToggle').style.display='block';
+  document.getElementById('ptsAdminPwBox').style.display='none';
+  document.getElementById('ptsAdminPwInput').value='';
+  document.getElementById('ptsAdminPwErr').style.display='none';
+}
+window.checkPtsAdminPw = async function(){
+  if(document.getElementById('ptsAdminPwInput').value !== PASS){
+    document.getElementById('ptsAdminPwErr').style.display='block'; return;
+  }
+  document.getElementById('ptsAdminPwBox').style.display='none';
+  document.getElementById('ptsAdminPwErr').style.display='none';
+  await loadMemberPoints(window._currentMemberDetailId, true);
+}
+
+// ── TESORERO ──
+window.openTesorero = function(){
+  document.getElementById('tesPw').value='';
+  document.getElementById('tesErr').style.display='none';
+  const ov=document.getElementById('tesOverlay');
+  ov.style.display='flex'; setTimeout(()=>document.getElementById('tesPw').focus(),100);
+}
+window.closeTes = function(){ document.getElementById('tesOverlay').style.display='none'; }
+window.checkTesPw = function(){
+  if(document.getElementById('tesPw').value===PASS_TESORERO){
+    closeTes();
+    setTimeout(()=>{
+      document.getElementById('finDate').valueAsDate=new Date();
+      openModal('financeModal');
+    },150);
+  } else { document.getElementById('tesErr').style.display='block'; }
+}
+
+// ── MURO REACTIONS & COMMENTS ──
+let currentMuroId = null;
+window.toggleReaction = async function(id, emoji){
+  const ref_=doc(db,'muro',id);
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const reactions={...(mdoc.data().reactions||{})};
+  reactions[emoji]=(reactions[emoji]||0)+1;
+  await updateDoc(ref_,{reactions});
+  loadMuro();
+}
+window.openMuroComments = async function(id){
+  currentMuroId=id;
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  const comments=mdoc?.data()?.comments||[];
+  renderMuroComments(comments);
+  document.getElementById('commentName').value='';
+  document.getElementById('commentText').value='';
+  openModal('muroCommentModal');
+}
+function renderMuroComments(comments){
+  const el=document.getElementById('muroCommentsList');
+  if(!comments.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:0.5rem">Aún no hay comentarios.</p>';return;}
+  el.innerHTML=comments.map((c,i)=>`
+    <div class="muro-comment">
+      <span class="muro-comment-author">${c.author||'Anónimo'}</span>: ${c.text}
+      <span style="color:var(--muted);font-size:0.75rem;margin-left:0.4rem">${c.date||''}</span>
+    </div>`).join('');
+}
+window.addComment = async function(){
+  const text=document.getElementById('commentText').value.trim();
+  if(!text)return alert('Escribe algo antes de comentar.');
+  const ref_=doc(db,'muro',currentMuroId);
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===currentMuroId);
+  const comments=[...(mdoc?.data()?.comments||[]),{
+    author:document.getElementById('commentName').value.trim(),
+    text, date:new Date().toLocaleDateString('es-CO')
+  }];
+  await updateDoc(ref_,{comments});
+  document.getElementById('commentText').value='';
+  renderMuroComments(comments);
+  loadMuro();
+}
+
+// ── MEMBER DETAIL ──
+const roleLabel2={coordinador:'Coordinador/a',integrante:'Integrante',tesorero:'Tesorero/a',secretario:'Secretario/a',asesor:'Asesor/a',otro:'Otro'};
+window.openMemberDetail = async function(id){
+  const msnap=await getDocs(collection(db,'members'));
+  const mdoc=msnap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const m=mdoc.data();
+  // Header
+  const avEl=document.getElementById('mdAvatar');
+  if(m.photo) avEl.innerHTML=`<img src="${m.photo}" class="member-detail-avatar" onerror="this.outerHTML='<div class=\\"member-detail-placeholder\\">${m.name.charAt(0).toUpperCase()}</div>'">`;
+  else avEl.innerHTML=`<div class="member-detail-placeholder">${m.name.charAt(0).toUpperCase()}</div>`;
+  document.getElementById('mdName').textContent=m.name;
+  document.getElementById('mdRole').textContent=roleLabel2[m.role]||m.role;
+  document.getElementById('mdBio').textContent=m.bio||'';
+  const socials=[
+    m.ig?`<a href="https://instagram.com/${m.ig.replace('@','')}" target="_blank" style="background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.8rem;color:#fff;font-size:0.82rem;font-weight:700;text-decoration:none">📸 ${m.ig}</a>`:'',
+    m.tt?`<a href="https://tiktok.com/${m.tt.replace('@','')}" target="_blank" style="background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.8rem;color:#fff;font-size:0.82rem;font-weight:700;text-decoration:none">🎵 ${m.tt}</a>`:'',
+  ].filter(Boolean).join('');
+  document.getElementById('mdSocials').innerHTML=socials;
+
+  // Gather attendance data
+  const [rsnap,esnap,evsnap]=await Promise.all([
+    getDocs(query(collection(db,'meetings'),orderBy('createdAt','desc'))),
+    getDocs(query(collection(db,'eucaristias'),orderBy('date','desc'))),
+    getDocs(collection(db,'events'))
+  ]);
+  const meetings=rsnap.docs.map(d=>({...d.data(),id:d.id}));
+  const eucs=esnap.docs.map(d=>({...d.data(),id:d.id}));
+  const evs=evsnap.docs.map(d=>({...d.data(),id:d.id})).filter(e=>e.asistencia&&e.asistencia.length>0);
+
+  let totalP=0,totalA=0;
+  function renderAttRows(items,labelFn,el){
+    if(!items.length){el.innerHTML='<p style="color:var(--muted);font-size:0.85rem;padding:0.5rem;font-weight:600">Sin registros aún.</p>';return;}
+    el.innerHTML=items.map(item=>{
+      const att=item.asistencia||[];
+      const presente=att.includes(m.name);
+      if(presente) totalP++; else totalA++;
+      return `<div class="att-row">
+        <span class="att-row-label">${labelFn(item)}</span>
+        <span class="att-badge ${presente?'presente':'ausente'}">${presente?'✅ Presente':'❌ Ausente'}</span>
+      </div>`;
+    }).join('');
+  }
+  renderAttRows(meetings,r=>{
+    const dt=new Date(r.date+'T00:00:00');
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${r.title}`;
+  }, document.getElementById('mdReuniones'));
+  renderAttRows(eucs,e=>{
+    const dt=new Date(e.date+'T00:00:00');
+    const hl={8:'8AM',10:'10AM',12:'12M',17:'5PM'};
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${hl[e.hora]||e.hora}`;
+  }, document.getElementById('mdEucaristias'));
+  renderAttRows(evs,e=>{
+    const dt=new Date(e.date+'T00:00:00');
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${e.name}`;
+  }, document.getElementById('mdEventos'));
+
+  document.getElementById('mdTotalPresente').textContent=totalP;
+  document.getElementById('mdTotalAusente').textContent=totalA;
+  const total=totalP+totalA;
+  document.getElementById('mdPorcentaje').textContent=total?Math.round(totalP/total*100)+'%':'—';
+  await loadMemberPoints(id, false);
+  goTo('member-detail');
+}
+
+// ── EVENT ASISTENCIA (in checkPw) ──
+// handled via evAtt_ prefix in checkPw already registered below
+
+// Init
+goTo('inicio', false);
+history.replaceState({page:'inicio'},'','#inicio');
+</script>
+</body>
+</html>
