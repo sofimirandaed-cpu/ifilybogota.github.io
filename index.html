@@ -366,6 +366,101 @@ footer{background:var(--dark);padding:2rem;text-align:center}
 .asistente-chip.presente{background:rgba(34,197,94,0.1);border-color:var(--green);color:#16A34A}
 .asistente-chip.ausente{background:rgba(232,69,69,0.08);border-color:rgba(232,69,69,0.3);color:var(--red)}
 
+
+/* MEMBER DETAIL */
+#page-member-detail{background:var(--bg2)}
+.member-detail-cover{background:linear-gradient(135deg,var(--purple),var(--pl));padding:3rem 2rem 2rem;text-align:center;position:relative}
+.member-detail-avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,0.4);margin:0 auto 1rem;display:block}
+.member-detail-placeholder{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:3rem;color:#fff;font-family:'Fredoka One',cursive}
+.member-detail-name{font-family:'Fredoka One',cursive;color:#fff;font-size:2rem}
+.member-detail-role{background:rgba(255,255,255,0.2);border-radius:20px;padding:0.3rem 1rem;font-size:0.82rem;font-weight:800;color:#fff;display:inline-block;margin-top:0.4rem}
+.member-detail-body{max-width:900px;margin:0 auto;padding:2rem}
+.attendance-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem}
+.att-stat{background:var(--card);border-radius:18px;padding:1.2rem;text-align:center;border:2px solid var(--border)}
+.att-stat-num{font-family:'Fredoka One',cursive;font-size:2rem}
+.att-stat-num.good{color:var(--green)}.att-stat-num.bad{color:var(--red)}.att-stat-num.neutral{color:var(--purple)}
+.att-stat-label{font-size:0.78rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:0.2rem}
+.att-section{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.2rem}
+.att-section-header{padding:1rem 1.5rem;background:var(--bg2);font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;border-bottom:2px solid var(--border)}
+.att-rows{padding:0.8rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+.att-row{display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:600}
+.att-row:last-child{border-bottom:none}
+.att-row-label{color:var(--text)}
+.att-badge{padding:0.2rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:800}
+.att-badge.presente{background:rgba(34,197,94,0.12);color:#16A34A}
+.att-badge.ausente{background:rgba(232,69,69,0.1);color:var(--red)}
+
+/* MURO REACTIONS */
+.muro-reactions{display:flex;gap:0.4rem;flex-wrap:wrap;margin:0.6rem 0 0.3rem}
+.reaction-btn{background:var(--bg2);border:1.5px solid var(--border);border-radius:20px;padding:0.2rem 0.7rem;font-size:0.82rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;color:var(--text);transition:all 0.2s}
+.reaction-btn:hover,.reaction-btn.reacted{background:var(--ps);border-color:var(--purple);color:var(--purple)}
+.muro-comments{margin-top:0.6rem;border-top:1px solid var(--border);padding-top:0.6rem}
+.muro-comment{font-size:0.82rem;color:var(--text);padding:0.35rem 0;border-bottom:1px solid var(--border);line-height:1.5;font-weight:600}
+.muro-comment:last-child{border-bottom:none}
+.muro-comment-author{font-weight:800;color:var(--purple)}
+.muro-add-comment{display:flex;gap:0.4rem;margin-top:0.6rem}
+.muro-add-comment input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:0.4rem 0.9rem;font-family:'Nunito',sans-serif;font-size:0.83rem;font-weight:600;color:var(--text);outline:none}
+.muro-add-comment input:focus{border-color:var(--purple)}
+.muro-add-comment button{background:var(--purple);border:none;border-radius:20px;color:#fff;padding:0.4rem 0.9rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;transition:background 0.2s}
+.muro-add-comment button:hover{background:var(--pl)}
+.muro-toggle-comments{background:none;border:none;color:var(--muted);font-size:0.78rem;font-weight:700;cursor:pointer;padding:0;font-family:'Nunito',sans-serif;margin-top:0.3rem}
+.muro-toggle-comments:hover{color:var(--purple)}
+
+/* EVENT ASISTENCIA */
+.event-item{position:relative}
+.event-att-count{font-size:0.75rem;font-weight:800;color:var(--green);white-space:nowrap}
+
+
+/* MURO DETAIL PAGE */
+#page-muro-detail{background:var(--bg2)}
+.muro-detail-cover{padding:2.5rem 2rem 1.5rem;position:relative}
+.muro-detail-cover.mood-feliz{background:linear-gradient(135deg,#B45309,#F97316)}
+.muro-detail-cover.mood-reflexivo{background:linear-gradient(135deg,#7B2FBE,#9B59D0)}
+.muro-detail-cover.mood-agradecido{background:linear-gradient(135deg,#065F46,#22C55E)}
+.muro-detail-cover.mood-oracion{background:linear-gradient(135deg,#1E40AF,#3B82F6)}
+.muro-detail-cover.mood-otro{background:linear-gradient(135deg,#4B5563,#9CA3AF)}
+.muro-detail-author{font-family:'Fredoka One',cursive;color:#fff;font-size:1.5rem;margin-bottom:0.3rem}
+.muro-detail-mood{background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.9rem;font-size:0.82rem;font-weight:800;color:#fff;display:inline-block;margin-bottom:0.8rem}
+.muro-detail-text{color:#fff;font-size:1.05rem;line-height:1.8;white-space:pre-wrap;margin-bottom:0.8rem}
+.muro-detail-date{color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:600}
+.muro-detail-body{max-width:800px;margin:0 auto;padding:2rem}
+.reactions-section{background:var(--card);border-radius:18px;padding:1.3rem 1.5rem;border:2px solid var(--border);margin-bottom:1.5rem}
+.reactions-section h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;margin-bottom:0.8rem}
+.reactions-row{display:flex;gap:0.6rem;flex-wrap:wrap}
+.reaction-big-btn{background:var(--bg2);border:2px solid var(--border);border-radius:16px;padding:0.5rem 1.1rem;font-size:1rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;color:var(--text);transition:all 0.2s}
+.reaction-big-btn:hover{background:var(--ps);border-color:var(--purple);transform:scale(1.05)}
+.comments-section{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
+.comments-header{padding:1rem 1.5rem;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.comments-header h3{font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem}
+.comments-list{padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem}
+.comment-item{background:var(--bg2);border-radius:14px;padding:0.9rem 1.1rem;border:1px solid var(--border)}
+.comment-item.pending{border-left:4px solid var(--yellow);background:rgba(251,191,36,0.06)}
+.comment-item.approved{border-left:4px solid var(--green)}
+.comment-author{font-family:'Fredoka One',cursive;color:var(--purple);font-size:0.9rem}
+.comment-text{color:var(--text);font-size:0.88rem;line-height:1.5;margin-top:0.2rem;white-space:pre-wrap}
+.comment-meta{display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem}
+.comment-date{font-size:0.75rem;color:var(--muted);font-weight:600}
+.comment-status{font-size:0.72rem;font-weight:800;padding:0.15rem 0.6rem;border-radius:12px}
+.status-pending{background:rgba(251,191,36,0.2);color:#92400E}
+.status-approved{background:rgba(34,197,94,0.12);color:#16A34A}
+.write-comment-box{padding:1.2rem 1.5rem;border-top:2px solid var(--border);display:flex;flex-direction:column;gap:0.7rem}
+.write-comment-box input,.write-comment-box textarea{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:600;color:var(--text);outline:none;width:100%}
+.write-comment-box input:focus,.write-comment-box textarea:focus{border-color:var(--purple)}
+
+/* PUNTOS */
+.pts-badge{background:linear-gradient(135deg,var(--yellow),var(--orange));color:#fff;border-radius:20px;padding:0.25rem 0.8rem;font-size:0.78rem;font-weight:800;display:inline-flex;align-items:center;gap:0.3rem}
+.pts-detail{background:var(--card);border-radius:18px;border:2px solid var(--border);overflow:hidden;margin-bottom:1.5rem}
+.pts-header{padding:1rem 1.5rem;background:linear-gradient(135deg,var(--yellow),var(--orange));display:flex;justify-content:space-between;align-items:center}
+.pts-header h3{font-family:'Fredoka One',cursive;color:#fff;font-size:1rem}
+.pts-total{font-family:'Fredoka One',cursive;color:#fff;font-size:1.8rem}
+.pts-rows{padding:0.8rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;max-height:250px;overflow-y:auto}
+.pts-row{display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.85rem;font-weight:600}
+.pts-row:last-child{border-bottom:none}
+.pts-row-desc{color:var(--text)}
+.pts-row-val{font-weight:800}
+.pts-row-val.pos{color:var(--green)}.pts-row-val.neg{color:var(--red)}
+.pts-admin-box{padding:1rem 1.5rem;border-top:2px solid var(--border);display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap}
+
 </style>
 </head>
 <body>
@@ -448,6 +543,9 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <div class="notice-item"><div class="notice-icon">🤝</div><div class="notice-text"><strong>Reuniones — Todos los sábados</strong><span>10:00 AM a 12:00 PM · Parroquia</span></div></div>
       <div class="notice-item"><div class="notice-icon">⛪</div><div class="notice-text"><strong>Eucaristía — Todos los domingos</strong><span>Compromiso del grupo. La inasistencia debe ser justificada.</span></div></div>
     </div>
+    <div style="text-align:center;margin-bottom:0.8rem">
+      <button class="cat-btn" id="togglePastBtn" onclick="togglePast()" style="background:var(--ps);color:var(--purple);border-color:var(--purple)">👁️ Ocultar pasadas</button>
+    </div>
     <div class="cat-filters">
       <button class="cat-btn active" onclick="filterEvents('all',this)">Todos</button>
       <button class="cat-btn" onclick="filterEvents('hora-santa',this)">🕯️ Hora Santa</button>
@@ -522,6 +620,75 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       </div>
       <div class="reflexiones-list" id="reflexionesList"></div>
     </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- MEMBER DETAIL -->
+<div class="page" id="page-member-detail">
+  <div class="member-detail-cover">
+    <button class="back-btn" onclick="goTo('integrantes')">← Volver</button>
+    <div id="mdAvatar"></div>
+    <div class="member-detail-name" id="mdName"></div>
+    <div class="member-detail-role" id="mdRole"></div>
+    <div style="color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:600;margin-top:0.6rem" id="mdBio"></div>
+    <div style="display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-top:0.8rem" id="mdSocials"></div>
+  </div>
+  <div class="member-detail-body">
+    <div class="attendance-summary">
+      <div class="att-stat"><div class="att-stat-num good" id="mdTotalPresente">0</div><div class="att-stat-label">Asistencias</div></div>
+      <div class="att-stat"><div class="att-stat-num bad" id="mdTotalAusente">0</div><div class="att-stat-label">Inasistencias</div></div>
+      <div class="att-stat"><div class="att-stat-num neutral" id="mdPorcentaje">0%</div><div class="att-stat-label">Asistencia</div></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">🤝 Reuniones</div>
+      <div class="att-rows" id="mdReuniones"></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">⛪ Eucaristías</div>
+      <div class="att-rows" id="mdEucaristias"></div>
+    </div>
+    <div class="att-section">
+      <div class="att-section-header">📅 Eventos</div>
+      <div class="att-rows" id="mdEventos"></div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- MURO DETAIL -->
+<div class="page" id="page-muro-detail">
+  <div class="muro-detail-cover" id="muroDetailCover">
+    <button class="back-btn" onclick="goTo('muro')">← Volver</button>
+    <div style="margin-top:0.5rem">
+      <div class="muro-detail-mood" id="mdMoodBadge"></div>
+      <div class="muro-detail-author" id="mdAuthor"></div>
+      <div class="muro-detail-text" id="mdText"></div>
+      <div class="muro-detail-date" id="mdDate"></div>
+    </div>
+  </div>
+  <div class="muro-detail-body">
+    <div class="reactions-section">
+      <h3>Reacciones</h3>
+      <div class="reactions-row" id="muroDetailReactions"></div>
+    </div>
+    <div class="comments-section">
+      <div class="comments-header">
+        <h3>💬 Comentarios</h3>
+        <span id="muroCommentCount" style="font-size:0.82rem;color:var(--muted);font-weight:700"></span>
+      </div>
+      <div class="comments-list" id="muroDetailComments"></div>
+      <div class="write-comment-box">
+        <input type="text" id="detailCommentName" placeholder="Tu nombre (opcional)">
+        <textarea id="detailCommentText" placeholder="Escribe tu comentario..." style="min-height:70px;resize:vertical"></textarea>
+        <button class="btn btn-green btn-sm" onclick="submitComment()" style="align-self:flex-start">Comentar</button>
+        <p style="font-size:0.78rem;color:var(--muted);font-weight:600">⏳ Tu comentario será visible después de ser aprobado por el admin</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <button class="btn btn-cancel btn-sm" onclick="openAdmin('muroAdmin')">🔐 Admin: aprobar comentarios</button>
+    </div>
+    <div id="muroAdminPanel" style="display:none"></div>
   </div>
   <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
@@ -702,7 +869,10 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     <div class="transactions-table">
       <div class="table-header">
         <h3>Todos los Registros</h3>
-        <button class="btn btn-primary btn-sm" onclick="openAdmin('finance')">+ Agregar</button>
+        <div style="display:flex;gap:0.6rem">
+          <button class="btn btn-primary btn-sm" onclick="openAdmin('finance')">+ Admin</button>
+          <button class="btn btn-secondary btn-sm" onclick="openTesorero()">+ Tesorero</button>
+        </div>
       </div>
       <div style="overflow-x:auto">
         <table><thead><tr><th>Fecha</th><th>Descripción</th><th>Propósito</th><th>Tipo</th><th>Monto</th><th></th></tr></thead>
@@ -728,6 +898,21 @@ footer{background:var(--dark);padding:2rem;text-align:center}
     </div>
   </div>
   <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
+</div>
+
+<!-- TESORERO PASSWORD -->
+<div class="pw-overlay" id="tesOverlay" style="display:none">
+  <div class="pw-box">
+    <div style="font-size:3rem;margin-bottom:0.8rem">💰</div>
+    <h3>Área Tesorero</h3>
+    <p>Ingresa la contraseña del tesorero para agregar un registro</p>
+    <div class="form-group"><input type="password" id="tesPw" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkTesPw()"></div>
+    <p class="pw-err" id="tesErr">Contraseña incorrecta ❌</p>
+    <div class="modal-buttons" style="justify-content:center">
+      <button class="btn btn-cancel btn-sm" onclick="closeTes()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="checkTesPw()">Entrar</button>
+    </div>
+  </div>
 </div>
 
 <!-- MODALS -->
@@ -877,6 +1062,20 @@ footer{background:var(--dark);padding:2rem;text-align:center}
   </div>
 </div>
 
+<!-- MURO COMMENT MODAL -->
+<div class="modal-overlay" id="muroCommentModal">
+  <div class="modal">
+    <h3>💬 Comentarios</h3>
+    <div id="muroCommentsList" style="max-height:250px;overflow-y:auto;margin-bottom:1rem"></div>
+    <div class="form-group"><label>Tu nombre (opcional)</label><input type="text" id="commentName" placeholder="Anónimo"></div>
+    <div class="form-group"><label>Tu comentario</label><textarea id="commentText" placeholder="Escribe algo..." style="min-height:70px"></textarea></div>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel btn-sm" onclick="closeModal('muroCommentModal')">Cerrar</button>
+      <button class="btn btn-green btn-sm" onclick="addComment()">Publicar</button>
+    </div>
+  </div>
+</div>
+
 <!-- FIREBASE SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -897,8 +1096,10 @@ const db = getFirestore(app);
 
 
 const PASS = 'ifily2024';
+const PASS_TESORERO = 'tesorero2024';
 let pendingAction = null;
 let currentFilter = 'all';
+let hidePast = true;
 let currentMeetingId = null;
 let barChart, lineChart;
 
@@ -943,6 +1144,8 @@ window.goTo = function(page, push=true) {
   document.getElementById('navLinks').classList.remove('open');
   if(push) history.pushState({page},'','#'+page);
   if(page==='eucaristias') loadEucaristias();
+  if(page==='member-detail') {} // loaded by openMemberDetail
+  if(page==='muro-detail') {} // loaded by openMuroDetail
   if(page==='finanzas') setTimeout(loadFinances,100);
   if(page==='reuniones') loadMeetings();
   if(page==='muro') loadMuro();
@@ -1094,6 +1297,17 @@ window.checkPw = async function() {
       else if(action&&action.startsWith('delMember_')){
         deleteDoc(doc(db,'members',action.split('_')[1])).then(loadMembers);
       }
+      else if(action&&action.startsWith('evAtt_')){
+        await openAsistenciaModal(action.split('_')[1],'evento');
+      }
+      else if(action==='showPtsAdmin'){
+        await loadMemberPoints(window._currentMemberDetailId, true);
+      }
+      else if(action==='muroAdmin'){
+        const snap=await getDocs(collection(db,'muro'));
+        const mdoc=snap.docs.find(d=>d.id===currentMuroDetailId);
+        if(mdoc) renderDetailComments(mdoc.data().comments||[], true);
+      }
     },150);
   } else { document.getElementById('pwErr').style.display='block'; }
 }
@@ -1104,6 +1318,10 @@ async function openAsistenciaModal(id, mode){
   let current=[];
   if(mode==='euc'){
     const snap=await getDocs(collection(db,'eucaristias'));
+    const edoc=snap.docs.find(d=>d.id===id);
+    current=(edoc?.data()?.asistencia)||[];
+  } else if(mode==='evento'){
+    const snap=await getDocs(collection(db,'events'));
     const edoc=snap.docs.find(d=>d.id===id);
     current=(edoc?.data()?.asistencia)||[];
   } else {
@@ -1123,7 +1341,9 @@ async function openAsistenciaModal(id, mode){
   }
   document.getElementById('asistenciaManual').value='';
   const saveBtn=document.querySelector('#asistenciaModal .modal-buttons .btn-primary');
-  saveBtn.onclick = mode==='euc' ? saveAsistencia : saveAsistenciaReunion;
+  // store mode and id for saving
+  saveBtn._asistMode=mode; saveBtn._asistId=id;
+  saveBtn.onclick = ()=>saveAsistenciaGeneric(id,mode);
   openModal('asistenciaModal');
 }
 
@@ -1148,15 +1368,19 @@ async function loadNews(){
   }).join('');
 }
 window.addNews = async function(){
+  const btn=document.querySelector('#newsModal .btn-primary');
+  if(btn.disabled)return;
   const title=document.getElementById('newsTitle').value.trim();
   const content=document.getElementById('newsContent').value.trim();
   if(!title||!content)return alert('Completa todos los campos.');
+  btn.disabled=true; btn.textContent='Publicando...';
   await addDoc(collection(db,'news'),{
     type:document.getElementById('newsType').value,
     title,content,
     date:new Date().toLocaleDateString('es-CO'),
     createdAt:serverTimestamp()
   });
+  btn.disabled=false; btn.textContent='Publicar';
   loadNews(); closeModal('newsModal');
   document.getElementById('newsTitle').value=''; document.getElementById('newsContent').value='';
 }
@@ -1173,15 +1397,20 @@ async function loadEvents(){
   }
   let evs=snap.docs.map(d=>({...d.data(),id:d.id}));
   if(currentFilter!=='all') evs=evs.filter(e=>e.cat===currentFilter);
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(hidePast) evs=evs.filter(e=>new Date(e.date+'T00:00:00')>=today);
   evs.sort((a,b)=>new Date(a.date)-new Date(b.date));
   if(!evs.length){list.innerHTML='<p class="empty-msg">No hay eventos en esta categoría.</p>';return;}
   list.innerHTML=evs.map(e=>{
     const d=new Date(e.date+'T00:00:00');
+    const attCount=(e.asistencia||[]).length;
     return `<div class="event-item cat-${e.cat}">
       <div class="event-date-box"><div class="event-day">${d.getDate()}</div><div class="event-month">${d.toLocaleDateString('es-CO',{month:'short'}).replace('.','')}</div></div>
       <div class="event-info"><div class="event-name">${e.name}</div><div class="event-meta">📍 ${e.meta||'Parroquia'}</div></div>
       <span class="event-tag">${catLabels[e.cat]||e.cat}</span>
-      <div class="event-actions">
+      <div class="event-actions" style="display:flex;align-items:center;gap:0.3rem">
+        ${attCount?`<span class="event-att-count">✅${attCount}</span>`:''}
+        <button class="icon-btn" onclick="openAdmin('evAtt_${e.id}')">👥</button>
         <button class="icon-btn" onclick="openAdmin('edit_${e.id}')">✏️</button>
         <button class="icon-btn danger" onclick="openAdmin('delEv_${e.id}')">🗑️</button>
       </div></div>`;
@@ -1191,6 +1420,13 @@ window.filterEvents = function(cat,btn){
   currentFilter=cat;
   document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active'); loadEvents();
+}
+window.togglePast = function(){
+  hidePast=!hidePast;
+  const btn=document.getElementById('togglePastBtn');
+  btn.textContent=hidePast?'👁️ Ocultar pasadas':'👁️ Mostrar todas';
+  btn.style.background=hidePast?'var(--ps)':'var(--bg2)';
+  loadEvents();
 }
 window.saveEvent = async function(){
   const editId=document.getElementById('editEvId').value;
@@ -1264,14 +1500,18 @@ window.openMeeting = async function(id){
   goTo('meeting-detail');
 }
 window.saveMeeting = async function(){
+  const btn=document.getElementById('meetSaveBtn');
+  if(btn.disabled)return;
   const editId=document.getElementById('editMeetId').value;
   const title=document.getElementById('meetTitle').value.trim();
   const date=document.getElementById('meetDate').value;
   const topic=document.getElementById('meetTopic').value.trim();
   const summary=document.getElementById('meetSummary').value.trim();
   if(!title||!date)return alert('El título y la fecha son obligatorios.');
+  btn.disabled=true; btn.textContent='Guardando...';
   if(editId) await updateDoc(doc(db,'meetings',editId),{title,date,topic,summary});
   else await addDoc(collection(db,'meetings'),{title,date,topic,summary,materials:[],createdAt:serverTimestamp()});
+  btn.disabled=false;
   closeModal('meetingModal');
   if(editId&&currentMeetingId) openMeeting(currentMeetingId);
   else loadMeetings();
@@ -1291,40 +1531,8 @@ window.addMaterial = async function(){
 }
 
 // ── REFLEXIONES ──
-async function loadReflexiones(meetingId){
-  const list=document.getElementById('reflexionesList');
-  const snap=await getDocs(query(collection(db,'reflexiones'),orderBy('createdAt','desc')));
-  const filtered=snap.docs.filter(d=>d.data().meetingId===meetingId);
-  if(!filtered.length){list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;text-align:center;padding:1rem">Sé el primero en compartir tu reflexión ✨</p>';return;}
-  list.innerHTML=filtered.map(d=>{
-    const r={...d.data(),id:d.id};
-    return `<div class="reflex-item">
-      <div class="reflex-author-row">
-        <div class="reflex-author">${r.author||'Anónimo'} ✨</div>
-        <div style="display:flex;align-items:center;gap:0.5rem">
-          <span class="reflex-date-small">${r.date||''}</span>
-          <button class="icon-btn danger" onclick="confirmDelReflex('${r.id}')">🗑️</button>
-        </div>
-      </div>
-      <div class="reflex-text">${r.text}</div>
-    </div>`;
-  }).join('');
-}
-window.addReflex = async function(){
-  const text=document.getElementById('reflexText').value.trim();
-  if(!text)return alert('Escribe algo antes de publicar.');
-  await addDoc(collection(db,'reflexiones'),{
-    meetingId:currentMeetingId,
-    author:document.getElementById('reflexName').value.trim(),
-    text, date:new Date().toLocaleDateString('es-CO'),
-    createdAt:serverTimestamp()
-  });
-  document.getElementById('reflexText').value=''; document.getElementById('reflexName').value='';
-  loadReflexiones(currentMeetingId); loadMeetings();
-}
-window.confirmDelReflex = function(id){
-  if(confirm('¿Eliminar esta reflexión?')) deleteDoc(doc(db,'reflexiones',id)).then(()=>loadReflexiones(currentMeetingId));
-}
+
+
 
 // ── MURO ──
 async function loadMuro(){
@@ -1333,17 +1541,29 @@ async function loadMuro(){
   const snap=await getDocs(query(collection(db,'muro'),orderBy('createdAt','desc')));
   if(!snap.docs.length){grid.innerHTML='<p class="empty-msg">Sé el primero en dejar algo en el muro ✨</p>';return;}
   const moodLabel={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
+  const REACTIONS=['❤️','🙏','😄','🔥','🕊️'];
   grid.innerHTML=snap.docs.map(d=>{
     const e={...d.data(),id:d.id};
-    return `<div class="expr-card mood-${e.mood}">
+    const reactions=e.reactions||{};
+    const comments=e.comments||[];
+    const reactionBtns=REACTIONS.map(r=>{
+      const count=reactions[r]||0;
+      return `<button class="reaction-btn" onclick="toggleReaction('${e.id}','${r}')">${r}${count?` ${count}`:''}</button>`;
+    }).join('');
+    const commentCount=comments.length;
+    return `<div class="expr-card mood-${e.mood}" onclick="openMuroDetail('${e.id}')" style="cursor:pointer">
       <div class="expr-top">
         <div class="expr-author">${e.author||'Anónimo'}</div>
         <span class="expr-mood-badge">${moodLabel[e.mood]||e.mood}</span>
       </div>
       <div class="expr-text">${e.text}</div>
-      <div class="expr-bottom">
+      <div class="muro-reactions">${reactionBtns}</div>
+      <div class="expr-bottom" style="cursor:default">
         <span class="expr-date">${e.date||''}</span>
-        <button class="icon-btn danger" onclick="confirmDelMuro('${e.id}')">🗑️ Eliminar</button>
+        <div style="display:flex;gap:0.3rem;align-items:center">
+          <button class="muro-toggle-comments" onclick="openMuroDetail('${e.id}')">💬 ${commentCount} comentario${commentCount!==1?'s':''}</button>
+          <button class="icon-btn danger" onclick="confirmDelMuro('${e.id}')">🗑️</button>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -1389,13 +1609,14 @@ async function loadMembers(){
       m.tt?`<a href="https://tiktok.com/${m.tt.replace('@','')}" target="_blank" class="member-social-link">🎵 ${m.tt}</a>`:'',
       m.other?`<span class="member-social-link">🔗 ${m.other}</span>`:''
     ].filter(Boolean).join('');
-    return `<div class="member-card">
-      <button class="member-del-btn" onclick="confirmDelMember('${m.id}','${m.name.replace(/'/g,"\\'")}')">🗑️</button>
+    return `<div class="member-card" onclick="openMemberDetail('${m.id}')" style="cursor:pointer">
+      <button class="member-del-btn" onclick="event.stopPropagation();confirmDelMember('${m.id}','${m.name.replace(/'/g,"\\'")}')">🗑️</button>
       ${avatar}${placeholder}
       <div class="member-name">${m.name}</div>
       <span class="member-role ${roleClass[m.role]||'role-otro'}">${roleLabel[m.role]||m.role}</span>
       ${m.bio?`<div class="member-bio">${m.bio}</div>`:''}
       ${socials?`<div class="member-socials">${socials}</div>`:''}
+      <div style="margin-top:0.8rem;font-size:0.78rem;font-weight:700;color:var(--muted)">Ver historial →</div>
     </div>`;
   }).join('');
 }
@@ -1482,16 +1703,20 @@ async function loadFinances(){
   lineChart=new Chart(document.getElementById('lineChart'),{type:'line',data:{labels,datasets:[{label:'Balance',data:balances,borderColor:'#7B2FBE',backgroundColor:'rgba(123,47,190,0.08)',tension:0.4,fill:true,pointBackgroundColor:'#7B2FBE',pointRadius:5}]},options:{responsive:true,...opts}});
 }
 window.addFinance = async function(){
+  const btn=document.querySelector('#financeModal .btn-primary');
+  if(btn.disabled)return;
   const desc=document.getElementById('finDesc').value.trim();
   const amount=parseFloat(document.getElementById('finAmount').value);
   const date=document.getElementById('finDate').value;
   if(!desc||!amount||!date)return alert('Completa todos los campos.');
+  btn.disabled=true; btn.textContent='Registrando...';
   await addDoc(collection(db,'finances'),{
     type:document.getElementById('finType').value,
     desc, project:document.getElementById('finProject').value.trim()||'General',
     amount, date:new Date(date+'T00:00:00').toLocaleDateString('es-CO'),
     createdAt:serverTimestamp()
   });
+  btn.disabled=false; btn.textContent='Registrar';
   loadFinances(); closeModal('financeModal');
   ['finDesc','finProject','finAmount'].forEach(i=>document.getElementById(i).value='');
 }
@@ -1582,13 +1807,17 @@ function renderEucAsistencia(lista){
 }
 
 window.saveEuc = async function(){
+  const btn=document.getElementById('eucSaveBtn');
+  if(btn.disabled)return;
   const editId=document.getElementById('editEucId').value;
   const date=document.getElementById('eucDate').value;
   const hora=document.getElementById('eucHora').value;
   const nota=document.getElementById('eucNota').value.trim();
   if(!date)return alert('Selecciona la fecha.');
+  btn.disabled=true; btn.textContent='Guardando...';
   if(editId) await updateDoc(doc(db,'eucaristias',editId),{date,hora,nota});
   else await addDoc(collection(db,'eucaristias'),{date,hora,nota,roles:{},asistencia:[],createdAt:serverTimestamp()});
+  btn.disabled=false;
   closeModal('eucModal'); loadEucaristias();
 }
 
@@ -1603,14 +1832,7 @@ window.saveRoles = async function(){
   closeModal('rolesModal'); openEuc(currentEucId);
 }
 
-window.saveAsistencia = async function(){
-  const checks=document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
-  const lista=[...checks].map(c=>c.value);
-  const manual=document.getElementById('asistenciaManual').value.trim();
-  if(manual) lista.push(manual);
-  await updateDoc(doc(db,'eucaristias',currentEucId),{asistencia:lista});
-  closeModal('asistenciaModal'); openEuc(currentEucId);
-}
+
 
 // ── ASISTENCIA REUNIONES ──
 async function loadAsistenciaReunion(meetingId){
@@ -1629,17 +1851,398 @@ async function loadAsistenciaReunion(meetingId){
 }
 
 // ── PATCH checkPw for new actions ──
-window.saveAsistenciaReunion = async function(){
-  const checks=document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
-  const lista=[...checks].map(c=>c.value);
-  const manual=document.getElementById('asistenciaManual').value.trim();
-  if(manual) lista.push(manual);
-  await updateDoc(doc(db,'meetings',currentMeetingId),{asistencia:lista});
-  closeModal('asistenciaModal');
-  // restore default save button action
-  document.querySelector('#asistenciaModal .modal-buttons .btn-primary').onclick=saveAsistencia;
-  openMeeting(currentMeetingId);
+
+
+// ── POINTS SYSTEM ──
+const PTS = { reunion:5, eucaristia:5, evento:5, comentario:10, reflexion:10 };
+
+async function addPoints(memberName, type, desc){
+  if(!memberName) return;
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>d.data().name===memberName);
+  if(!mdoc) return;
+  const pts = (mdoc.data().puntos||[]);
+  pts.push({pts:PTS[type]||5, desc, date:new Date().toLocaleDateString('es-CO'), type});
+  await updateDoc(doc(db,'members',mdoc.id),{puntos:pts});
 }
+
+// ── MURO DETAIL ──
+let currentMuroDetailId = null;
+const moodLabelFull={feliz:'😄 Feliz',reflexivo:'🤔 Reflexivo',agradecido:'🙏 Agradecido',oracion:'✝️ En oración',otro:'💭 Otro'};
+const REACTIONS=['❤️','🙏','😄','🔥','🕊️'];
+
+window.openMuroDetail = async function(id){
+  currentMuroDetailId = id;
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const e = {...mdoc.data(), id};
+  // Cover
+  const cover = document.getElementById('muroDetailCover');
+  cover.className = 'muro-detail-cover mood-'+(e.mood||'otro');
+  document.getElementById('mdMoodBadge').textContent = moodLabelFull[e.mood]||e.mood;
+  document.getElementById('mdAuthor').textContent = e.author||'Anónimo';
+  document.getElementById('mdText').textContent = e.text;
+  document.getElementById('mdDate').textContent = e.date||'';
+  // Reactions
+  const reactions = e.reactions||{};
+  document.getElementById('muroDetailReactions').innerHTML = REACTIONS.map(r=>{
+    const count = reactions[r]||0;
+    return `<button class="reaction-big-btn" onclick="toggleReactionDetail('${id}','${r}')">${r} ${count||''}</button>`;
+  }).join('');
+  // Comments
+  renderDetailComments(e.comments||[], false);
+  // Clear form
+  document.getElementById('detailCommentName').value='';
+  document.getElementById('detailCommentText').value='';
+  goTo('muro-detail');
+}
+
+function renderDetailComments(comments, isAdmin){
+  const approved = comments.filter(c=>c.approved);
+  const pending = comments.filter(c=>!c.approved);
+  const countEl = document.getElementById('muroCommentCount');
+  countEl.textContent = `${approved.length} aprobado${approved.length!==1?'s':''}${isAdmin&&pending.length?` · ${pending.length} pendiente${pending.length!==1?'s':''}`:''}`;
+  const list = document.getElementById('muroDetailComments');
+  const visibleComments = isAdmin ? comments : approved;
+  if(!visibleComments.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;padding:0.5rem">Sé el primero en comentar ✨</p>';
+    return;
+  }
+  list.innerHTML = visibleComments.map((c,i)=>{
+    const realIdx = comments.indexOf(c);
+    const isPending = !c.approved;
+    return `<div class="comment-item ${isPending?'pending':'approved'}">
+      <div class="comment-author">${c.author||'Anónimo'}</div>
+      <div class="comment-text">${c.text}</div>
+      <div class="comment-meta">
+        <span class="comment-date">${c.date||''}</span>
+        <div style="display:flex;gap:0.4rem;align-items:center">
+          ${isPending?'<span class="comment-status status-pending">⏳ Pendiente</span>':'<span class="comment-status status-approved">✅ Aprobado</span>'}
+          ${isAdmin&&isPending?`<button class="btn btn-sm" style="background:var(--green);color:#fff;border-radius:10px;padding:0.2rem 0.7rem;font-size:0.75rem" onclick="approveComment('${currentMuroDetailId}',${realIdx})">Aprobar +10pts</button>`:''}
+          ${isAdmin?`<button class="icon-btn danger" style="font-size:0.78rem" onclick="deleteComment('${currentMuroDetailId}',${realIdx})">🗑️</button>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  // admin panel
+  document.getElementById('muroAdminPanel').style.display = isAdmin ? 'block' : 'none';
+}
+
+window.toggleReactionDetail = async function(id, emoji){
+  const ref_ = doc(db,'muro',id);
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const reactions = {...(mdoc.data().reactions||{})};
+  reactions[emoji] = (reactions[emoji]||0)+1;
+  await updateDoc(ref_,{reactions});
+  // update buttons inline
+  const btns = document.querySelectorAll('#muroDetailReactions .reaction-big-btn');
+  REACTIONS.forEach((r,i)=>{ btns[i].textContent = r+' '+(reactions[r]||''); });
+  loadMuro(); // refresh grid too
+}
+
+window.submitComment = async function(){
+  const text = document.getElementById('detailCommentText').value.trim();
+  if(!text) return alert('Escribe algo antes de comentar.');
+  const ref_ = doc(db,'muro',currentMuroDetailId);
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===currentMuroDetailId);
+  const comments = [...(mdoc?.data()?.comments||[]), {
+    author: document.getElementById('detailCommentName').value.trim(),
+    text, date: new Date().toLocaleDateString('es-CO'),
+    approved: false
+  }];
+  await updateDoc(ref_,{comments});
+  document.getElementById('detailCommentText').value='';
+  renderDetailComments(comments, false);
+  loadMuro();
+}
+
+window.approveComment = async function(muroId, idx){
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===muroId);
+  if(!mdoc) return;
+  const comments = [...(mdoc.data().comments||[])];
+  if(!comments[idx]) return;
+  comments[idx].approved = true;
+  await updateDoc(doc(db,'muro',muroId),{comments});
+  // Give points to the commenter
+  const author = comments[idx].author;
+  if(author) await addPoints(author,'comentario',`Comentario aprobado en el Muro (${new Date().toLocaleDateString('es-CO')})`);
+  renderDetailComments(comments, true);
+  loadMuro();
+}
+
+window.deleteComment = async function(muroId, idx){
+  if(!confirm('¿Eliminar este comentario?')) return;
+  const snap = await getDocs(collection(db,'muro'));
+  const mdoc = snap.docs.find(d=>d.id===muroId);
+  if(!mdoc) return;
+  const comments = (mdoc.data().comments||[]).filter((_,i)=>i!==idx);
+  await updateDoc(doc(db,'muro',muroId),{comments});
+  renderDetailComments(comments, true);
+  loadMuro();
+}
+
+// ── POINTS in openMemberDetail ── (patch after load)
+window.openMemberDetail = async function(id){
+  window._currentMemberDetailId = id;
+  await _origOpenMemberDetail(id);
+  await loadMemberPoints(id, false);
+}
+
+async function loadMemberPoints(id, isAdmin){
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const m = mdoc.data();
+  const puntos = m.puntos||[];
+  const total = puntos.reduce((s,p)=>s+p.pts,0);
+  document.getElementById('mdPtsTotal').textContent = total+' pts';
+  const rows = document.getElementById('mdPtsRows');
+  if(!puntos.length){
+    rows.innerHTML='<p style="color:var(--muted);font-size:0.85rem;padding:0.5rem;font-weight:600">Aún no hay puntos registrados.</p>';
+  } else {
+    // Show all if admin, only positive if not
+    const visible = isAdmin ? puntos : puntos.filter(p=>p.pts>0);
+    rows.innerHTML = [...visible].reverse().map(p=>`
+      <div class="pts-row">
+        <span class="pts-row-desc">${p.desc||p.type}</span>
+        <span class="pts-row-val ${p.pts>0?'pos':'neg'}">${p.pts>0?'+':''}${p.pts} pts</span>
+      </div>`).join('');
+  }
+  document.getElementById('mdPtsAdminBox').style.display = isAdmin?'flex':'none';
+}
+
+window.deductPoints = async function(){
+  const pts = parseInt(document.getElementById('mdPtsDeduct').value);
+  if(!pts||pts<=0) return alert('Ingresa un número válido de puntos a quitar.');
+  const reason = document.getElementById('mdPtsDeductReason').value.trim()||'Deducción admin';
+  const id = window._currentMemberDetailId;
+  const msnap = await getDocs(collection(db,'members'));
+  const mdoc = msnap.docs.find(d=>d.id===id);
+  if(!mdoc) return;
+  const puntos = [...(mdoc.data().puntos||[])];
+  puntos.push({pts:-pts, desc:reason, date:new Date().toLocaleDateString('es-CO'), type:'deduccion'});
+  await updateDoc(doc(db,'members',id),{puntos});
+  document.getElementById('mdPtsDeduct').value='';
+  document.getElementById('mdPtsDeductReason').value='';
+  loadMemberPoints(id, true);
+}
+
+// ── POINTS for reflexiones ──
+
+
+async function loadReflexiones(meetingId){
+  const list = document.getElementById('reflexionesList');
+  const snap = await getDocs(query(collection(db,'reflexiones'),orderBy('createdAt','desc')));
+  const filtered = snap.docs.filter(d=>d.data().meetingId===meetingId);
+  if(!filtered.length){list.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;text-align:center;padding:1rem">Sé el primero en compartir tu reflexión ✨</p>';return;}
+  list.innerHTML = filtered.map(d=>{
+    const r={...d.data(),id:d.id};
+    const isPending = !r.approved;
+    return `<div class="reflex-item" style="${isPending?'border-left-color:var(--yellow);opacity:0.8':''}">
+      <div class="reflex-author-row">
+        <div class="reflex-author">${r.author||'Anónimo'} ✨ ${isPending?'<span style="font-size:0.72rem;font-weight:700;background:rgba(251,191,36,0.2);color:#92400E;padding:0.1rem 0.5rem;border-radius:10px">⏳ Pendiente</span>':''}</div>
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <span class="reflex-date-small">${r.date||''}</span>
+          ${isPending?`<button class="btn btn-sm" style="background:var(--green);color:#fff;border-radius:10px;padding:0.2rem 0.6rem;font-size:0.72rem;border:none;cursor:pointer" onclick="approveReflex('${r.id}','${(r.author||'').replace(/'/g,"\\'")}')">✅ Aprobar +10pts</button>`:''}
+          <button class="icon-btn danger" onclick="confirmDelReflex('${r.id}')">🗑️</button>
+        </div>
+      </div>
+      <div class="reflex-text">${r.text}</div>
+    </div>`;
+  }).join('');
+}
+
+window.addReflex = async function(){
+  const text = document.getElementById('reflexText').value.trim();
+  const author = document.getElementById('reflexName').value.trim();
+  if(!text) return alert('Escribe algo antes de publicar.');
+  await addDoc(collection(db,'reflexiones'),{
+    meetingId:currentMeetingId,
+    author, text,
+    date:new Date().toLocaleDateString('es-CO'),
+    createdAt:serverTimestamp(),
+    approved:false
+  });
+  document.getElementById('reflexText').value='';
+  document.getElementById('reflexName').value='';
+  loadReflexiones(currentMeetingId);
+  loadMeetings();
+}
+
+window.confirmDelReflex = function(id){
+  if(confirm('¿Eliminar esta reflexión?')) deleteDoc(doc(db,'reflexiones',id)).then(()=>loadReflexiones(currentMeetingId));
+}
+
+window.approveReflex = async function(reflexId, author){
+  await updateDoc(doc(db,'reflexiones',reflexId),{approved:true});
+  if(author) await addPoints(author,'reflexion',`Reflexión aprobada en reunión (${new Date().toLocaleDateString('es-CO')})`);
+  loadReflexiones(currentMeetingId);
+}
+
+// ── POINTS for asistencia (auto on save) ──
+window.saveAsistenciaGeneric = async function(id, mode){
+  // Get previous list to find new attendees
+  let prevList = [];
+  if(mode==='euc'){const s=await getDocs(collection(db,'eucaristias'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  else if(mode==='evento'){const s=await getDocs(collection(db,'events'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  else{const s=await getDocs(collection(db,'meetings'));const d=s.docs.find(x=>x.id===id);prevList=d?.data()?.asistencia||[];}
+  const checks = document.querySelectorAll('#asistenciaCheckList input[type=checkbox]:checked');
+  const newList = [...checks].map(c=>c.value);
+  const manual = document.getElementById('asistenciaManual').value.trim();
+  if(manual&&!newList.includes(manual)) newList.push(manual);
+  // Award points to newly added attendees
+  const newAttendees = newList.filter(n=>!prevList.includes(n));
+  const typeKey = mode==='euc'?'eucaristia':mode==='evento'?'evento':'reunion';
+  const typeLabel = mode==='euc'?'Eucaristía':mode==='evento'?'Evento':'Reunión';
+  for(const name of newAttendees){
+    await addPoints(name, typeKey, `Asistencia a ${typeLabel} (${new Date().toLocaleDateString('es-CO')})`);
+  }
+  // Save
+  if(mode==='euc') await updateDoc(doc(db,'eucaristias',id),{asistencia:newList});
+  else if(mode==='evento') await updateDoc(doc(db,'events',id),{asistencia:newList});
+  else await updateDoc(doc(db,'meetings',id),{asistencia:newList});
+  closeModal('asistenciaModal');
+  if(mode==='euc') openEuc(currentEucId);
+  else if(mode==='evento') loadEvents();
+  else openMeeting(currentMeetingId);
+}
+
+// ── TESORERO ──
+window.openTesorero = function(){
+  document.getElementById('tesPw').value='';
+  document.getElementById('tesErr').style.display='none';
+  const ov=document.getElementById('tesOverlay');
+  ov.style.display='flex'; setTimeout(()=>document.getElementById('tesPw').focus(),100);
+}
+window.closeTes = function(){ document.getElementById('tesOverlay').style.display='none'; }
+window.checkTesPw = function(){
+  if(document.getElementById('tesPw').value===PASS_TESORERO){
+    closeTes();
+    setTimeout(()=>{
+      document.getElementById('finDate').valueAsDate=new Date();
+      openModal('financeModal');
+    },150);
+  } else { document.getElementById('tesErr').style.display='block'; }
+}
+
+// ── MURO REACTIONS & COMMENTS ──
+let currentMuroId = null;
+window.toggleReaction = async function(id, emoji){
+  const ref_=doc(db,'muro',id);
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const reactions={...(mdoc.data().reactions||{})};
+  reactions[emoji]=(reactions[emoji]||0)+1;
+  await updateDoc(ref_,{reactions});
+  loadMuro();
+}
+window.openMuroComments = async function(id){
+  currentMuroId=id;
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===id);
+  const comments=mdoc?.data()?.comments||[];
+  renderMuroComments(comments);
+  document.getElementById('commentName').value='';
+  document.getElementById('commentText').value='';
+  openModal('muroCommentModal');
+}
+function renderMuroComments(comments){
+  const el=document.getElementById('muroCommentsList');
+  if(!comments.length){el.innerHTML='<p style="color:var(--muted);font-size:0.88rem;font-weight:600;margin-bottom:0.5rem">Aún no hay comentarios.</p>';return;}
+  el.innerHTML=comments.map((c,i)=>`
+    <div class="muro-comment">
+      <span class="muro-comment-author">${c.author||'Anónimo'}</span>: ${c.text}
+      <span style="color:var(--muted);font-size:0.75rem;margin-left:0.4rem">${c.date||''}</span>
+    </div>`).join('');
+}
+window.addComment = async function(){
+  const text=document.getElementById('commentText').value.trim();
+  if(!text)return alert('Escribe algo antes de comentar.');
+  const ref_=doc(db,'muro',currentMuroId);
+  const snap=await getDocs(collection(db,'muro'));
+  const mdoc=snap.docs.find(d=>d.id===currentMuroId);
+  const comments=[...(mdoc?.data()?.comments||[]),{
+    author:document.getElementById('commentName').value.trim(),
+    text, date:new Date().toLocaleDateString('es-CO')
+  }];
+  await updateDoc(ref_,{comments});
+  document.getElementById('commentText').value='';
+  renderMuroComments(comments);
+  loadMuro();
+}
+
+// ── MEMBER DETAIL ──
+const roleLabel2={coordinador:'Coordinador/a',integrante:'Integrante',tesorero:'Tesorero/a',secretario:'Secretario/a',asesor:'Asesor/a',otro:'Otro'};
+window.openMemberDetail = async function(id){
+  const msnap=await getDocs(collection(db,'members'));
+  const mdoc=msnap.docs.find(d=>d.id===id);
+  if(!mdoc)return;
+  const m=mdoc.data();
+  // Header
+  const avEl=document.getElementById('mdAvatar');
+  if(m.photo) avEl.innerHTML=`<img src="${m.photo}" class="member-detail-avatar" onerror="this.outerHTML='<div class=\\"member-detail-placeholder\\">${m.name.charAt(0).toUpperCase()}</div>'">`;
+  else avEl.innerHTML=`<div class="member-detail-placeholder">${m.name.charAt(0).toUpperCase()}</div>`;
+  document.getElementById('mdName').textContent=m.name;
+  document.getElementById('mdRole').textContent=roleLabel2[m.role]||m.role;
+  document.getElementById('mdBio').textContent=m.bio||'';
+  const socials=[
+    m.ig?`<a href="https://instagram.com/${m.ig.replace('@','')}" target="_blank" style="background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.8rem;color:#fff;font-size:0.82rem;font-weight:700;text-decoration:none">📸 ${m.ig}</a>`:'',
+    m.tt?`<a href="https://tiktok.com/${m.tt.replace('@','')}" target="_blank" style="background:rgba(255,255,255,0.2);border-radius:20px;padding:0.25rem 0.8rem;color:#fff;font-size:0.82rem;font-weight:700;text-decoration:none">🎵 ${m.tt}</a>`:'',
+  ].filter(Boolean).join('');
+  document.getElementById('mdSocials').innerHTML=socials;
+
+  // Gather attendance data
+  const [rsnap,esnap,evsnap]=await Promise.all([
+    getDocs(query(collection(db,'meetings'),orderBy('createdAt','desc'))),
+    getDocs(query(collection(db,'eucaristias'),orderBy('date','desc'))),
+    getDocs(collection(db,'events'))
+  ]);
+  const meetings=rsnap.docs.map(d=>({...d.data(),id:d.id}));
+  const eucs=esnap.docs.map(d=>({...d.data(),id:d.id}));
+  const evs=evsnap.docs.map(d=>({...d.data(),id:d.id})).filter(e=>e.asistencia&&e.asistencia.length>0);
+
+  let totalP=0,totalA=0;
+  function renderAttRows(items,labelFn,el){
+    if(!items.length){el.innerHTML='<p style="color:var(--muted);font-size:0.85rem;padding:0.5rem;font-weight:600">Sin registros aún.</p>';return;}
+    el.innerHTML=items.map(item=>{
+      const att=item.asistencia||[];
+      const presente=att.includes(m.name);
+      if(presente) totalP++; else totalA++;
+      return `<div class="att-row">
+        <span class="att-row-label">${labelFn(item)}</span>
+        <span class="att-badge ${presente?'presente':'ausente'}">${presente?'✅ Presente':'❌ Ausente'}</span>
+      </div>`;
+    }).join('');
+  }
+  renderAttRows(meetings,r=>{
+    const dt=new Date(r.date+'T00:00:00');
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${r.title}`;
+  }, document.getElementById('mdReuniones'));
+  renderAttRows(eucs,e=>{
+    const dt=new Date(e.date+'T00:00:00');
+    const hl={8:'8AM',10:'10AM',12:'12M',17:'5PM'};
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${hl[e.hora]||e.hora}`;
+  }, document.getElementById('mdEucaristias'));
+  renderAttRows(evs,e=>{
+    const dt=new Date(e.date+'T00:00:00');
+    return `${dt.toLocaleDateString('es-CO',{day:'numeric',month:'short'})} — ${e.name}`;
+  }, document.getElementById('mdEventos'));
+
+  document.getElementById('mdTotalPresente').textContent=totalP;
+  document.getElementById('mdTotalAusente').textContent=totalA;
+  const total=totalP+totalA;
+  document.getElementById('mdPorcentaje').textContent=total?Math.round(totalP/total*100)+'%':'—';
+  goTo('member-detail');
+}
+
+// ── EVENT ASISTENCIA (in checkPw) ──
+// handled via evAtt_ prefix in checkPw already registered below
 
 // Init
 goTo('inicio', false);
