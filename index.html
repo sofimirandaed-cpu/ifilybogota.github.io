@@ -652,6 +652,21 @@ footer{background:var(--dark);padding:2rem;text-align:center}
       <div class="att-section-header">📅 Eventos</div>
       <div class="att-rows" id="mdEventos"></div>
     </div>
+    <div class="pts-detail" id="mdPtsBox">
+      <div class="pts-header">
+        <h3>⭐ Puntos</h3>
+        <div class="pts-total" id="mdPtsTotal">0 pts</div>
+      </div>
+      <div class="pts-rows" id="mdPtsRows"></div>
+      <div class="pts-admin-box" id="mdPtsAdminBox" style="display:none;flex-wrap:wrap;gap:0.6rem;align-items:center">
+        <input type="number" id="mdPtsDeduct" placeholder="Pts a quitar" style="width:120px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:0.4rem 0.8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);outline:none">
+        <input type="text" id="mdPtsDeductReason" placeholder="Razón (opcional)" style="flex:1;min-width:140px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:0.4rem 0.8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);outline:none">
+        <button class="btn btn-sm" style="background:var(--red);color:#fff;border-radius:10px;border:none;cursor:pointer" onclick="deductPoints()">Quitar puntos</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <button class="btn btn-cancel btn-sm" onclick="openAdmin('showPtsAdmin')">🔐 Admin: ver/quitar puntos</button>
+    </div>
   </div>
   <footer><div class="footer-logo"><span class="serif-i">I</span><span class="fily">Fily</span></div><div class="footer-sub">Parroquia Nuestra Señora de la Dulce Espera · Bogotá</div></footer>
 </div>
